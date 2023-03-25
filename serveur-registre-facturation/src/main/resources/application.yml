@@ -1,0 +1,13 @@
+server:
+  port: 8084
+  servlet:
+    context-path: /facturations
+
+spring:
+  application:
+    name: facturations
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka

@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: compte-id
+          uri: lb://comptes
+          predicates:
+            - Path=/comptes/**
+          filters:
+            - AddRequestHeader=first-request, first-request-header
+            - AddResponseHeader=first-response, first-response-header
+        - id: facturation-id
+          uri: lb://facturations
+          predicates:
+            - Path=/facturations/**
+          filters:
+            - AddRequestHeader=first-request, first-request-header
+            - AddResponseHeader=first-response, first-response-header
+        - id: commandes-id
+          uri: lb://commandes
+          predicates:
+            - Path=/commandes/**
+          filters:
+            - AddRequestHeader=first-request, first-request-header
+            - AddResponseHeader=first-response, first-response-header
+        - id: composants-id
+          uri: lb://composants
+          predicates:
+            - Path=/composants/**
+          filters:
+            - AddRequestHeader=first-request, first-request-header
+            - AddResponseHeader=first-response, first-response-header
+        # ajouter les éventuels services suivants
+server:
+  port: 8080

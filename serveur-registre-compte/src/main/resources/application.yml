@@ -1,0 +1,13 @@
+server:
+  port: 8083
+  servlet:
+    context-path: /comptes
+
+spring:
+  application:
+    name: comptes
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
