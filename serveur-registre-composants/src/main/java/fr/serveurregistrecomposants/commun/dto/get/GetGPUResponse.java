@@ -1,15 +1,15 @@
-package fr.serveurregistrecomposants.commun.dto.post;
+package fr.serveurregistrecomposants.commun.dto.get;
 
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @ToString
-public class CreateGPURequest {
+public class GetGPUResponse {
+    private Integer id;
     private Double prix;
     private String nom;
     private String marque;

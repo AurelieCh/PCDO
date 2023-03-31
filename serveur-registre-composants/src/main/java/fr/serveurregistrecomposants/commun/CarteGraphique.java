@@ -19,5 +19,6 @@ import javax.persistence.Entity;
 public class CarteGraphique extends Composant{
     private Integer nbVentilateurs;
     private Double frequence;
+    private Integer vRam;
 
 }
