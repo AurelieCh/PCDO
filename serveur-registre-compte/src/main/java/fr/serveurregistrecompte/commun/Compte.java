@@ -24,6 +24,10 @@ public class Compte {
     //List d'ids afin de récupérer les composants et de les afficher dans le panier
     @ElementCollection
     private List<String> panier;
+    @ElementCollection
+    private List<Integer> commandes;
+    @ElementCollection
+    private List<Integer> facturations;
     private Date dateInscription;
 
 }
