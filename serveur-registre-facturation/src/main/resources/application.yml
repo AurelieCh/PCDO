@@ -2,6 +2,8 @@ server:
   port: 8084
   servlet:
     context-path: /facturations
+  tomcat:
+    redirect-context-root: false
 
 spring:
   application:
