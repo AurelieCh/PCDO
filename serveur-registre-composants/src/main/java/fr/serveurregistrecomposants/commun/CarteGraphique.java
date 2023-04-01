@@ -15,7 +15,7 @@ import javax.persistence.Entity;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@DiscriminatorValue("CPU")
+@DiscriminatorValue("GPU")
 public class CarteGraphique extends Composant{
     private Integer nbVentilateurs;
     private Double frequence;

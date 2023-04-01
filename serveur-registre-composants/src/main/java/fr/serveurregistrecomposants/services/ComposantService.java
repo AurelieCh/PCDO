@@ -138,4 +138,78 @@ public class ComposantService {
                 .build();
 
     }
+
+    public GetComposantsResponse getComposantById(Integer id){
+        GetComposantsResponse toReturn = new GetComposantsResponse();
+        Optional <Processeur> cpu = this.repProc.findById(id);
+        if (cpu.isPresent()){
+            toReturn.getProcesseurs().add(buildGetCPUResponse(cpu.get()));
+            return toReturn;
+        }
+        Optional <CarteGraphique> gpu = this.repGraph.findById(id);
+        if (gpu.isPresent()){
+            toReturn.getCartesgraphiques().add(buildGetGPUResponse(gpu.get()));
+            return toReturn;
+        }
+
+        return toReturn;
+    }
+
+    public GetComposantsResponse getAllComposantsByFilters(Double prixMin, Double prixMax, String marque, String description, String type, String socket, Integer nbCoeursMin, Integer nbCoeursMax, Double frequenceMin, Double frequenceMax, Integer nbVentilateursMin, Integer nbVentilateursMax) {
+        List<Processeur> processeurs;
+        List<CarteGraphique> cartesgraphiques;
+        if (type != null){
+            processeurs = type.contains("cpu") ? this.repProc.findAll() : new ArrayList<>();
+            cartesgraphiques = type.contains("gpu") ?this.repGraph.findAll() : new ArrayList<>();
+        } else {
+            processeurs = this.repProc.findAll();
+            cartesgraphiques = this.repGraph.findAll();
+        }
+
+        if (prixMin != null){
+            processeurs = processeurs.stream().filter(cpu -> cpu.getPrix() >= prixMin).collect(Collectors.toList());
+            cartesgraphiques = cartesgraphiques.stream().filter(gpu -> gpu.getPrix() >= prixMin).collect(Collectors.toList());
+        }
+        if (prixMax != null){
+            processeurs = processeurs.stream().filter(cpu -> cpu.getPrix() <= prixMax).collect(Collectors.toList());
+            cartesgraphiques = cartesgraphiques.stream().filter(gpu -> gpu.getPrix() <= prixMax).collect(Collectors.toList());
+        }
+        if (marque != null){
+            processeurs = processeurs.stream().filter(cpu -> cpu.getMarque().equals(marque)).collect(Collectors.toList());
+            cartesgraphiques = cartesgraphiques.stream().filter(gpu -> gpu.getMarque().equals(marque)).collect(Collectors.toList());
+        }
+        if (description != null){
+            processeurs = processeurs.stream().filter(cpu -> cpu.getDescription().contains(description)).collect(Collectors.toList());
+            cartesgraphiques = cartesgraphiques.stream().filter(gpu -> gpu.getDescription().contains(description)).collect(Collectors.toList());
+        }
+        if (socket != null){
+            processeurs = processeurs.stream().filter(cpu -> cpu.getSocket().equals(socket)).collect(Collectors.toList());
+        }
+        if (nbCoeursMin != null){
+            processeurs = processeurs.stream().filter(cpu -> cpu.getNbCoeurs() >= nbCoeursMin).collect(Collectors.toList());
+        }
+        if (nbCoeursMax != null){
+            processeurs = processeurs.stream().filter(cpu -> cpu.getNbCoeurs() <= nbCoeursMax).collect(Collectors.toList());
+        }
+        if (frequenceMin != null){
+            processeurs = processeurs.stream().filter(cpu -> cpu.getFrequence() >= frequenceMin).collect(Collectors.toList());
+            cartesgraphiques = cartesgraphiques.stream().filter(gpu -> gpu.getFrequence() >= frequenceMin).collect(Collectors.toList());
+        }
+        if (frequenceMax != null){
+            processeurs = processeurs.stream().filter(cpu -> cpu.getFrequence() <= frequenceMax).collect(Collectors.toList());
+            cartesgraphiques = cartesgraphiques.stream().filter(gpu -> gpu.getFrequence() <= frequenceMax).collect(Collectors.toList());
+        }
+        if (nbVentilateursMin != null){
+            cartesgraphiques = cartesgraphiques.stream().filter(gpu -> gpu.getNbVentilateurs() >= nbVentilateursMin).collect(Collectors.toList());
+        }
+        if (nbVentilateursMax != null){
+            cartesgraphiques = cartesgraphiques.stream().filter(gpu -> gpu.getNbVentilateurs() <= nbVentilateursMax).collect(Collectors.toList());
+        }
+
+        return GetComposantsResponse.builder()
+                .processeurs(processeurs.stream().map(this::buildGetCPUResponse).collect(Collectors.toList()))
+                .cartesgraphiques(cartesgraphiques.stream().map(this::buildGetGPUResponse).collect(Collectors.toList()))
+                .build();
+
+    }
 }

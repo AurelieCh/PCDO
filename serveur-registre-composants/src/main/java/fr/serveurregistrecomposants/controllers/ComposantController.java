@@ -1,5 +1,7 @@
 package fr.serveurregistrecomposants.controllers;
 
+import fr.serveurregistrecomposants.commun.dto.get.GetCPUResponse;
+import fr.serveurregistrecomposants.commun.dto.get.GetComposantsResponse;
 import fr.serveurregistrecomposants.commun.dto.post.CreateCPURequest;
 import fr.serveurregistrecomposants.commun.dto.post.CreateGPURequest;
 import fr.serveurregistrecomposants.services.ComposantService;
@@ -46,12 +48,34 @@ public class ComposantController {
         }
     }
 
-    @GetMapping()
+    @GetMapping("/all")
     public ResponseEntity getAllComposants(){
         try {
             return ResponseEntity.ok().body(this.serCompo.getAllComposants());
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e);
         }
+    }
+
+    @GetMapping()
+    public ResponseEntity getComposants(@RequestParam(required = false) Integer id,
+                                        @RequestParam(required = false) Double prixMin,
+                                        @RequestParam(required = false) Double prixMax,
+                                        @RequestParam(required = false) String marque,
+                                        @RequestParam(required = false) String description,
+                                        @RequestParam(required = false) String type,
+
+                                        @RequestParam(required = false) String socket,
+                                        @RequestParam(required = false) Integer nbCoeursMin,
+                                        @RequestParam(required = false) Integer nbCoeursMax,
+                                        @RequestParam(required = false) Double frequenceMin,
+                                        @RequestParam(required = false) Double frequenceMax,
+                                        @RequestParam(required = false) Integer nbVentilateursMin,
+                                        @RequestParam(required = false) Integer nbVentilateursMax
+                                        ){
+        if (id != null){
+            return ResponseEntity.ok().body(this.serCompo.getComposantById(id));
+        }
+        return ResponseEntity.ok().body(this.serCompo.getAllComposantsByFilters(prixMin, prixMax, marque, description, type, socket, nbCoeursMin, nbCoeursMax, frequenceMin, frequenceMax, nbVentilateursMin, nbVentilateursMax));
     }
 }
