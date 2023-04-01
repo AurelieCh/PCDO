@@ -9,6 +9,7 @@ import lombok.*;
 @Builder
 @ToString
 public class CreateCPUResponse {
+    private Integer id;
     private Double prix;
     private String nom;
     private String marque;

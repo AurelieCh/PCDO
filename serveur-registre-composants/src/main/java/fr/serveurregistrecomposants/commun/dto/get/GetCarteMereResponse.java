@@ -1,21 +1,21 @@
-package fr.serveurregistrecomposants.commun.dto.post;
+package fr.serveurregistrecomposants.commun.dto.get;
 
 import lombok.*;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @ToString
-public class CreateGPUResponse {
+public class GetCarteMereResponse {
     private Integer id;
     private Double prix;
     private String nom;
     private String marque;
     private String description;
     private String url;
-    private Integer nbVentilateurs;
-    private Double frequence;
-    private Integer vram;
+    private String taille;
+    private String socket;
+    private Integer nbBarettes;
 }
