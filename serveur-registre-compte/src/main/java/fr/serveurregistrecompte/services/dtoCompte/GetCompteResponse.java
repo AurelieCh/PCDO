@@ -12,14 +12,11 @@ import java.util.List;
 @Builder
 public class GetCompteResponse {
     private String nom;
-
     private String prenom;
-
     private String email;
-
     private String adresse;
-
     private String password;
-
     private List<String> panier;
+    private List<Integer> commandes;
+    private List<Integer> facturations;
 }
