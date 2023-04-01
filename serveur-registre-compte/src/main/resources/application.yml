@@ -2,6 +2,8 @@ server:
   port: 8083
   servlet:
     context-path: /comptes
+  tomcat:
+    redirect-context-root: false
 
 spring:
   application:
