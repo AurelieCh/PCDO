@@ -1,26 +1,20 @@
-package fr.serveurregistrefacturation.commun;
+package fr.serveurregistrefacturation.services.dto;
 
 import fr.serveurregistrefacturation.commun.types.TypePaiement;
 import lombok.*;
 
-import javax.persistence.*;
 import java.util.Date;
 
-@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @ToString
-public class Facturation {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", nullable = false)
-    private Long id;
+@Builder
+public class CreateFactureResponse {
     private String email;
+    private Integer commande;
     private String adresse;
     private Date dateCreation;
-    private Integer commande;
     private TypePaiement typePaiement;
 }
