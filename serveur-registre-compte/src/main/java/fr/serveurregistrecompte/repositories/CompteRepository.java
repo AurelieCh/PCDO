@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface CompteRepository extends JpaRepository<Compte, String> {
     public Optional<Compte> findByEmail(String email);
+    public void deleteByEmail(String email);
 }
