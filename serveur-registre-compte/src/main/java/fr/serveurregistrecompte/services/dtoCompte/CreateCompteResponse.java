@@ -18,6 +18,7 @@ public class CreateCompteResponse {
     private String password;
     private Date dateInscription;
     private String adresse;
-
     private List<String> panier;
+    private List<Integer> commandes;
+    private List<Integer> facturations;
 }
