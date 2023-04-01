@@ -3,29 +3,33 @@ package fr.serveurregistrecompte.services;
 import fr.serveurregistrecompte.commun.Compte;
 import fr.serveurregistrecompte.commun.exceptions.ExceptionBadRequest;
 import fr.serveurregistrecompte.commun.exceptions.ExceptionNotFound;
+import fr.serveurregistrecompte.configurations.RestTemplateConfig;
 import fr.serveurregistrecompte.repositories.CompteRepository;
 import fr.serveurregistrecompte.services.dtoCompte.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class CompteService {
     @Autowired
     private CompteRepository compteRepository;
 
+    @Autowired
+    private RestTemplate restTemplate;
+
     /**
      *
-     * @param email
-     * @param password
+     * @param getCompteRequest
      * @return
      * @throws Exception
      *
@@ -34,26 +38,27 @@ public class CompteService {
      * buildGetCartesResponse pour créer et enfin retourner l'objet de réponse côté client.
      *
      */
-    public GetCompteResponse GetCompte(String email, String password) throws Exception{
-        if(email.isEmpty()){
+    public GetCompteResponse GetCompte(GetCompteRequest getCompteRequest) throws Exception{
+        if(getCompteRequest.getEmail().isEmpty()){
             throw new ExceptionBadRequest("Les données en entrée du service sont non renseignés ou incorrectes. " +
                     "Veuillez entrer un email. Erreur 400");
         }
-        if(password.isEmpty()){
+        if(getCompteRequest.getPassword().isEmpty()){
             throw new ExceptionBadRequest("Les données en entrée du service sont non renseignés ou incorrectes. " +
                     "Veuillez entrer un mot de passe. Erreur 400");
         }
-        Optional<Compte> temp = this.compteRepository.findByEmail(email);
+        Optional<Compte> temp = this.compteRepository.findByEmail(getCompteRequest.getEmail());
         if(temp.isEmpty()) {
             throw new ExceptionNotFound("Les données en entrée du service sont non renseignés ou incorrectes. " +
-                    "L'email n'est relié à aucun compte. Erreur 404");
+                    "L'email n'est relié à aucun compte. Erreur 204");
         }
         Compte c = temp.get();
-        if(!c.getPassword().equals(password)){
+        String password2 = hashMdp(getCompteRequest.getPassword());
+        if(!c.getPassword().equals(password2)){
             throw new ExceptionBadRequest("Les données en entrée du service sont non renseignés ou incorrectes. " +
-                    "Le mot de passe n'est pas le bon. Erreur 404");
+                    "Le mot de passe n'est pas le bon. Erreur 400");
         }
-        return buildGetCompteResponse(c);
+        return buildGetCompteResponse(c, getCompteRequest.getEmail());
     }
 
     /**
@@ -65,14 +70,16 @@ public class CompteService {
      * que l'utilisateur va voir.
      *
      */
-    private GetCompteResponse buildGetCompteResponse(Compte c) {
+    private GetCompteResponse buildGetCompteResponse(Compte c, String mdp) {
         return GetCompteResponse.builder()
                 .nom(c.getNom())
                 .prenom(c.getPrenom())
                 .email(c.getEmail())
                 .adresse(c.getAdresse())
-                .password(c.getPassword())
+                .password(mdp)
                 .panier(c.getPanier())
+                .commandes(c.getCommandes())
+                .facturations(c.getFacturations())
                 .build();
     }
 
@@ -128,9 +135,12 @@ public class CompteService {
                 .password(hashMdp(compteRequest.getPassword()))
                 .adresse(compteRequest.getAdresse())
                 .dateInscription(new Date())
+                .panier(new ArrayList<String>())
+                .commandes(new ArrayList<Integer>())
+                .facturations(new ArrayList<Integer>())
                 .build();
 
-        return buildCreateCompteResponse(this.compteRepository.save(toCreate));
+        return buildCreateCompteResponse(this.compteRepository.save(toCreate), compteRequest.getPassword());
     }
 
     /**
@@ -141,16 +151,17 @@ public class CompteService {
      * Fonction utilisée par saveCompte qui crée l'objet de réponse à retourner côté client.
      *
      */
-    private CreateCompteResponse buildCreateCompteResponse(Compte c) {
-        List<String> panier = new ArrayList<String>();
+    private CreateCompteResponse buildCreateCompteResponse(Compte c, String mdp) {
         return CreateCompteResponse.builder()
                 .nom(c.getNom())
                 .prenom(c.getPrenom())
                 .email(c.getEmail())
                 .adresse(c.getAdresse())
-                .password(c.getPassword())
+                .password(mdp)
                 .dateInscription(c.getDateInscription())
-                .panier(panier)
+                .panier(c.getPanier())
+                .commandes(c.getCommandes())
+                .facturations(c.getFacturations())
                 .build();
     }
 
@@ -167,7 +178,7 @@ public class CompteService {
      * et de retourner au client la réponse via la fonction BuildModifyCompteResponse
      *
      */
-    public ModifyCompteResponse updateClient(ModifyCompteRequest c) throws ExceptionBadRequest, ExceptionNotFound {
+    public ModifyCompteResponse updateCompte(ModifyCompteRequest c) throws ExceptionBadRequest, ExceptionNotFound, NoSuchAlgorithmException {
         if (c.getPrenom().isEmpty()
                 || c.getNom().isEmpty()
                 || c.getPrenom().isBlank()
@@ -178,20 +189,20 @@ public class CompteService {
                 || c.getEmail().isBlank()
                 || c.getPassword().isEmpty()
                 || c.getPassword().isBlank()){
-            throw new ExceptionBadRequest("Les donnnées en entrée du service sont non renseignes ou incorrectes. Un des champs est vide. Erreur 400");
+            throw new ExceptionBadRequest("Les données en entrée du service sont non renseignes ou incorrectes. Un des champs est vide. Erreur 400");
         } else {
             Optional<Compte> temp = compteRepository.findByEmail(c.getEmail());
-            if(temp == null) {
-                throw new ExceptionBadRequest("Les donnnées en entrée du service sont non renseignes ou incorrectes. Erreur 400");
+            if(temp.isEmpty()) {
+                throw new ExceptionNotFound("Les données en entrée du service sont non renseignes ou incorrectes." +
+                        "Email inconnu. Erreur 204");
             }
             Compte c1 = temp.get();
             c1.setNom(c.getNom());
             c1.setPrenom(c.getPrenom());
             c1.setAdresse(c.getAdresse());
-            c1.setEmail(c.getEmail());
-            c1.setPassword(c.getPassword());
+            c1.setPassword(hashMdp(c.getPassword()));
 
-            return buildModifyCompteResponse(this.compteRepository.save(c1));
+            return buildModifyCompteResponse(this.compteRepository.save(c1), c.getPassword());
         }
     }
 
@@ -205,13 +216,65 @@ public class CompteService {
      * à l'utilisateur les informations demandées.
      *
      */
-    private ModifyCompteResponse buildModifyCompteResponse(Compte c) {
+    private ModifyCompteResponse buildModifyCompteResponse(Compte c, String mdp) {
         return ModifyCompteResponse.builder()
                 .email(c.getEmail())
                 .adresse(c.getAdresse())
                 .nom(c.getNom())
                 .prenom(c.getPrenom())
-                .password(c.getPassword())
+                .password(mdp)
+                .build();
+    }
+
+    /**
+     *
+     * @param deleteCompteRequest
+     * @return
+     *
+     * Fonction servant à supprimer un compte du compteRepository
+     *
+     */
+    public DeleteCompteResponse delCompte(DeleteCompteRequest deleteCompteRequest) throws Exception, ExceptionNotFound, ExceptionBadRequest{
+        if(deleteCompteRequest.getEmail().isEmpty()
+        || deleteCompteRequest.getEmail().isBlank()
+        || deleteCompteRequest.getPassword().isEmpty()
+        || deleteCompteRequest.getPassword().isBlank()){
+            throw new ExceptionBadRequest("Les données en entrée du service sont non renseignes ou incorrectes. " +
+                    "Un des champs est vide. Erreur 400");
+        }
+        Optional<Compte> temp = this.compteRepository.findByEmail(deleteCompteRequest.getEmail());
+        if(temp.isEmpty()) {
+            throw new ExceptionNotFound("Les données en entrée du service sont non renseignes ou incorrectes." +
+                    "Email inconnu. Erreur 204");
+        } else {
+            this.compteRepository.deleteByEmail(deleteCompteRequest.getEmail());
+        }
+        temp = this.compteRepository.findByEmail(deleteCompteRequest.getEmail());
+        if(temp.isEmpty()){
+            return DeleteCompteResponse.builder().ok(true).build();
+        } else {
+            return DeleteCompteResponse.builder().ok(false).build();
+        }
+
+    }
+
+    public VerifyCompteResponse verifyCompte(String email) throws ExceptionNotFound, ExceptionBadRequest {
+        if(email.isEmpty()
+        || email.isBlank()){
+            throw new ExceptionBadRequest("Les données en entrée du service sont non renseignes ou incorrectes. Champ vide. Erreur 400");
+        } else {
+            Optional<Compte> temp = compteRepository.findByEmail(email);
+            if (temp.isEmpty()) {
+                throw new ExceptionNotFound("Les données en entrée du service sont non renseignes ou incorrectes." +
+                        "Email inconnu. Erreur 204");
+            }
+            return buildVerifyCompteResponse();
+        }
+    }
+
+    private VerifyCompteResponse buildVerifyCompteResponse(){
+        return VerifyCompteResponse.builder()
+                .ok(true)
                 .build();
     }
 
@@ -235,5 +298,13 @@ public class CompteService {
         }
         return sb.toString();
 
+    }
+
+    public Boolean AddFacture(Integer id, String email) {
+        Optional<Compte> temp = this.compteRepository.findByEmail(email);
+        Compte c = temp.get();
+        c.getFacturations().add(id);
+        this.compteRepository.save(c);
+        return true;
     }
 }
