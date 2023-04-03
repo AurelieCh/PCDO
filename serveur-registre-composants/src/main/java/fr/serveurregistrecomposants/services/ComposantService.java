@@ -2,11 +2,17 @@ package fr.serveurregistrecomposants.services;
 
 import fr.serveurregistrecomposants.commun.Caracteristique;
 import fr.serveurregistrecomposants.commun.Composant;
+import fr.serveurregistrecomposants.commun.dto.del.DelCaracteristiqueResponse;
+import fr.serveurregistrecomposants.commun.dto.del.DelComposantResponse;
 import fr.serveurregistrecomposants.commun.dto.get.*;
 import fr.serveurregistrecomposants.commun.dto.post.CreateCaracteristiqueRequest;
 import fr.serveurregistrecomposants.commun.dto.post.CreateCaracteristiqueResponse;
 import fr.serveurregistrecomposants.commun.dto.post.CreateComposantRequest;
 import fr.serveurregistrecomposants.commun.dto.post.CreateComposantResponse;
+import fr.serveurregistrecomposants.commun.dto.put.PutCaracteristiqueRequest;
+import fr.serveurregistrecomposants.commun.dto.put.PutCaracteristiqueResponse;
+import fr.serveurregistrecomposants.commun.dto.put.PutComposantRequest;
+import fr.serveurregistrecomposants.commun.dto.put.PutComposantResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import fr.serveurregistrecomposants.repository.CaracteristiqueRepository;
@@ -25,7 +31,7 @@ public class ComposantService {
     private CaracteristiqueRepository repCarac;
 
     ////////////////////////////////////// POST ///////////////////////////////////
-    public CreateComposantResponse saveComposant(CreateComposantRequest request){
+    public CreateComposantResponse saveComposant(CreateComposantRequest request) {
         Composant c = Composant.builder()
                 .nom(request.getNom())
                 .url(request.getUrl())
@@ -40,7 +46,7 @@ public class ComposantService {
         return buildCreateComposantResponse(this.repCompo.save(c));
     }
 
-    private Caracteristique buildCaracteristique(CreateCaracteristiqueRequest request, Composant c){
+    private Caracteristique buildCaracteristique(CreateCaracteristiqueRequest request, Composant c) {
         return Caracteristique.builder()
                 .nomCaracteristique(request.getNomCaracteristique())
                 .val(request.getVal())
@@ -48,7 +54,7 @@ public class ComposantService {
                 .build();
     }
 
-    private CreateComposantResponse buildCreateComposantResponse(Composant c){
+    private CreateComposantResponse buildCreateComposantResponse(Composant c) {
         return CreateComposantResponse.builder()
                 .marque(c.getMarque())
                 .nom(c.getNom())
@@ -61,7 +67,7 @@ public class ComposantService {
                 .build();
     }
 
-    private CreateCaracteristiqueResponse buildCreateCaracteristiqueResponse(Caracteristique c, Integer idComposant){
+    private CreateCaracteristiqueResponse buildCreateCaracteristiqueResponse(Caracteristique c, Integer idComposant) {
         return CreateCaracteristiqueResponse.builder()
                 .nomCaracteristique(c.getNomCaracteristique())
                 .val(c.getVal())
@@ -70,7 +76,7 @@ public class ComposantService {
 
     //////////////////////////////////////// GET ///////////////////////////////////
 
-    private GetComposantResponse buildGetComposantResponse(Composant c){
+    private GetComposantResponse buildGetComposantResponse(Composant c) {
         return GetComposantResponse.builder()
                 .marque(c.getMarque())
                 .nom(c.getNom())
@@ -90,12 +96,12 @@ public class ComposantService {
                 .build();
     }
 
-    public GetComposantResponse getComposant(Integer id){
+    public GetComposantResponse getComposant(Integer id) {
         Optional<Composant> temp = this.repCompo.findById(id);
         return temp.map(this::buildGetComposantResponse).orElse(null);
     }
 
-    private GetComposantListResponse buildGetComposantListResponse(List<Composant> liste){
+    private GetComposantListResponse buildGetComposantListResponse(List<Composant> liste) {
         GetComposantListResponse toReturn = new GetComposantListResponse();
         toReturn.setComposants(new ArrayList<>());
         toReturn.getComposants().addAll(liste.stream().map(this::buildGetComposantResponse).toList());
@@ -104,21 +110,27 @@ public class ComposantService {
 
     public GetComposantListResponse getComposant(GetComposantRequest request) {
         GetComposantListResponse toReturn = null;
-        if (request == null){
+        if (request == null) {
             return GetComposantListResponse.builder()
                     .composants(this.repCompo.findAll().stream().map(this::buildGetComposantResponse).collect(Collectors.toList()))
                     .build();
         } else {
             List<Composant> liste = this.repCompo.findAll();
-            if (request.getPrixMin() != null) liste = liste.stream().filter(temp -> temp.getPrix() >= request.getPrixMin()).collect(Collectors.toList());
-            if (request.getPrixMax() != null) liste = liste.stream().filter(temp -> temp.getPrix() <= request.getPrixMax()).collect(Collectors.toList());
-            if (request.getNom() != null) liste = liste.stream().filter(temp -> temp.getNom().contains(request.getNom())).collect(Collectors.toList());
-            if (request.getMarque() != null) liste = liste.stream().filter(temp -> temp.getMarque().contains(request.getMarque())).collect(Collectors.toList());
-            if (request.getDescription() != null) liste = liste.stream().filter(temp -> temp.getDescription().contains(request.getDescription())).collect(Collectors.toList());
-            if (request.getCategorie() != null) liste = liste.stream().filter(temp -> temp.getCategorie().equals(request.getCategorie())).collect(Collectors.toList());
-            if (request.getCaracteristiqueList() != null){
-                for (GetCaracteristiquesRequest carac : request.getCaracteristiqueList()){
-                    if (carac.getOperateur() != null){
+            if (request.getPrixMin() != null)
+                liste = liste.stream().filter(temp -> temp.getPrix() >= request.getPrixMin()).collect(Collectors.toList());
+            if (request.getPrixMax() != null)
+                liste = liste.stream().filter(temp -> temp.getPrix() <= request.getPrixMax()).collect(Collectors.toList());
+            if (request.getNom() != null)
+                liste = liste.stream().filter(temp -> temp.getNom().contains(request.getNom())).collect(Collectors.toList());
+            if (request.getMarque() != null)
+                liste = liste.stream().filter(temp -> temp.getMarque().contains(request.getMarque())).collect(Collectors.toList());
+            if (request.getDescription() != null)
+                liste = liste.stream().filter(temp -> temp.getDescription().contains(request.getDescription())).collect(Collectors.toList());
+            if (request.getCategorie() != null)
+                liste = liste.stream().filter(temp -> temp.getCategorie().equals(request.getCategorie())).collect(Collectors.toList());
+            if (request.getCaracteristiqueList() != null) {
+                for (GetCaracteristiquesRequest carac : request.getCaracteristiqueList()) {
+                    if (carac.getOperateur() != null) {
                         liste = switch (carac.getOperateur().toLowerCase()) {
                             case ">" -> liste.stream().filter(temp -> temp.getCaracteristiqueList().stream()
                                     .anyMatch(temp2 -> temp2.getNomCaracteristique().equals(carac.getNomCaracteristique()) && Double.parseDouble(temp2.getVal()) > Double.parseDouble(carac.getVal()))).collect(Collectors.toList());
@@ -137,8 +149,94 @@ public class ComposantService {
                     }
                 }
             }
-            toReturn = buildGetComposantListResponse(liste);
+            toReturn = buildGetComposantListResponse(liste); // si nul, throw no content
         }
         return toReturn;
+    }
+
+    ////////////////////////////////////////////// PUT ///////////////////////////////////////////////
+
+    private Caracteristique buildCaracteristique(PutCaracteristiqueRequest request, Composant c) {
+        return Caracteristique.builder()
+                .nomCaracteristique(request.getNomCaracteristique())
+                .val(request.getVal())
+                .composant(c)
+                .build();
+    }
+
+    private PutCaracteristiqueResponse buildPutCaracteristiqueResponse(Caracteristique c, Integer idComposant) {
+        return PutCaracteristiqueResponse.builder()
+                .nomCaracteristique(c.getNomCaracteristique())
+                .val(c.getVal())
+                .build();
+    }
+
+
+    private PutComposantResponse buildPutComposantResponse(Composant c) {
+        return PutComposantResponse.builder()
+                .marque(c.getMarque())
+                .nom(c.getNom())
+                .categorie(c.getCategorie())
+                .description(c.getDescription())
+                .url(c.getUrl())
+                .prix(c.getPrix())
+                .idComposant(c.getIdComposant())
+                .caracteristiqueList(c.getCaracteristiqueList().stream().map(temp -> buildPutCaracteristiqueResponse(temp, c.getIdComposant())).collect(Collectors.toList()))
+                .build();
+    }
+
+    public PutComposantResponse modifyComposant(PutComposantRequest request) {
+        Optional<Composant> optTemp = this.repCompo.findById(request.getId());
+        if (optTemp.isEmpty()) {
+            return new PutComposantResponse(); //throw not found
+        }
+
+        Composant c = optTemp.get();
+        List<Integer> caracObsoletes = c.getCaracteristiqueList().stream().map(Caracteristique::getIdCaracteristique).toList();
+
+        c.setPrix(request.getPrix());
+        c.setNom(request.getNom());
+        c.setMarque(request.getMarque());
+        c.setUrl(request.getUrl());
+        c.setDescription(request.getDescription());
+        c.setCaracteristiqueList(request.getCaracteristiqueList().stream().map(temp -> buildCaracteristique(temp, c)).collect(Collectors.toList()));
+
+        caracObsoletes.forEach(x -> this.repCarac.deleteById(x));
+        return buildPutComposantResponse(this.repCompo.save(c));
+    }
+
+    //////////////////////////////////////////// DEL ////////////////////////////////////////
+    public DelComposantResponse deleteComposant(Integer id) throws Exception {
+        Optional<Composant> temp = this.repCompo.findById(id);
+        if (temp.isEmpty()){
+            throw new Exception("Not Found");
+        }
+        Composant c = temp.get();
+        List<Integer> caracObsoletes = c.getCaracteristiqueList().stream().map(Caracteristique::getIdCaracteristique).toList();
+
+
+        caracObsoletes.forEach(x -> this.repCarac.deleteById(x));
+        this.repCompo.deleteById(id);
+        return buildDelComposantResponse(c);
+    }
+
+    private DelComposantResponse buildDelComposantResponse(Composant c) {
+        return DelComposantResponse.builder()
+                .idComposant(c.getIdComposant())
+                .prix(c.getPrix())
+                .nom(c.getNom())
+                .marque(c.getMarque())
+                .description(c.getDescription())
+                .url(c.getUrl())
+                .categorie(c.getCategorie())
+                .caracteristiqueList(c.getCaracteristiqueList().stream().map(this::buildDelCaracteristiqueResponse).collect(Collectors.toList()))
+                .build();
+    }
+
+    private DelCaracteristiqueResponse buildDelCaracteristiqueResponse(Caracteristique c){
+        return DelCaracteristiqueResponse.builder()
+                .nomCaracteristique(c.getNomCaracteristique())
+                .val(c.getVal())
+                .build();
     }
 }
