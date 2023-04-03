@@ -1,0 +1,447 @@
+{
+	"info": {
+		"_postman_id": "bfbb15e9-003e-4546-9daf-f672746ea693",
+		"name": "TP BDD Web S8",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Post",
+			"item": [
+				{
+					"name": "Composant (CPU)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"prix\" : 1000,\n    \"nom\" : \"Cher\",\n    \"marque\" : \"Non\",\n    \"description\" : \"Holã que tal ?\",\n    \"url\" : \"https://tenor.com/yGhz.gif\",\n    \"socket\" : \"soquaitt\",\n    \"nbcoeurs\" : 16,\n    \"frequence\" : 7.1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/composants/cpu",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"composants",
+								"cpu"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Composant (GPU)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"prix\" : 10000,\n    \"nom\" : \"CHER\",\n    \"marque\" : \"TRES CHERRRR\",\n    \"description\" : \"Prout\",\n    \"url\" : \"https://tenor.com/yGhz.gif\",\n    \"nbventilateurs\" : 1231223,\n    \"frequence\" : 123.456,\n    \"vram\" : 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/composants/gpu",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"composants",
+								"gpu"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Composant (Alimentation)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"prix\" : 321.98,\n    \"nom\" : \"Feu\",\n    \"marque\": \"Fuego\",\n    \"description\" : \"Feuer\",\n    \"url\" : \"http://tenor.com/yGhz.gif\",\n    \"puissance\" : 1.32,\n    \"rendement\" : 32.43\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/composants/alim",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"composants",
+								"alim"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Composant (Boitier)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"prix\" : 49.3,\n    \"nom\" : \"Borne\",\n    \"marque\": \"Gouv.fr\",\n    \"description\" : \"Grosse dédicace à Elisabeth Borne\",\n    \"url\" : \"https://upload.wikimedia.org/wikipedia/commons/e/eb/Elisabeth_Borne_November_2022_close-up.jpg\",\n    \"taille\" : \"XS\",\n    \"rgb\" : true,\n    \"ventilateursInclus\" : true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/composants/boitier",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"composants",
+								"boitier"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Composant (Carte mère)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"prix\" : 1,\n    \"nom\" : \"Tachkent\",\n    \"marque\": \"Ouzbékistan\",\n    \"description\" : \"Pays d'asie centrale\",\n    \"url\" : \"https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Flag_of_Uzbekistan.svg/langfr-225px-Flag_of_Uzbekistan.svg.png\",\n    \"taille\" : \"XXL\",\n    \"socket\" : \"AMD\",\n    \"nbBarrettes\" : 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/composants/cartemere",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"composants",
+								"cartemere"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Composant (HDD)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"prix\" : 10000.12,\n    \"nom\" : \"Niamey\",\n    \"marque\": \"Niger\",\n    \"description\" : \"Pays d'afrique centrale/Nord\",\n    \"url\" : \"https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Flag_of_Niger_%283-2%29.svg/2560px-Flag_of_Niger_%283-2%29.svg.png\",\n    \"capacite\" : 1024,\n    \"vitesse\" : 2400\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/composants/hdd",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"composants",
+								"hdd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Composant (SSD)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"prix\" : 431531.3,\n    \"nom\" : \"Riga\",\n    \"marque\": \"Lettonie\",\n    \"description\" : \"Pays d'Europe du Nord\",\n    \"url\" : \"https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Flag_of_Latvia.svg/2560px-Flag_of_Latvia.svg.png\",\n    \"capacite\" : 2048,\n    \"type\" : \"NVME\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/composants/ssd",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"composants",
+								"ssd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Composant (RAM)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"prix\" : 321321321.2,\n    \"nom\" : \"Athènes\",\n    \"marque\": \"Grèce\",\n    \"description\" : \"Pays d'Europe du sud\",\n    \"url\" : \"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Greece.svg/2560px-Flag_of_Greece.svg.png\",\n    \"frequence\" : 1,\n    \"capacite\" : 8,\n    \"type\" : \"DDR5\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/composants/ram",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"composants",
+								"ram"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get",
+			"item": [
+				{
+					"name": "Get all composants",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/composants/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"composants",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Composant Filtre",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/composants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"composants"
+							],
+							"query": [
+								{
+									"key": "frequenceMax",
+									"value": "5.2",
+									"description": "Fréquence maximum (pour CPU, GPU, RAM)",
+									"disabled": true
+								},
+								{
+									"key": "nbVentilateursMax",
+									"value": "1",
+									"description": "Nb Ventilateurs max (pour GPU)",
+									"disabled": true
+								},
+								{
+									"key": "puissanceMin",
+									"value": "10.5",
+									"description": "Puissance minimale (pour Alim)",
+									"disabled": true
+								},
+								{
+									"key": "puissanceMax",
+									"value": "55.1",
+									"description": "Puissance maximale (pour Alim)",
+									"disabled": true
+								},
+								{
+									"key": "rendementMin",
+									"value": "89.4",
+									"description": "% de rendement minimum (pour Alim)",
+									"disabled": true
+								},
+								{
+									"key": "rendementMax",
+									"value": "99.1",
+									"description": "% de rendement maximum (pour Alim)",
+									"disabled": true
+								},
+								{
+									"key": "taille",
+									"value": "XL",
+									"description": "Taille prédéfinie (Pour boitier, Carte mère)",
+									"disabled": true
+								},
+								{
+									"key": "ventilateursInclus",
+									"value": "False",
+									"description": "Booléen ventilateurs inclus (pour boitier)",
+									"disabled": true
+								},
+								{
+									"key": "nbBarrettesMin",
+									"value": "2",
+									"description": "Nb de barrettes min (pour Carte mère)",
+									"disabled": true
+								},
+								{
+									"key": "nbBarrettesMax",
+									"value": "8",
+									"description": "Nb de barrettes max (pour Carte mère)",
+									"disabled": true
+								},
+								{
+									"key": "capaciteMin",
+									"value": "128",
+									"description": "Capacité en Go min (pour HDD, SSD, RAM)",
+									"disabled": true
+								},
+								{
+									"key": "capaciteMax",
+									"value": "512",
+									"description": "Capacité en Go max (pour HDD, SSD, RAM)",
+									"disabled": true
+								},
+								{
+									"key": "vitesseMin",
+									"value": "5400",
+									"description": "RPM du HDD (pour HDD)",
+									"disabled": true
+								},
+								{
+									"key": "vitesseMax",
+									"value": "7800",
+									"description": "RPM du HDD (pour HDD)",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "NVME",
+									"description": "Type prédéfini (pour RAM DDR4/5, pour SSD NVME/SATA)",
+									"disabled": true
+								},
+								{
+									"key": "id",
+									"value": "2222",
+									"disabled": true
+								},
+								{
+									"key": "prixMin",
+									"value": "100",
+									"disabled": true
+								},
+								{
+									"key": "prixMax",
+									"value": "111",
+									"disabled": true
+								},
+								{
+									"key": "marque",
+									"value": "Intel",
+									"disabled": true
+								},
+								{
+									"key": "description",
+									"value": "super",
+									"disabled": true
+								},
+								{
+									"key": "socket",
+									"value": "socket",
+									"disabled": true
+								},
+								{
+									"key": "nbCoeursMin",
+									"value": "8",
+									"disabled": true
+								},
+								{
+									"key": "nbCoeursMax",
+									"value": "100",
+									"disabled": true
+								},
+								{
+									"key": "frequenceMin",
+									"value": "40",
+									"disabled": true
+								},
+								{
+									"key": "categories",
+									"value": "boitier",
+									"disabled": true
+								},
+								{
+									"key": "rgb",
+									"value": "False",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
