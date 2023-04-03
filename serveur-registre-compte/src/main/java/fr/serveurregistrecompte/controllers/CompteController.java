@@ -83,6 +83,20 @@ public class CompteController {
 
     }
 
+<<<<<<< Updated upstream
+=======
+    @PutMapping("addCommande")
+    public ResponseEntity addCommande(@RequestParam(value = "id", required = true) Integer id,
+                                     @RequestParam(value = "email", required = true) String email) throws Exception{
+        try{
+            return ResponseEntity.ok().body(this.compteService.AddCommande(id, email));
+        } catch (Exception e){
+            return ResponseEntity.internalServerError().body(new ErrorMessageCompteException(e.getMessage()));
+        }
+
+    }
+
+>>>>>>> Stashed changes
     @GetMapping("checkMail")
     public ResponseEntity verifyCompte(@RequestParam(value = "email", required = true) String email) throws Exception{
         try{
