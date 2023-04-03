@@ -58,11 +58,7 @@ public class CompteService {
             throw new ExceptionBadRequest("Les données en entrée du service sont non renseignés ou incorrectes. " +
                     "Le mot de passe n'est pas le bon. Erreur 400");
         }
-<<<<<<< Updated upstream
-        return buildGetCompteResponse(c, getCompteRequest.getEmail());
-=======
         return buildGetCompteResponse(c, getCompteRequest.getPassword());
->>>>>>> Stashed changes
     }
 
     /**
@@ -251,9 +247,6 @@ public class CompteService {
             throw new ExceptionNotFound("Les données en entrée du service sont non renseignes ou incorrectes." +
                     "Email inconnu. Erreur 204");
         } else {
-<<<<<<< Updated upstream
-            this.compteRepository.deleteByEmail(deleteCompteRequest.getEmail());
-=======
             Compte c1 = temp.get();
             String pass = hashMdp(deleteCompteRequest.getPassword());
             if(c1.getPassword().equals(pass)){
@@ -262,7 +255,6 @@ public class CompteService {
                 throw new ExceptionBadRequest("Les données en entrée du service sont non renseignes ou incorrectes. " +
                         "Le mot de passe n'est pas le bon. Erreur 400");
             }
->>>>>>> Stashed changes
         }
         temp = this.compteRepository.findByEmail(deleteCompteRequest.getEmail());
         if(temp.isEmpty()){
@@ -315,8 +307,6 @@ public class CompteService {
 
     }
 
-<<<<<<< Updated upstream
-=======
     /**
      *
      * @param id
@@ -328,7 +318,6 @@ public class CompteService {
      * qui sera appelé à la suite de la finalisation d'une commande).
      *
      */
->>>>>>> Stashed changes
     public Boolean AddFacture(Integer id, String email) {
         Optional<Compte> temp = this.compteRepository.findByEmail(email);
         Compte c = temp.get();
@@ -336,8 +325,6 @@ public class CompteService {
         this.compteRepository.save(c);
         return true;
     }
-<<<<<<< Updated upstream
-=======
 
     /**
      *
@@ -357,6 +344,4 @@ public class CompteService {
         this.compteRepository.save(c);
         return true;
     }
-
->>>>>>> Stashed changes
 }

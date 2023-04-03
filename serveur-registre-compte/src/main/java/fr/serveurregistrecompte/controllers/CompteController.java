@@ -23,6 +23,12 @@ public class CompteController {
     @Autowired
     private CompteService compteService;
 
+    /**
+     *
+     * @param compteRequest
+     * @return
+     * @throws Exception
+     */
     @PostMapping
     public ResponseEntity createCompte(@RequestBody CreateCompteRequest compteRequest) throws Exception{
         try {
@@ -34,6 +40,12 @@ public class CompteController {
         }
     }
 
+    /**
+     *
+     * @param getCompteRequest
+     * @return
+     * @throws Exception
+     */
     @GetMapping("getCompte")
     public ResponseEntity getComptes(@RequestBody GetCompteRequest getCompteRequest) throws Exception {
         try {
@@ -47,10 +59,18 @@ public class CompteController {
         }
     }
 
+    /**
+     *
+     * @param compteRequest
+     * @return
+     * @throws Exception
+     */
     @PutMapping
     public ResponseEntity updateCompte(@RequestBody ModifyCompteRequest compteRequest) throws Exception{
         try{
             return ResponseEntity.ok().body(this.compteService.updateCompte(compteRequest));
+        } catch (ExceptionNotFound e){
+            return ResponseEntity.noContent().build();
         } catch (ExceptionBadRequest e){
             return ResponseEntity.badRequest().body(new ErrorMessageCompteException(e.getMessage()));
         } catch (Exception e){
@@ -59,6 +79,12 @@ public class CompteController {
 
     }
 
+    /**
+     *
+     * @param deleteCompteRequest
+     * @return
+     * @throws Exception
+     */
     @DeleteMapping()
     public ResponseEntity delCompte(@RequestBody DeleteCompteRequest deleteCompteRequest) throws Exception{
         try{
@@ -72,6 +98,17 @@ public class CompteController {
         }
     }
 
+
+    /**
+     *
+     * @param id
+     * @param email
+     * @return
+     * @throws Exception
+     *
+     * Pour cette fonction, il n'y a pas beaucoup de gestion d'évènements, car elles ne sont utilisées que par
+     * d'autres services, qui font avant d'utiliser la fonction les vérifications nécessaires. (204 et 400 notamment)
+     */
     @PutMapping("addFacture")
     public ResponseEntity addFacture(@RequestParam(value = "id", required = true) Integer id,
                                      @RequestParam(value = "email", required = true) String email) throws Exception{
@@ -83,8 +120,16 @@ public class CompteController {
 
     }
 
-<<<<<<< Updated upstream
-=======
+    /**
+     *
+     * @param id
+     * @param email
+     * @return
+     * @throws Exception
+     *
+     * Pour cette fonction, il n'y a pas beaucoup de gestion d'évènements, car elles ne sont utilisées que par
+     * d'autres services, qui font avant d'utiliser la fonction les vérifications nécessaires. (204 et 400 notamment)
+     */
     @PutMapping("addCommande")
     public ResponseEntity addCommande(@RequestParam(value = "id", required = true) Integer id,
                                      @RequestParam(value = "email", required = true) String email) throws Exception{
@@ -96,7 +141,12 @@ public class CompteController {
 
     }
 
->>>>>>> Stashed changes
+    /**
+     *
+     * @param email
+     * @return
+     * @throws Exception
+     */
     @GetMapping("checkMail")
     public ResponseEntity verifyCompte(@RequestParam(value = "email", required = true) String email) throws Exception{
         try{

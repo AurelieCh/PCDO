@@ -12,11 +12,7 @@ import java.util.Date;
 @ToString
 @Builder
 public class GetFactureResponse {
-<<<<<<< Updated upstream
-    private Long id;
-=======
     private Integer id;
->>>>>>> Stashed changes
     private String email;
     private String adresse;
     private Date dateCreation;

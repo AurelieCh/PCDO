@@ -20,6 +20,8 @@ public class FacturationController {
     public ResponseEntity createFacture(@RequestBody CreateFactureRequest factureRequest) throws Exception{
         try {
             return ResponseEntity.ok().body(this.facturationService.saveFacture(factureRequest));
+        } catch (ExceptionNotFound e){
+            return ResponseEntity.noContent().build();
         } catch (ExceptionBadRequest e){
             return ResponseEntity.badRequest().body(new ErrorMessage(e.getMessage()));
         } catch(Exception e){
