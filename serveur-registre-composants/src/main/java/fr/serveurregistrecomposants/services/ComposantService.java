@@ -3,6 +3,8 @@ package fr.serveurregistrecomposants.services;
 import fr.serveurregistrecomposants.commun.*;
 import fr.serveurregistrecomposants.commun.dto.get.*;
 import fr.serveurregistrecomposants.commun.dto.post.*;
+import fr.serveurregistrecomposants.commun.dto.put.ModifyCPURequest;
+import fr.serveurregistrecomposants.commun.dto.put.ModifyCPUResponse;
 import fr.serveurregistrecomposants.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,10 +48,10 @@ public class ComposantService {
                 .socket(request.getSocket())
                 .url(request.getUrl())
                 .build();
-        return buildCPUResponse(this.repProc.save(toCreate));
+        return buildCreateCPUResponse(this.repCompo.save(toCreate));
     }
 
-    private CreateCPUResponse buildCPUResponse(Processeur save) {
+    private CreateCPUResponse buildCreateCPUResponse(Processeur save) {
         return CreateCPUResponse.builder()
                 .description(save.getDescription())
                 .marque(save.getMarque())
@@ -74,10 +76,10 @@ public class ComposantService {
                 .url(request.getUrl())
                 .vRam(request.getVram())
                 .build();
-        return buildGPUResponse(this.repGraph.save(toCreate));
+        return buildCreateGPUResponse(this.repGraph.save(toCreate));
     }
 
-    private CreateGPUResponse buildGPUResponse(CarteGraphique save) {
+    private CreateGPUResponse buildCreateGPUResponse(CarteGraphique save) {
         return CreateGPUResponse.builder()
                 .description(save.getDescription())
                 .marque(save.getMarque())
@@ -101,10 +103,10 @@ public class ComposantService {
                 .url(request.getUrl())
                 .rendement(request.getRendement())
                 .build();
-        return buildAlimResponse(this.repAlim.save(toCreate));
+        return buildCreateAlimResponse(this.repAlim.save(toCreate));
     }
 
-    private CreateAlimResponse buildAlimResponse(Alimentation save){
+    private CreateAlimResponse buildCreateAlimResponse(Alimentation save){
         return CreateAlimResponse.builder()
                 .description(save.getDescription())
                 .marque(save.getMarque())
@@ -128,10 +130,10 @@ public class ComposantService {
                 .ventilateursInclus(request.getVentilateursInclus())
                 .taille(request.getTaille())
                 .build();
-        return buildBoitierResponse(this.repBoitier.save(toCreate));
+        return buildCreateBoitierResponse(this.repBoitier.save(toCreate));
     }
 
-    private CreateBoitierResponse buildBoitierResponse(Boitier save){
+    private CreateBoitierResponse buildCreateBoitierResponse(Boitier save){
         return CreateBoitierResponse.builder()
                 .description(save.getDescription())
                 .marque(save.getMarque())
@@ -156,10 +158,10 @@ public class ComposantService {
                 .socket(request.getSocket())
                 .taille(request.getTaille())
                 .build();
-        return buildCarteMereResponse(this.repCarteMere.save(toCreate));
+        return buildCreateCarteMereResponse(this.repCarteMere.save(toCreate));
     }
 
-    private CreateCarteMereResponse buildCarteMereResponse(CarteMere save){
+    private CreateCarteMereResponse buildCreateCarteMereResponse(CarteMere save){
         return CreateCarteMereResponse.builder()
                 .description(save.getDescription())
                 .marque(save.getMarque())
@@ -183,10 +185,10 @@ public class ComposantService {
                 .vitesse(request.getVitesse())
                 .capacite(request.getCapacite())
                 .build();
-        return buildDisqueDurHDDResponse(this.repHDD.save(toCreate));
+        return buildCreateDisqueDurHDDResponse(this.repHDD.save(toCreate));
     }
 
-    private CreateDisqueDurHDDResponse buildDisqueDurHDDResponse(DisqueDurHDD save){
+    private CreateDisqueDurHDDResponse buildCreateDisqueDurHDDResponse(DisqueDurHDD save){
         return CreateDisqueDurHDDResponse.builder()
                 .description(save.getDescription())
                 .marque(save.getMarque())
@@ -209,10 +211,10 @@ public class ComposantService {
                 .type(request.getType())
                 .capacite(request.getCapacite())
                 .build();
-        return buildDisqueDurSSDResponse(this.repSSD.save(toCreate));
+        return buildCreateDisqueDurSSDResponse(this.repSSD.save(toCreate));
     }
 
-    private CreateDisqueDurSSDResponse buildDisqueDurSSDResponse(DisqueDurSSD save){
+    private CreateDisqueDurSSDResponse buildCreateDisqueDurSSDResponse(DisqueDurSSD save){
         return CreateDisqueDurSSDResponse.builder()
                 .description(save.getDescription())
                 .marque(save.getMarque())
@@ -236,10 +238,10 @@ public class ComposantService {
                 .capacite(request.getCapacite())
                 .frequence(request.getFrequence())
                 .build();
-        return buildMemoireResponse(this.repRAM.save(toCreate));
+        return buildCreateMemoireResponse(this.repRAM.save(toCreate));
     }
 
-    private CreateMemoireResponse buildMemoireResponse(Memoire save){
+    private CreateMemoireResponse buildCreateMemoireResponse(Memoire save){
         return CreateMemoireResponse.builder()
                 .description(save.getDescription())
                 .marque(save.getMarque())
@@ -555,6 +557,40 @@ public class ComposantService {
                 .hdd(hdds.stream().map(this::buildGetHDDResponse).collect(Collectors.toList()))
                 .ssd(ssds.stream().map(this::buildGetSSDResponse).collect(Collectors.toList()))
                 .ram(memoires.stream().map(this::buildGetRAMResponse).collect(Collectors.toList()))
+                .build();
+    }
+
+    ///////////////////////////////////////// PUT ////////////////////////////////////
+
+    public ModifyCPUResponse modifyCPU(ModifyCPURequest request) throws Exception {
+        if (this.repProc.findById(request.getIdComposant()).isEmpty()){
+            throw new Exception("204 Item Not Found");
+        }
+        Processeur toCreate = Processeur.builder()
+                .frequence(request.getFrequence())
+                .nom(request.getNom())
+                .prix(request.getPrix())
+                .description(request.getDescription())
+                .marque(request.getMarque())
+                .nbCoeurs(request.getNbcoeurs())
+                .socket(request.getSocket())
+                .url(request.getUrl())
+                .idComposant(request.getIdComposant())
+                .build();
+        return buildModifyCPUResponse(this.repProc.save(toCreate));
+    }
+
+    private ModifyCPUResponse buildModifyCPUResponse(Processeur save) {
+        return ModifyCPUResponse.builder()
+                .description(save.getDescription())
+                .marque(save.getMarque())
+                .socket(save.getSocket())
+                .nbcoeurs(save.getNbCoeurs())
+                .url(save.getUrl())
+                .nom(save.getNom())
+                .prix(save.getPrix())
+                .frequence(save.getFrequence())
+                .id(save.getIdComposant())
                 .build();
     }
 }
