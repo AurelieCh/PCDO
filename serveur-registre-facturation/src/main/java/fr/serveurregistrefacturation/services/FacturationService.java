@@ -29,8 +29,8 @@ public class FacturationService {
      * @param factureRequest
      * @return CreateFactureResponse
      *
-     * Fonction qui vérifie les champs envoyés par l'utilisateur et qui sauvegarde
-     * une facture dans le repository des factures.
+     * Fonction utilisée dans le micro service des commandes et qui crée et sauvegarde
+     * une facture dans le repository des factures et l'associe au compte client.
      *
      */
     public CreateFactureResponse saveFacture(CreateFactureRequest factureRequest) throws Exception {
@@ -42,14 +42,6 @@ public class FacturationService {
                 || factureRequest.getEmail().isEmpty()) {
             throw new ExceptionBadRequest("Les données en entrée du service sont non renseignés ou incorrectes. " +
                     "L'une des données n'est pas présentes ou est incorrectes. Erreur 400");
-        }
-
-        //Premier compte fait référence au "localhost" -> Nom de l'appli.
-        ResponseEntity<String> response = restTemplate.getForEntity("http://ms-comptes/comptes/checkMail?email=" + factureRequest.getEmail(), String.class);
-
-        if (!(response.getStatusCode() == HttpStatus.OK)) {
-            throw new ExceptionNotFound("Les données en entrée du service sont non renseignés ou incorrectes. " +
-                    "Aucun compte trouvé avec cette email. Erreur 204");
         } else {
             Facturation toCreate;
             toCreate = Facturation.builder()

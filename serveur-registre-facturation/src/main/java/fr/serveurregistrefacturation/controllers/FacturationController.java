@@ -16,12 +16,19 @@ public class FacturationController {
     @Autowired
     private FacturationService facturationService;
 
+    /**
+     *
+     * @param factureRequest
+     * @return
+     * @throws Exception
+     *
+     * Fonction qui crée une facture et l'associe à un compte, si le compte n'existe pas on retourne un 204,
+     * si l'un des champs est vide alors on retourne une 400.
+     */
     @PostMapping
     public ResponseEntity createFacture(@RequestBody CreateFactureRequest factureRequest) throws Exception{
         try {
             return ResponseEntity.ok().body(this.facturationService.saveFacture(factureRequest));
-        } catch (ExceptionNotFound e){
-            return ResponseEntity.noContent().build();
         } catch (ExceptionBadRequest e){
             return ResponseEntity.badRequest().body(new ErrorMessage(e.getMessage()));
         } catch(Exception e){
@@ -29,6 +36,14 @@ public class FacturationController {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     *
+     * Récupère un
+     */
     @GetMapping("getFacture")
     public ResponseEntity getComptes(@RequestParam("id") Integer id) throws Exception {
         try {

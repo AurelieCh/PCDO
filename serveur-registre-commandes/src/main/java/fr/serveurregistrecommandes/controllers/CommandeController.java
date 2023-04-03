@@ -17,6 +17,16 @@ public class CommandeController {
     @Autowired
     private CommandeService commandeService;
 
+    /**
+     *
+     * @param createCommandeRequest
+     * @return
+     * @throws Exception
+     *
+     * Fonction qui crée une commande et l'associe à un compte, si l'email donné n'est pas dans la base de données
+     * des comptes, on retourne une 204, si l'un des champs est vide, ou si un des composants listé
+     * n'existe pas dans la base ded composants, on retourne une 400.
+     */
     @PostMapping("createCommande")
     public ResponseEntity createCommande(@RequestBody CreateCommandeRequest createCommandeRequest) throws Exception{
         try {
@@ -30,6 +40,14 @@ public class CommandeController {
         }
     }
 
+    /**
+     *
+     * @param updateCommandeRequest
+     * @return
+     * @throws Exception
+     *
+     * Fonction qui permet de mettre à jour le status d'une commande.
+     */
     @PutMapping
     public ResponseEntity updateCommande(@RequestBody UpdateCommandeRequest updateCommandeRequest) throws Exception{
         try{
@@ -44,6 +62,15 @@ public class CommandeController {
 
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     *
+     * Fonction qui récupère une commande à partir d'un id, si la commande n'existe pas on retourne une
+     * 204.
+     */
     @GetMapping("getCommande")
     public ResponseEntity getCommande(@RequestParam("id") Integer id) throws Exception {
         try {

@@ -279,6 +279,12 @@ public class CompteService {
         }
     }
 
+    /**
+     *
+     * @return
+     *
+     * Fonction utilisée dans verifyCompte et qui retourne la réponse côté client.
+     */
     private VerifyCompteResponse buildVerifyCompteResponse(){
         return VerifyCompteResponse.builder()
                 .ok(true)

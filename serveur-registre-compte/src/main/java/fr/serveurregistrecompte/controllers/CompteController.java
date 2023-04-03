@@ -28,6 +28,8 @@ public class CompteController {
      * @param compteRequest
      * @return
      * @throws Exception
+     *
+     * Fonction qui sert à créer un compte, elle retourne une bad request si l'un des champs est vide.
      */
     @PostMapping
     public ResponseEntity createCompte(@RequestBody CreateCompteRequest compteRequest) throws Exception{
@@ -45,6 +47,10 @@ public class CompteController {
      * @param getCompteRequest
      * @return
      * @throws Exception
+     *
+     * Récupère un compte avec' l'email (clé primaire) et le mot de passe, retourne 204 si aucun compte
+     * n'est lié à l'email et 400 si un des champs est vide ou si le mot de passe ne correspond pas à
+     * celui du compte.
      */
     @GetMapping("getCompte")
     public ResponseEntity getComptes(@RequestBody GetCompteRequest getCompteRequest) throws Exception {
@@ -64,6 +70,10 @@ public class CompteController {
      * @param compteRequest
      * @return
      * @throws Exception
+     *
+     * Met à jour un compte (nom, prénom, adresse, etc.) retourne un 204 si aucun compte n'est lié
+     * à l'email donné, et 400 si un champ est vide ou si le mot de passe ne correspond pas à celui
+     * du compte.
      */
     @PutMapping
     public ResponseEntity updateCompte(@RequestBody ModifyCompteRequest compteRequest) throws Exception{
@@ -84,6 +94,9 @@ public class CompteController {
      * @param deleteCompteRequest
      * @return
      * @throws Exception
+     *
+     * Fonction qui sert à supprimer un compte (retourne 400 si le mot de passe ne correspond pas,
+     * 204 si l'email n'existe pas dans la base).
      */
     @DeleteMapping()
     public ResponseEntity delCompte(@RequestBody DeleteCompteRequest deleteCompteRequest) throws Exception{
@@ -146,6 +159,8 @@ public class CompteController {
      * @param email
      * @return
      * @throws Exception
+     *
+     * Fonction qui vérifie si un compte lié à une email existe (retourne true si oui, 204 sinon).
      */
     @GetMapping("checkMail")
     public ResponseEntity verifyCompte(@RequestParam(value = "email", required = true) String email) throws Exception{
