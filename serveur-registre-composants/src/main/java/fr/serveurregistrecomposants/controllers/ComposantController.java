@@ -1,6 +1,7 @@
 package fr.serveurregistrecomposants.controllers;
 
 import fr.serveurregistrecomposants.commun.dto.post.*;
+import fr.serveurregistrecomposants.commun.dto.put.ModifyCPURequest;
 import fr.serveurregistrecomposants.services.ComposantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -166,4 +167,19 @@ public class ComposantController {
                 puissanceMin, puissanceMax, rendementMin, rendementMax, taille, rgb, ventilateursInclus,nbBarrettesMin, nbBarrettesMax,
                 capaciteMin, capaciteMax,vitesseMin, vitesseMax,type));
     }
+
+    /////////////////////////////////////////// PUT ////////////////////////////////////////////
+    @PutMapping("/cpu")
+    public ResponseEntity modifyCPU(@RequestBody ModifyCPURequest cpuRequest){
+                try {
+        if (cpuRequest.getIdComposant() == null || cpuRequest.getDescription() == null || cpuRequest.getPrix() == null || cpuRequest.getNom() == null ||
+                cpuRequest.getUrl() == null || cpuRequest.getMarque() == null || cpuRequest.getSocket() == null ||
+                cpuRequest.getFrequence() == null || cpuRequest.getNbcoeurs() == null){
+            return ResponseEntity.badRequest().body("Requête pas au bon format");
+        }
+        return ResponseEntity.ok((this.serCompo.modifyCPU(cpuRequest)));
+    } catch (Exception e){
+        return ResponseEntity.badRequest().body(e);
+    }
+}
 }
