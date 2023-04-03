@@ -13,7 +13,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+<<<<<<< Updated upstream
 import java.net.URI;
+=======
+>>>>>>> Stashed changes
 import java.util.Date;
 import java.util.Optional;
 
@@ -25,6 +28,18 @@ public class FacturationService {
     @Autowired
     private RestTemplate restTemplate;
 
+<<<<<<< Updated upstream
+=======
+    /**
+     *
+     * @param factureRequest
+     * @return CreateFactureResponse
+     *
+     * Fonction qui vérifie les champs envoyés par l'utilisateur et qui sauvegarde
+     * une facture dans le repository des factures.
+     *
+     */
+>>>>>>> Stashed changes
     public CreateFactureResponse saveFacture(CreateFactureRequest factureRequest) throws Exception {
         if(factureRequest.getAdresse().isBlank()
                 || factureRequest.getAdresse().isEmpty()
@@ -37,7 +52,11 @@ public class FacturationService {
         }
 
         //Premier compte fait référence au "localhost" -> Nom de l'appli.
+<<<<<<< Updated upstream
         ResponseEntity<String> response = restTemplate.getForEntity("http://comptes/comptes/checkMail?email=" + factureRequest.getEmail(), String.class);
+=======
+        ResponseEntity<String> response = restTemplate.getForEntity("http://ms-comptes/comptes/checkMail?email=" + factureRequest.getEmail(), String.class);
+>>>>>>> Stashed changes
 
         if (!(response.getStatusCode() == HttpStatus.OK)) {
             throw new ExceptionBadRequest("Les données en entrée du service sont non renseignés ou incorrectes. " +
@@ -55,6 +74,7 @@ public class FacturationService {
             toCreate = this.facturationRepository.save(toCreate);
 
             //Premier compte fait référence au "localhost" -> Nom de l'appli.
+<<<<<<< Updated upstream
             restTemplate.put("http://comptes/comptes/addFacture?id="+toCreate.getId()+"&email="+toCreate.getEmail(), String.class);
             /**
              * ResponseEntity<Void> envois =
@@ -63,6 +83,9 @@ public class FacturationService {
              *                         "Erreur durant l'ajout de la facture au compte. Erreur 400");
              *             }
             */
+=======
+            restTemplate.put("http://ms-comptes/comptes/addFacture?id="+toCreate.getId()+"&email="+toCreate.getEmail(), String.class);
+>>>>>>> Stashed changes
 
             return buildCreateFactureResponse(this.facturationRepository.save(toCreate));
         }
@@ -98,13 +121,29 @@ public class FacturationService {
         Optional<Facturation> temp = this.facturationRepository.findById(id);
         if(temp.isEmpty()){
             throw new ExceptionNotFound("Les données en entrée du service sont non renseignes ou incorrectes." +
+<<<<<<< Updated upstream
                     "Email inconnu. Erreur 204");
+=======
+                    "Pas de facture avec cet id. Erreur 204");
+>>>>>>> Stashed changes
         } else {
             Facturation toReturn = temp.get();
             return buildGetFactureResponse(toReturn);
         }
     }
 
+<<<<<<< Updated upstream
+=======
+    /**
+     *
+     * @param f
+     * @return
+     *
+     * Fonction utilisée dans getFactureRequest et qui crée l'objet de réponse
+     * que l'utilisateur va voir.
+     *
+     */
+>>>>>>> Stashed changes
     private GetFactureResponse buildGetFactureResponse(Facturation f){
         return GetFactureResponse.builder()
                 .id(f.getId())
