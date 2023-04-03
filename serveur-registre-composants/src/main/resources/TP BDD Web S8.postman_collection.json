@@ -1,0 +1,132 @@
+{
+	"info": {
+		"_postman_id": "bfbb15e9-003e-4546-9daf-f672746ea693",
+		"name": "TP BDD Web S8",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Post",
+			"item": [
+				{
+					"name": "Post Composant",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"prix\" : 321312.3,\n    \"nom\" : \"Lituanie\",\n    \"marque\" : \"Vilnius\",\n    \"description\" : \"Petite ville bien sympathique également\",\n    \"url\" : \"http://tenor.com/yGhz.gif\",\n    \"categorie\" : \"Processeur\",\n    \"caracteristiqueList\" : [\n        {\n            \"nomCaracteristique\" : \"frequence\",\n            \"val\" : \"1000\"\n        },\n        {\n            \"nomCaracteristique\" : \"socket\",\n            \"val\" : \"AMD\"\n        },\n        {\n            \"nomCaracteristique\" : \"nbCoeurs\",\n            \"val\" : \"8\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/composants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"composants"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get",
+			"item": [
+				{
+					"name": "Get Composants par Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/composants/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"composants",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Composant Filtre",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/composants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"composants"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Put",
+			"item": [
+				{
+					"name": "Composant (CPU)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idComposant\" : 25,\n    \"prix\" : 1000,\n    \"nom\" : \"Cher\",\n    \"marque\" : \"Non\",\n    \"description\" : \"Holã que tal ?\",\n    \"url\" : \"https://tenor.com/yGhz.gif\",\n    \"socket\" : \"soquaitt\",\n    \"nbcoeurs\" : 16,\n    \"frequence\" : 7.2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/composants/cpu",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"composants",
+								"cpu"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

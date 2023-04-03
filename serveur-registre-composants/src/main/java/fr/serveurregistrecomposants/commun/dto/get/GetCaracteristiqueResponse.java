@@ -8,8 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @ToString
-public class GetCaracteristiquesRequest {
+public class GetCaracteristiqueResponse {
     private String nomCaracteristique;
-    private String operateur;
     private String val;
 }
