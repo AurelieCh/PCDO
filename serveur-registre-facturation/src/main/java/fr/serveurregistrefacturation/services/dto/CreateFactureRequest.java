@@ -13,5 +13,6 @@ public class CreateFactureRequest {
     private String email;
     private Integer commande;
     private String adresse;
+    private Double prix;
     private TypePaiement typePaiement;
 }

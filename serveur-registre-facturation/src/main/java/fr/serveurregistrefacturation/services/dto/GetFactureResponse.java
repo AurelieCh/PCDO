@@ -16,6 +16,7 @@ public class GetFactureResponse {
     private String email;
     private String adresse;
     private Date dateCreation;
+    private Double prix;
     private Integer commande;
     private TypePaiement typePaiement;
 }

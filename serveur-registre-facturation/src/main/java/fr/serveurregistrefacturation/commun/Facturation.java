@@ -21,6 +21,7 @@ public class Facturation {
     private Integer id;
     private String email;
     private String adresse;
+    private Double prix;
     private Date dateCreation;
     private Integer commande;
     private TypePaiement typePaiement;
