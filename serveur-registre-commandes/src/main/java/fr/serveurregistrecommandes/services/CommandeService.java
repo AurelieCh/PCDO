@@ -1,7 +1,10 @@
 package fr.serveurregistrecommandes.services;
 
 import fr.serveurregistrecommandes.commun.Commande;
+import fr.serveurregistrecommandes.commun.Mail;
+import fr.serveurregistrecommandes.commun.Producer;
 import fr.serveurregistrecommandes.commun.types.Status;
+import fr.serveurregistrecommandes.commun.types.TypeMail;
 import fr.serveurregistrecommandes.exceptions.ExceptionBadRequest;
 import fr.serveurregistrecommandes.exceptions.ExceptionNotFound;
 import fr.serveurregistrecommandes.repositories.CommandeRepository;
@@ -24,6 +27,9 @@ public class CommandeService {
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    private Producer producer;
 
     /**
      *
@@ -113,6 +119,7 @@ public class CommandeService {
                     "La facture n'a pas pu être crée. Erreur 400");
         }
 
+        this.producer.send(Mail.builder().typeMail(TypeMail.Prise_en_compte).emailDesti(toCreate.getEmail()).build());
         return buildCreateCommandeResponse(toCreate);
     }
 
