@@ -29,9 +29,6 @@ public class CompteService {
     private CompteRepository compteRepository;
 
     @Autowired
-    private RestTemplate restTemplate;
-
-    @Autowired
     private Producer producer;
 
     /**

@@ -49,16 +49,22 @@ public class ConsumerConfig {
     public JavaMailSender getJavaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.gmail.com");
-        mailSender.setPort(587);
+        mailSender.setPort(25);
 
-        mailSender.setUsername("nepasrepondre@pcdo.fr");
-        mailSender.setPassword("pcdo");
+        //0773099444
+        mailSender.setUsername("pcdosarl@gmail.com");
+        mailSender.setPassword("ecdxasxttdkjifrf");
+
+        //mailSender.setUsername("postmaster@sandbox851e555630e242c6850cb5ca1c8936d7.mailgun.org");
+        //mailSender.setPassword("3c3230f6bca798f825c8c963ea5a6a43-81bd92f8-a44c0369");
 
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.debug", "true");
+        props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        //props.put("mail.smtps.ssl.trust", "smtp.mailgun.org");
 
         return mailSender;
     }
