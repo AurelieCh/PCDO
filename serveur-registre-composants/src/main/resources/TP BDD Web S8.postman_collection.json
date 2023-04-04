@@ -9,13 +9,209 @@
 			"name": "Post",
 			"item": [
 				{
-					"name": "Post Composant",
+					"name": "Post CPU",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"prix\" : 321312.3,\n    \"nom\" : \"Lituanie\",\n    \"marque\" : \"Vilnius\",\n    \"description\" : \"Petite ville bien sympathique également\",\n    \"url\" : \"http://tenor.com/yGhz.gif\",\n    \"categorie\" : \"Processeur\",\n    \"caracteristiqueList\" : [\n        {\n            \"nomCaracteristique\" : \"frequence\",\n            \"val\" : \"1000\"\n        },\n        {\n            \"nomCaracteristique\" : \"socket\",\n            \"val\" : \"AMD\"\n        },\n        {\n            \"nomCaracteristique\" : \"nbCoeurs\",\n            \"val\" : \"8\"\n        }\n    ]\n}",
+							"raw": "{\n    \"prix\" : 1.3,\n    \"nom\" : \"Finlande\",\n    \"marque\" : \"Helsinki\",\n    \"description\" : \"Les pays nordique c'est le feu (mdr)\",\n    \"url\" : \"http://tenor.com/finaldndedleklkfjhalkj\",\n    \"categorie\" : \"Processeur\",\n    \"caracteristiqueList\" : [\n        {\n            \"nomCaracteristique\" : \"frequence\",\n            \"val\" : \"1000\"\n        },\n        {\n            \"nomCaracteristique\" : \"nbCoeurs\",\n            \"val\" : \"33\"\n        },\n        {\n            \"nomCaracteristique\" : \"socket\",\n            \"val\" : \"Intel\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/composants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"composants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post RAM",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"prix\" : 49.3,\n    \"nom\" : \"Achgabat\",\n    \"marque\" : \"Turkménistan\",\n    \"description\" : \"C'est pas loin du kirghizisitan, coucou seb\",\n    \"url\" : \"http://tenor.com/finaldndedleklkfjhalkj\",\n    \"categorie\" : \"MemoireRAM\",\n    \"caracteristiqueList\" : [\n        {\n            \"nomCaracteristique\" : \"frequence\",\n            \"val\" : \"2400\"\n        },\n        {\n            \"nomCaracteristique\" : \"capacite\",\n            \"val\" : \"8\"\n        },\n        {\n            \"nomCaracteristique\" : \"type\",\n            \"val\" : \"DDR4000\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/composants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"composants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post SSD",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"prix\" : 32131,\n    \"nom\" : \"Sarajevo\",\n    \"marque\" : \"Bosnie-Herzégovine\",\n    \"description\" : \"oulah les balkans (mdr)\",\n    \"url\" : \"http://tenor.com/balkany\",\n    \"categorie\" : \"DisqueDurSSD\",\n    \"caracteristiqueList\" : [\n        {\n            \"nomCaracteristique\" : \"capacite\",\n            \"val\" : \"512\"\n        },\n        {\n            \"nomCaracteristique\" : \"type\",\n            \"val\" : \"NVME\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/composants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"composants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post HDD",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"prix\" : 32131,\n    \"nom\" : \"Sarajevo\",\n    \"marque\" : \"Bosnie-Herzégovine\",\n    \"description\" : \"oulah les balkans (mdr)\",\n    \"url\" : \"http://tenor.com/balkany\",\n    \"categorie\" : \"DisqueDurHDD\",\n    \"caracteristiqueList\" : [\n        {\n            \"nomCaracteristique\" : \"capacite\",\n            \"val\" : \"512\"\n        },\n        {\n            \"nomCaracteristique\" : \"type\",\n            \"val\" : \"NVME\"\n        },\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/composants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"composants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post CarteMere",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"prix\" : 32131,\n    \"nom\" : \"Vaduz\",\n    \"marque\" : \"Liechtenstein\",\n    \"description\" : \"petit paradis fiscal a coté d'un gros paradis fiscal\",\n    \"url\" : \"http://tenor.com/argent\",\n    \"categorie\" : \"CarteMere\",\n    \"caracteristiqueList\" : [\n        {\n            \"nomCaracteristique\" : \"socket\",\n            \"val\" : \"Bleu\"\n        },\n        {\n            \"nomCaracteristique\" : \"taille\",\n            \"val\" : \"XL\"\n        },\n        {\n            \"nomCaracteristique\" : \"nbBarrettes\",\n            \"val\" : \"3\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/composants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"composants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post GPU",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"prix\" : 11111,\n    \"nom\" : \"Kyiv\",\n    \"marque\" : \"Ukraine\",\n    \"description\" : \"Slava Ikea\",\n    \"url\" : \"http://tenor.com/poutineconnard\",\n    \"categorie\" : \"CarteGraphique\",\n    \"caracteristiqueList\" : [\n        {\n            \"nomCaracteristique\" : \"vram\",\n            \"val\" : \"321\"\n        },\n        {\n            \"nomCaracteristique\" : \"frequence\",\n            \"val\" : \"111.11\"\n        },\n        {\n            \"nomCaracteristique\" : \"nbVentilateurs\",\n            \"val\" : \"493\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/composants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"composants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Boitier",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"prix\" : 222.22,\n    \"nom\" : \"Asuncìon\",\n    \"marque\" : \"Paraguay\",\n    \"description\" : \"Bro la communicacìon\",\n    \"url\" : \"http://tenor.com/jspsppsdopsjdoqijfoizhj\",\n    \"categorie\" : \"Boitier\",\n    \"caracteristiqueList\" : [\n        {\n            \"nomCaracteristique\" : \"taille\",\n            \"val\" : \"XL\"\n        },\n        {\n            \"nomCaracteristique\" : \"rgb\",\n            \"val\" : \"false\"\n        },\n        {\n            \"nomCaracteristique\" : \"ventilateursInclus\",\n            \"val\" : \"false\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/composants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"composants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Alimentation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"prix\" : 333.3,\n    \"nom\" : \"La Havane\",\n    \"marque\" : \"Cuba\",\n    \"description\" : \"Pablo Emilio Escobar\",\n    \"url\" : \"http://tenor.com/fjrzoigh\",\n    \"categorie\" : \"Alimentation\",\n    \"caracteristiqueList\" : [\n        {\n            \"nomCaracteristique\" : \"puissance\",\n            \"val\" : \"33\"\n        },\n        {\n            \"nomCaracteristique\" : \"rendement\",\n            \"val\" : \"97\"\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -71,7 +267,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\n    \"categorie\" : \"Alimentation\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -98,13 +294,13 @@
 			"name": "Put",
 			"item": [
 				{
-					"name": "Composant (CPU)",
+					"name": "Composant",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"idComposant\" : 25,\n    \"prix\" : 1000,\n    \"nom\" : \"Cher\",\n    \"marque\" : \"Non\",\n    \"description\" : \"Holã que tal ?\",\n    \"url\" : \"https://tenor.com/yGhz.gif\",\n    \"socket\" : \"soquaitt\",\n    \"nbcoeurs\" : 16,\n    \"frequence\" : 7.2\n}",
+							"raw": "{\n    \"id\" : 118,\n    \"prix\" : 3213,\n    \"nom\" : \"LA POLOGNE\",\n    \"marque\" : \"Non\",\n    \"description\" : \"Vamos a ganar\",\n    \"url\" : \"oui\",\n    \"categorie\" : \"Processeur\",\n    \"caracteristiqueList\" : [\n        {\n            \"nomCaracteristique\" : \"frequence\",\n            \"val\" : \"2000\"\n        },\n        {\n            \"nomCaracteristique\" : \"socket\",\n            \"val\" : \"JE SAIS PAS\"\n        },\n        {\n            \"nomCaracteristique\" : \"nbCoeurs\",\n            \"val\" : \"321\"\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -112,7 +308,31 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/composants/cpu",
+							"raw": "http://localhost:8080/composants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"composants"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "New Folder",
+			"item": [
+				{
+					"name": "Composant",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/composants/90",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -120,7 +340,7 @@
 							"port": "8080",
 							"path": [
 								"composants",
-								"cpu"
+								"90"
 							]
 						}
 					},

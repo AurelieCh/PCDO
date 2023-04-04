@@ -4,6 +4,7 @@ import fr.serveurregistrecomposants.commun.Caracteristique;
 import fr.serveurregistrecomposants.commun.Composant;
 import fr.serveurregistrecomposants.commun.dto.del.DelCaracteristiqueResponse;
 import fr.serveurregistrecomposants.commun.dto.del.DelComposantResponse;
+import fr.serveurregistrecomposants.commun.dto.exception.NotFoundException;
 import fr.serveurregistrecomposants.commun.dto.get.*;
 import fr.serveurregistrecomposants.commun.dto.post.CreateCaracteristiqueRequest;
 import fr.serveurregistrecomposants.commun.dto.post.CreateCaracteristiqueResponse;
@@ -13,6 +14,7 @@ import fr.serveurregistrecomposants.commun.dto.put.PutCaracteristiqueRequest;
 import fr.serveurregistrecomposants.commun.dto.put.PutCaracteristiqueResponse;
 import fr.serveurregistrecomposants.commun.dto.put.PutComposantRequest;
 import fr.serveurregistrecomposants.commun.dto.put.PutComposantResponse;
+import org.hibernate.annotations.NotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import fr.serveurregistrecomposants.repository.CaracteristiqueRepository;
@@ -101,17 +103,19 @@ public class ComposantService {
         return temp.map(this::buildGetComposantResponse).orElse(null);
     }
 
-    private GetComposantListResponse buildGetComposantListResponse(List<Composant> liste) {
+    private GetComposantListResponse buildGetComposantListResponse(List<Composant> liste) throws NotFoundException {
+        if (liste.isEmpty())
+            throw new NotFoundException("404 Not Found");
         GetComposantListResponse toReturn = new GetComposantListResponse();
         toReturn.setComposants(new ArrayList<>());
         toReturn.getComposants().addAll(liste.stream().map(this::buildGetComposantResponse).toList());
         return toReturn;
     }
 
-    public GetComposantListResponse getComposant(GetComposantRequest request) {
+    public GetComposantListResponse getComposant(GetComposantRequest request) throws NotFoundException {
         GetComposantListResponse toReturn = null;
         if (request == null) {
-            return GetComposantListResponse.builder()
+            toReturn = GetComposantListResponse.builder()
                     .composants(this.repCompo.findAll().stream().map(this::buildGetComposantResponse).collect(Collectors.toList()))
                     .build();
         } else {
@@ -151,6 +155,8 @@ public class ComposantService {
             }
             toReturn = buildGetComposantListResponse(liste); // si nul, throw no content
         }
+        if (toReturn.getComposants().isEmpty())
+            throw new NotFoundException("404 Not Found");
         return toReturn;
     }
 
@@ -185,10 +191,10 @@ public class ComposantService {
                 .build();
     }
 
-    public PutComposantResponse modifyComposant(PutComposantRequest request) {
+    public PutComposantResponse modifyComposant(PutComposantRequest request) throws NotFoundException{
         Optional<Composant> optTemp = this.repCompo.findById(request.getId());
         if (optTemp.isEmpty()) {
-            return new PutComposantResponse(); //throw not found
+            throw new NotFoundException("404 Not Found");
         }
 
         Composant c = optTemp.get();
@@ -206,14 +212,13 @@ public class ComposantService {
     }
 
     //////////////////////////////////////////// DEL ////////////////////////////////////////
-    public DelComposantResponse deleteComposant(Integer id) throws Exception {
+    public DelComposantResponse deleteComposant(Integer id) throws NotFoundException {
         Optional<Composant> temp = this.repCompo.findById(id);
         if (temp.isEmpty()){
-            throw new Exception("Not Found");
+            throw new NotFoundException("Not Found");
         }
         Composant c = temp.get();
         List<Integer> caracObsoletes = c.getCaracteristiqueList().stream().map(Caracteristique::getIdCaracteristique).toList();
-
 
         caracObsoletes.forEach(x -> this.repCarac.deleteById(x));
         this.repCompo.deleteById(id);
