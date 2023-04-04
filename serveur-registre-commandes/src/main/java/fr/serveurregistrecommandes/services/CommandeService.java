@@ -9,6 +9,7 @@ import fr.serveurregistrecommandes.exceptions.ExceptionBadRequest;
 import fr.serveurregistrecommandes.exceptions.ExceptionNotFound;
 import fr.serveurregistrecommandes.repositories.CommandeRepository;
 import fr.serveurregistrecommandes.services.dto.*;
+import fr.serveurregistrecommandes.services.dto.composants.GetComposantResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -59,19 +60,16 @@ public class CommandeService {
         }
 
         //TODO
+
         ResponseEntity<String> response2;
         Double prix = 0.0;
-        //for(Integer composant : createCommandeRequest.getComposants()){
-            //response2 = restTemplate.getForEntity("http://ms-commandes/commandes?id=" + composant, String.class); //Besoin d'un retour de type 200 avec le prix
-            //if(!(response.getStatusCode() == HttpStatus.OK)){
-            //    throw new ExceptionBadRequest("Les données en entrée du service sont non renseignés ou incorrectes. " +
-            //            "Un des composants listés n'existe pas. Erreur 400");
-            //}
-            //if(response2.getProcesseurs().isEmpty()){
-
-            //}
-            //prix = prix + response2.getPrix();
-          //}
+        for(Integer composant : createCommandeRequest.getComposants()){
+            response2 = restTemplate.getForEntity("http://ms-commandes/commandes?id=" + composant, String.class); //Besoin d'un retour de type 200 avec le prix
+            if(!(response.getStatusCode() == HttpStatus.OK)){
+                throw new ExceptionBadRequest("Les données en entrée du service sont non renseignés ou incorrectes. " +
+                        "Un des composants listés n'existe pas. Erreur 400");
+            }
+        }
 
 
         //En attendant la création de la fonction de mon collègue
