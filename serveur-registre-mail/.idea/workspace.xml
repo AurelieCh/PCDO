@@ -5,16 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dec753f0-a9a5-4515-9851-e0b0b6f66740" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../serveur-registre-commandes/src/main/java/fr/serveurregistrecommandes/commun/Mail.java" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-commandes/src/main/java/fr/serveurregistrecommandes/commun/Mail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../serveur-registre-commandes/src/main/java/fr/serveurregistrecommandes/services/CommandeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-commandes/src/main/java/fr/serveurregistrecommandes/services/CommandeService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../serveur-registre-commandes/src/main/resources/data/dbcommandes.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-commandes/src/main/resources/data/dbcommandes.mv.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../serveur-registre-composants/src/main/resources/data/dbcomposants.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-composants/src/main/resources/data/dbcomposants.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../serveur-registre-compte/src/main/java/fr/serveurregistrecompte/commun/Mail.java" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-compte/src/main/java/fr/serveurregistrecompte/commun/Mail.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../serveur-registre-compte/src/main/resources/data/dbcomptes.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-compte/src/main/resources/data/dbcomptes.mv.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../serveur-registre-facturation/src/main/resources/data/dbfacturations.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-facturation/src/main/resources/data/dbfacturations.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/serveurregistremail/commun/Consumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/serveurregistremail/commun/Consumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/serveurregistremail/commun/Mail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/serveurregistremail/commun/Mail.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +68,7 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "spring.configuration.checksum": "a6455ecbfb10867c8bacfc418321776c",
+    "spring.configuration.checksum": "f0e888febefbce4a80054397039df72d",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -157,6 +151,7 @@
       <workItem from="1680534522558" duration="1410000" />
       <workItem from="1680592798870" duration="2111000" />
       <workItem from="1680595386785" duration="14292000" />
+      <workItem from="1680620804680" duration="108000" />
     </task>
     <servers />
   </component>
