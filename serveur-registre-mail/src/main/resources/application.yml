@@ -1,0 +1,15 @@
+server:
+  port: 8085
+  servlet:
+    context-path: /mails
+  tomcat:
+    redirect-context-root: false
+
+spring:
+  application:
+    name: ms-mails
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
