@@ -2,6 +2,8 @@ server:
   port: 8082
   servlet:
     context-path: /composants
+  tomcat:
+    redirect-context-root: false
 
 spring:
   application:
@@ -22,6 +24,7 @@ spring:
       path: /h2-console
       settings:
         web-allow-others: true
+
 
 eureka:
   client:
