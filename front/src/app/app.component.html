@@ -1,0 +1,31 @@
+
+
+
+
+<!--<mat-drawer-container class="example-container" hasBackdrop="true">
+  <mat-drawer #drawer mode="over">
+    <button mat-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+      <p>coucou</p>
+    </button>
+  </mat-drawer>
+  <mat-drawer-content>-->
+    <mat-toolbar>
+      <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>-->
+      <div routerLink="/"><mat-icon>desktop_windows</mat-icon> <span class="title">&emsp;PCDO</span></div>
+      <span class="example-spacer"></span>
+      <app-account-button></app-account-button>
+    </mat-toolbar>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+
+
+<footer>
+  <p>Développée par : Johan Marlière, Aurélie Chevry, Théo Lorthioir</p>
+  <a>mention légale</a>
+</footer>
+<!-- </mat-drawer-content>
+</mat-drawer-container>-->

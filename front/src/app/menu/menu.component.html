@@ -1,0 +1,56 @@
+<!--<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>Bienvenue dans PCDO !</mat-card-title>
+    <mat-card-subtitle>De la part de d'aurélie et Johan</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="https://media.discordapp.net/attachments/1062801638273859675/1068268720960589904/IMG_1349.jpg?width=1593&height=1195" alt="Photo of Johan's computer">
+  <mat-card-content>
+    <p>
+      Dans ce site nous pouvons vous aider dans le monde de l'informatique.
+      Besoins de conseil pour un nouveau pc ? Nous sommes a votre écoute !
+      Nous realisons aussi les montages de pc et creation de site,
+      alors n'hésitez pas !
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>
+
+-->
+<div>
+<mat-grid-list cols="5" rowHeight="1:1" [gutterSize]="'20px'">
+  <mat-grid-tile [colspan]="1" [rowspan]="2" routerLink="/list/ALL"  class="all">
+    <p>Tous les produits</p>
+  </mat-grid-tile>
+  <mat-grid-tile routerLink="/list/CPU"  class="cpu">
+    <span>Processeur</span>
+  </mat-grid-tile>
+  <mat-grid-tile routerLink="/list/MB" class="mb">
+    <span>Carte Mère</span>
+  </mat-grid-tile>
+  <mat-grid-tile routerLink="/list/GPU"  class="gpu">
+    <span>Carte Graphique</span>
+  </mat-grid-tile>
+  <mat-grid-tile routerLink="/list/RAM"  class="ram">
+    <span>RAM</span>
+  </mat-grid-tile>
+  <mat-grid-tile routerLink="/list/STORAGE" class="hdd">
+    <span>Stockage</span>
+  </mat-grid-tile>
+  <mat-grid-tile routerLink="/list/ALIM"  class="alim">
+    <span>Alimentation</span>
+  </mat-grid-tile>
+  <mat-grid-tile routerLink="/list/CASE" class="case">
+    <span>Boitier</span>
+  </mat-grid-tile>
+  <mat-grid-tile routerLink="/list/PREBUILDS" class="prebuild">
+    <span>Ordinateurs monté</span>
+  </mat-grid-tile>
+</mat-grid-list>
+
+
+
+</div>
