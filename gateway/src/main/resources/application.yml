@@ -13,28 +13,28 @@ spring:
     gateway:
       routes:
         - id: compte-id
-          uri: lb://comptes
+          uri: lb://ms-comptes
           predicates:
             - Path=/comptes/**
           filters:
             - AddRequestHeader=first-request, first-request-header
             - AddResponseHeader=first-response, first-response-header
         - id: facturation-id
-          uri: lb://facturations
+          uri: lb://ms-facturations
           predicates:
             - Path=/facturations/**
           filters:
             - AddRequestHeader=first-request, first-request-header
             - AddResponseHeader=first-response, first-response-header
         - id: commandes-id
-          uri: lb://commandes
+          uri: lb://ms-commandes
           predicates:
             - Path=/commandes/**
           filters:
             - AddRequestHeader=first-request, first-request-header
             - AddResponseHeader=first-response, first-response-header
         - id: composants-id
-          uri: lb://composants
+          uri: lb://ms-composants
           predicates:
             - Path=/composants/**
           filters:
