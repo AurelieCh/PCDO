@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>fr</groupId>
-	<artifactId>serveur-registre-facturation</artifactId>
+	<artifactId>serveur-registre-facturations</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>serveur-registre-facturation</name>
 	<description>Facturations du Serveur de Registres Eureka</description>

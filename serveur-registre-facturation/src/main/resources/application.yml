@@ -2,10 +2,12 @@ server:
   port: 8084
   servlet:
     context-path: /facturations
+  tomcat:
+    redirect-context-root: false
 
 spring:
   application:
-    name: facturations
+    name: ms-facturations
   datasource:
     url: jdbc:h2:file:./src/main/resources/data/dbfacturations
     driver-class-name: org.h2.Driver

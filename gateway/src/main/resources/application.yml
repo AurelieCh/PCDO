@@ -40,10 +40,6 @@ spring:
           filters:
             - AddRequestHeader=first-request, first-request-header
             - AddResponseHeader=first-response, first-response-header
-        # ajouter les �ventuels services suivants
-
-
-
-
+        # ajouter les éventuels services suivants
 server:
   port: 8080
