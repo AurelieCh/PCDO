@@ -66,7 +66,12 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
       clientId: 'aqwYHEe9p9oDbDbBSER4w1AbdGRm60Q4',
       authorizationParams: {
         redirect_uri: window.location.origin,
+        audience:"http://localhost:8080"
       },
+      httpInterceptor:{
+        allowedList: ['http://localhost:8080/composants'],
+
+      }
 
     }),
     MatBadgeModule,

@@ -1,6 +1,14 @@
+auth0:
+  audience: http://localhost:8080
+
 spring:
   application:
     name: gateway-service
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: dev-vq2nkixrb8245ghu.us.auth0.com
   cloud:
     gateway:
       routes:
@@ -32,6 +40,10 @@ spring:
           filters:
             - AddRequestHeader=first-request, first-request-header
             - AddResponseHeader=first-response, first-response-header
-        # ajouter les éventuels services suivants
+        # ajouter les ï¿½ventuels services suivants
+
+
+
+
 server:
   port: 8080
