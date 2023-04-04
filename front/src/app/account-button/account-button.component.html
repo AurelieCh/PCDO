@@ -1,0 +1,29 @@
+<div *ngIf="auth.user$ | async as user; else notLoged">
+<button  routerLink="cart" mat-icon-button>
+  <mat-icon matBadge="4">shopping_cart</mat-icon>
+</button>
+
+  <button  mat-icon-button (click)="auth.logout({ logoutParams: { returnTo: document.location.origin } })"  matTooltip="compte"
+          matTooltipPosition="bottom">
+    <mat-icon>exit_to_app</mat-icon>
+  </button>
+
+<img *ngIf="user.picture; else noPicture" routerLink="account" [src]="user.picture">
+
+<ng-template #noPicture>
+  <button  mat-icon-button routerLink="account"  matTooltip="compte"
+           matTooltipPosition="bottom">
+    <mat-icon >account_circle</mat-icon>
+  </button>
+</ng-template>
+</div>
+
+
+<ng-template #notLoged>
+  <button  mat-icon-button (click)="login()"  matTooltip="compte"
+           matTooltipPosition="bottom">
+    <mat-icon >account_circle</mat-icon>
+  </button>
+</ng-template>
+
+

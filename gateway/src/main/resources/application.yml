@@ -1,6 +1,14 @@
+auth0:
+  audience: http://localhost:4200
+
 spring:
   application:
     name: gateway-service
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://dev-vq2nkixrb8245ghu.us.auth0.com
   cloud:
     gateway:
       routes:

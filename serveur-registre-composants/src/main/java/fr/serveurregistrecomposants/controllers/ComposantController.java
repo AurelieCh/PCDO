@@ -72,6 +72,8 @@ public class ComposantController {
         }
     }
 
+
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping
     private ResponseEntity getComposant(@RequestBody(required = false) GetComposantRequest request) throws NotFoundException {
         try {

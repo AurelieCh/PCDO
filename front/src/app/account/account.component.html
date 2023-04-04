@@ -1,0 +1,7 @@
+<div *ngIf="auth.user$ | async as user">
+  <h1>Bonjour {{user.name}}</h1>
+  <p>{{profileJson}}</p>
+</div>
+
+
+<button mat-raised-button (click)="call()">Basic</button>

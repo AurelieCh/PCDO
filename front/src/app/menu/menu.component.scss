@@ -1,0 +1,144 @@
+
+
+mat-grid-tile{
+  border-radius: 25px;
+  opacity: 1;
+  overflow: hidden;
+}
+
+mat-grid-list{
+  width: 85%;
+  margin: 0 auto;
+  padding-top: 5%;
+  padding-bottom: 0% !important;
+}
+
+img{
+  width: auto;
+}
+
+
+
+mat-grid-tile span {
+  padding: 100%;
+  opacity: 0;
+
+}
+mat-grid-tile span:hover{
+  opacity: 1 !important;
+  animation: 0.4s bottom-to-up forwards;
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -.005em;
+  line-height:100%;
+  color: black;
+  text-align: left;
+
+}
+
+
+
+.cpu {
+  background: url('https://media.topachat.com/media/s400/63d93c3173a5974ced760c21.webp') no-repeat;
+  background-size: contain;
+}
+
+.cpu:hover {
+  background:linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 105, 97, 0.5)), url('https://media.topachat.com/media/s400/63d93c3173a5974ced760c21.webp') no-repeat;
+  background-size: contain;
+}
+
+
+.mb{
+  background: url('https://media.topachat.com/media/s400/61dc51bdd625187ccd7a5c3e.webp') no-repeat;
+  background-size:contain;
+}
+
+.mb:hover {
+  background:linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 180, 128, 0.5)), url('https://media.topachat.com/media/s400/61dc51bdd625187ccd7a5c3e.webp') no-repeat;
+  background-size: contain;
+}
+
+.gpu{
+  background: url('https://media.topachat.com/media/s400/636a3355df02471e792a4923.webp') no-repeat;
+  background-size:contain;
+}
+
+.gpu:hover {
+  background:linear-gradient(rgba(255, 255, 255, 0.5), rgba(248, 243, 141, 0.5)), url('https://media.topachat.com/media/s400/636a3355df02471e792a4923.webp') no-repeat;
+  background-size: contain;
+}
+
+.ram{
+  background: url('https://media.topachat.com/media/s400/619e4399a2cec2241f84f504.webp') no-repeat;
+  background-size:contain;
+}
+
+.ram:hover {
+  background:linear-gradient(rgba(255, 255, 255, 0.5), rgba(66, 214, 164, 0.5)), url('https://media.topachat.com/media/s400/619e4399a2cec2241f84f504.webp') no-repeat;
+  background-size: contain;
+}
+
+.hdd{
+  background: url('https://media.topachat.com/media/s400/619e427fa2cec2241f84df58.webp') no-repeat;
+  background-size:contain;
+}
+
+.hdd:hover {
+  background:linear-gradient(rgba(255, 255, 255, 0.5), rgba(8, 202, 209, 0.5)), url('https://media.topachat.com/media/s400/619e427fa2cec2241f84df58.webp') no-repeat;
+  background-size: contain;
+}
+
+.alim{
+  background: url('https://media.topachat.com/media/s400/619e43012572885fae30961f.webp') no-repeat;
+  background-size:contain;
+}
+
+.alim:hover {
+  background:linear-gradient(rgba(255, 255, 255, 0.5), rgba(89, 173, 246, 0.5)), url('https://media.topachat.com/media/s400/619e43012572885fae30961f.webp') no-repeat;
+  background-size: contain;
+}
+
+.case{
+  background: url('https://media.topachat.com/media/s400/630dd8cc660c0f052571f813.webp') no-repeat;
+  background-size:contain;
+}
+
+.case:hover {
+  background:linear-gradient(rgba(255, 255, 255, 0.5), rgba(157, 148, 255, 0.5)), url('https://media.topachat.com/media/s400/630dd8cc660c0f052571f813.webp') no-repeat;
+  background-size: contain;
+}
+.prebuild{
+  background: url('https://media.topachat.com/media/s500/63f729afa7cb8977ee68a223.webp') no-repeat;
+  background-size:contain;
+}
+
+.prebuild:hover {
+  background:linear-gradient(rgba(255, 255, 255, 0.5), rgba(199, 128, 232, 0.5)), url('https://media.topachat.com/media/s500/63f729afa7cb8977ee68a223.webp') no-repeat;
+  background-size: contain;
+}
+
+div{
+  margin-bottom: 40%;
+}
+
+.all{
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -.005em;
+  line-height:100%;
+  color: black;
+  text-align: center;
+  background:
+    linear-gradient(rgba(255,0,0,1) 0%, rgba(255,154,0,1) 10%, rgba(208,222,33,1) 20%, rgba(79,220,74,1) 30%, rgba(63,218,216,1) 40%, rgba(47,201,226,1) 50%, rgba(28,127,238,1) 60%, rgba(95,21,242,1) 70%, rgba(186,12,248,1) 80%, rgba(251,7,217,1) 90%, rgba(255,0,0,1) 100%)
+    0 0/100% 200%;
+
+  background-size: 1800% 1800%;
+  animation: a 60s linear infinite;
+}
+
+@keyframes a {
+  to {background-position:0 -800%}
+}
+
+@keyframes bottom-to-up { from { transform: translateY(48px); } to { transform: translateX(0); } }
