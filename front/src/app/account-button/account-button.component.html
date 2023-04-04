@@ -10,8 +10,6 @@
 
 <img *ngIf="user.picture; else noPicture" routerLink="account" [src]="user.picture">
 
-
-
 <ng-template #noPicture>
   <button  mat-icon-button routerLink="account"  matTooltip="compte"
            matTooltipPosition="bottom">

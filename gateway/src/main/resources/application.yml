@@ -1,5 +1,5 @@
 auth0:
-  audience: http://localhost:8080
+  audience: http://localhost:4200
 
 spring:
   application:
@@ -8,7 +8,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: dev-vq2nkixrb8245ghu.us.auth0.com
+          issuer-uri: https://dev-vq2nkixrb8245ghu.us.auth0.com
   cloud:
     gateway:
       routes:
