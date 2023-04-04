@@ -14,4 +14,5 @@ import java.io.Serializable;
 public class Mail implements Serializable {
     private TypeMail typeMail;
     private String emailDesti;
+    private Integer commande;
 }

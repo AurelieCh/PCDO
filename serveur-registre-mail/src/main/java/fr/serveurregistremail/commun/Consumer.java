@@ -19,57 +19,57 @@ public class Consumer {
         System.out.println(" [x] Received email for'" + mail.getEmailDesti() + "' to '" + mail.getTypeMail().toString() + "'");
         //TODO Envois de mail
         MimeMessage message = javaMailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+        MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
         helper.setTo(mail.getEmailDesti());
         message.setSubject(mail.getTypeMail().toString());
         switch (mail.getTypeMail()){
             case Prise_en_compte :
-                helper.setText("Bonjour,\n Merci pour votre commande, elle a bien ete prise en compte," +
-                        "\nVous aurez des nouvelles lors de l'avancement ! \n\n" +
-                        "Merci encore :) \n" +
-                        "PCDO. \n(desole on gere pas les accents)", true);
+                helper.setText("Bonjour,<br><br> Merci pour votre commande n°" + mail.getCommande() + ", elle a bien été prise en compte," +
+                        "<br>Vous aurez des nouvelles lors de l'avancement ! <br><br>" +
+                        "Merci encore :) <br><br>" +
+                        "PCDO.", true);
                 javaMailSender.send(message);
                 break;
             case Valide:
-                helper.setText("Bonjour,\n Voici quelques nouvelles de votre commande," +
-                        "\nElle a ete valide et ne devrait plus tarder a etre prepare! \n\n" +
-                        "Merci encore :) \n" +
-                        "PCDO. \n(desole on gere pas les accents)", true);
+                helper.setText("Bonjour,<br><br> Voici quelques nouvelles de votre commande n°" + mail.getCommande() + "," +
+                        "<br>Elle a été validé et ne devrait plus tarder à être prepare! <br><br>" +
+                        "Merci encore :) <br><br>" +
+                        "PCDO.", true);
                 javaMailSender.send(message);
                 break;
             case Prepare:
-                helper.setText("Bonjour,\n Voici quelques nouvelles de votre commande," +
-                        "\nElle est maintenant prepare et ne devrait plus tarder a etre expedie! \n\n" +
-                        "Merci encore :) \n" +
-                        "PCDO. \n(desole on gere pas les accents)", true);
+                helper.setText("Bonjour,<br><br> Voici quelques nouvelles de votre commande n°" + mail.getCommande() + "," +
+                        "<br>Elle est maintenant prepare et ne devrait plus tarder à être expédié! <br><br>" +
+                        "Merci encore :) <br><br>" +
+                        "PCDO.", true);
                 javaMailSender.send(message);
                 break;
             case Expedie :
-                helper.setText("Bonjour,\n Voici quelques nouvelles de votre commande," +
-                        "\nElle a ete expedie et ne devrait plus tarder à être livre! \n" +
-                        "Vous devriez recevoir un mail du transporteur dans les plus bref delais.\n\n" +
-                        "Merci encore :) \n" +
-                        "PCDO. \n(desole on gere pas les accents)", true);
+                helper.setText("Bonjour,<br><br> Voici quelques nouvelles de votre commande n°" + mail.getCommande() + "," +
+                        "<br>Elle a été expédié et ne devrait plus tarder à être livré! <br>" +
+                        "Vous devriez recevoir un mail du transporteur dans les plus bref délais.<br><br>" +
+                        "Merci encore :) <br><br>" +
+                        "PCDO.", true);
                 javaMailSender.send(message);
                 break;
             case Livre:
-                helper.setText("Bonjour,\n Voici quelques nouvelles de votre commande," +
-                        "\nSelon notre transporteur, elle a ete livre à votre domicile :) \n\n" +
-                        "Merci encore :) \n" +
-                        "PCDO. \n(desole on gere pas les accents)", true);
+                helper.setText("Bonjour,<br><br> Voici quelques nouvelles de votre commande n°" + mail.getCommande() + "," +
+                        "<br>Selon notre transporteur, elle a été livré à votre domicile :) <br><br>" +
+                        "Merci encore :) <br><br>" +
+                        "PCDO.", true);
                 javaMailSender.send(message);
                 break;
             case Bienvenue:
-                helper.setText("Eh bonjour,\n Merci de vous etre inscrit sur notre site," +
-                        "Nous vous souhaitons un moment tout a fait sympathique.\n\n" +
-                        "Merci encore :) \n" +
-                        "PCDO. \n(desole on gere pas les accents)", true);
+                helper.setText("Éh bonjour,<br><br> Merci de vous être inscrit sur notre site,<br>" +
+                        "Nous vous souhaitons un moment tout a fait sympathique.<br><br>" +
+                        "Merci encore :) <br><br>" +
+                        "PCDO.", true);
                 javaMailSender.send(message);
                 break;
             case Aurevoir:
-                helper.setText("Bonjour,\n Nous sommes triste de vous voir partir," +
-                        "Aurevoir, gros bisous :)" +
-                        "PCDO. \n(desole on gere pas les accents)", true);
+                helper.setText("Bonjour,<br><br> Nous sommes triste de vous voir partir," +
+                        "Aurevoir, gros bisous :)<br><br>" +
+                        "PCDO.", true);
                 javaMailSender.send(message);
                 break;
         }

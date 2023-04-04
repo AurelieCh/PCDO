@@ -112,7 +112,12 @@ public class CommandeService {
                     "La facture n'a pas pu être crée. Erreur 400");
         }
 
-        this.producer.send(Mail.builder().typeMail(TypeMail.Prise_en_compte).emailDesti(toCreate.getEmail()).build());
+        this.producer.send(Mail.builder().
+                typeMail(TypeMail.Prise_en_compte).
+                emailDesti(toCreate.getEmail()).
+                commande(toCreate.getId()).
+                build()
+        );
         return buildCreateCommandeResponse(toCreate);
     }
 
@@ -177,7 +182,11 @@ public class CommandeService {
                 t = TypeMail.Livre;
                 break;
         }
-        this.producer.send(Mail.builder().typeMail(t).emailDesti(toSave.getEmail()).build());
+        this.producer.send(Mail.builder()
+                .typeMail(t)
+                .emailDesti(toSave.getEmail())
+                .commande(toSave.getId())
+                .build());
         return buildUpdateCommandeResponse(this.commandeRepository.save(toSave));
     }
 
