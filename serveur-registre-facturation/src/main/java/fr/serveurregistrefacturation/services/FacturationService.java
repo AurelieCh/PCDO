@@ -39,7 +39,8 @@ public class FacturationService {
                 || factureRequest.getCommande().toString().isEmpty()
                 || factureRequest.getCommande().toString().isBlank()
                 || factureRequest.getEmail().isBlank()
-                || factureRequest.getEmail().isEmpty()) {
+                || factureRequest.getEmail().isEmpty()
+                || factureRequest.getPrix() == null) {
             throw new ExceptionBadRequest("Les données en entrée du service sont non renseignés ou incorrectes. " +
                     "L'une des données n'est pas présentes ou est incorrectes. Erreur 400");
         } else {
@@ -49,6 +50,7 @@ public class FacturationService {
                     .commande(factureRequest.getCommande())
                     .dateCreation(new Date())
                     .email(factureRequest.getEmail())
+                    .prix(factureRequest.getPrix())
                     .typePaiement(factureRequest.getTypePaiement())
                     .build();
 
@@ -115,6 +117,7 @@ public class FacturationService {
                 .commande(f.getCommande())
                 .dateCreation(f.getDateCreation())
                 .typePaiement(f.getTypePaiement())
+                .prix(f.getPrix())
                 .build();
     }
 
