@@ -18,7 +18,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Date;
 import java.util.Optional;
-import java.util.Random;
 
 @Service
 @Transactional
@@ -41,7 +40,7 @@ public class CommandeService {
      * une commande dans le repository des commandes.
      *
      */
-    public CreateCommandeResponse CreateCommande(CreateCommandeRequest createCommandeRequest) throws ExceptionBadRequest, ExceptionNotFound {
+    public CreateCommandeResponse CreateCommande(CreateCommandeRequest createCommandeRequest) throws ExceptionBadRequest, ExceptionNotFound{
         if(createCommandeRequest.getAdresse().isEmpty()
         || createCommandeRequest.getAdresse().isBlank()
         || createCommandeRequest.getEmail().isBlank()
@@ -59,35 +58,30 @@ public class CommandeService {
                     "Aucun compte trouvé avec cette email. Erreur 204");
         }
 
-        //TODO
-
         ResponseEntity<String> response2;
         Double prix = 0.0;
+        GetComposantResponse g;
         for(Integer composant : createCommandeRequest.getComposants()){
-            response2 = restTemplate.getForEntity("http://ms-commandes/commandes?id=" + composant, String.class); //Besoin d'un retour de type 200 avec le prix
-            if(!(response.getStatusCode() == HttpStatus.OK)){
+            try {
+                g = restTemplate.getForObject("http://ms-composants/composants/" + composant, GetComposantResponse.class); //Besoin d'un retour de type 200 avec le prix
+            } catch (Exception e) {
                 throw new ExceptionBadRequest("Les données en entrée du service sont non renseignés ou incorrectes. " +
-                        "Un des composants listés n'existe pas. Erreur 400");
+                        "L'un des composants n'existe pas dans la base (mauvais id). Erreur 400");
             }
+
+            prix += g.getPrix();
         }
 
-
-        //En attendant la création de la fonction de mon collègue
-        Random r = new Random();
-        double randomValue = 10.0 + (500.0 - 10.0) * r.nextDouble();
-
-        //On a fait un random puisqu'on ne livre pas vraiment de commande pour le moment
-        Status status = getStatus();
         int rand = (int) (Math.random() * ( 3 - 0 ));
 
         Commande toCreate;
         toCreate = Commande.builder()
-                .prix(randomValue)
+                .prix(Math.round(prix*100.0)/100.0)
                 .dateCommande(new Date())
                 .adresse(createCommandeRequest.getAdresse())
                 .email(createCommandeRequest.getEmail())
                 .composants(createCommandeRequest.getComposants())
-                .status(status)
+                .status(Status.Prise_en_compte)
                 .build();
         toCreate = this.commandeRepository.save(toCreate);
 
@@ -97,8 +91,9 @@ public class CommandeService {
         // Créer un objet représentant le corps de la requête (ici, une chaîne de caractères)
         String requestBody = "{" +
                 "\"email\":"            + "\"" + toCreate.getEmail()        + "\"" + "," +
-                "\"commande\":"         +        toCreate.getId()                  + "," +
+                "\"commande\":"         +        toCreate.getId()           +        "," +
                 "\"adresse\":"          + "\"" + toCreate.getAdresse()      + "\"" + "," +
+                "\"prix\":"             + "\"" + toCreate.getPrix()         + "\"" + "," +
                 "\"typePaiement\":"     +        rand                       +
                 "}";
 
@@ -164,6 +159,25 @@ public class CommandeService {
         }
         Commande toSave = temp.get();
         toSave.setStatus(updateCommandeRequest.getStatus());
+        TypeMail t = TypeMail.Prise_en_compte;
+        switch (toSave.getStatus()){
+            case Prise_en_compte :
+                t = TypeMail.Prise_en_compte;
+                break;
+            case Valide :
+                t = TypeMail.Valide;
+                break;
+            case Prepare :
+                t = TypeMail.Prepare;
+                break;
+            case Expedie :
+                t = TypeMail.Expedie;
+                break;
+            case Livre :
+                t = TypeMail.Livre;
+                break;
+        }
+        this.producer.send(Mail.builder().typeMail(t).emailDesti(toSave.getEmail()).build());
         return buildUpdateCommandeResponse(this.commandeRepository.save(toSave));
     }
 
