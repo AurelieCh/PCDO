@@ -1,12 +1,16 @@
 package fr.serveurregistrecompte.services;
 
 import fr.serveurregistrecompte.commun.Compte;
+import fr.serveurregistrecompte.commun.Mail;
+import fr.serveurregistrecompte.commun.Producer;
 import fr.serveurregistrecompte.commun.exceptions.ExceptionBadRequest;
 import fr.serveurregistrecompte.commun.exceptions.ExceptionNotFound;
+import fr.serveurregistrecompte.commun.types.TypeMail;
 import fr.serveurregistrecompte.configurations.RestTemplateConfig;
 import fr.serveurregistrecompte.repositories.CompteRepository;
 import fr.serveurregistrecompte.services.dtoCompte.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
@@ -26,6 +30,9 @@ public class CompteService {
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    private Producer producer;
 
     /**
      *
@@ -58,6 +65,7 @@ public class CompteService {
             throw new ExceptionBadRequest("Les données en entrée du service sont non renseignés ou incorrectes. " +
                     "Le mot de passe n'est pas le bon. Erreur 400");
         }
+
         return buildGetCompteResponse(c, getCompteRequest.getPassword());
     }
 
@@ -140,6 +148,7 @@ public class CompteService {
                 .facturations(new ArrayList<Integer>())
                 .build();
 
+        this.producer.send(Mail.builder().typeMail(TypeMail.Bienvenue).emailDesti(compteRequest.getEmail()).build());
         return buildCreateCompteResponse(this.compteRepository.save(toCreate), compteRequest.getPassword());
     }
 
@@ -258,6 +267,7 @@ public class CompteService {
         }
         temp = this.compteRepository.findByEmail(deleteCompteRequest.getEmail());
         if(temp.isEmpty()){
+            this.producer.send(Mail.builder().typeMail(TypeMail.Aurevoir).emailDesti(deleteCompteRequest.getEmail()).build());
             return DeleteCompteResponse.builder().ok(true).build();
         } else {
             return DeleteCompteResponse.builder().ok(false).build();
