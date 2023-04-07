@@ -32,6 +32,7 @@ import {OAuthModule} from "angular-oauth2-oidc";
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +42,7 @@ import {OAuthModule} from "angular-oauth2-oidc";
     AccountButtonComponent,
     CartComponent,
     AccountComponent,
+
 
 
   ],

@@ -11,18 +11,16 @@ export class ComposantsService {
   }
 
   getSearchedComposants(filter: string ){
-    return this.http.get('http://localhost:8080/'+ filter)
+    return this.http.get('http://localhost:8082/'+ filter)
   }
 
   getAllComposants(){
-    return this.http.get('http://localhost:8080/composants')
+    return this.http.get('http://localhost:8082/composants')
   }
 }
 
 
-this.http.get(http://localhost:8080/commandes/)
-this.http.get(http://localhost:8080/facturations/)
-this.http.get(http://localhost:8080/comptes/)
+
 
 
 
