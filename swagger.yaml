@@ -1,0 +1,1240 @@
+openapi: 3.0.3
+info:
+  title: PCDO
+  description: |-
+    Contrat de service PCDO
+  contact:
+    email: pcdosarl@gmail.com
+  version: 1.49.3
+servers:
+  - url: http://localhost:8080
+    description : gateway 
+  - url: http://localhost:8080/ms-commandes
+    description : commandes
+  - url: http://localhost:8080/ms-composants
+    description : composants
+  - url: http://localhost:8080/ms-comptes
+    description : comptes
+  - url: http://localhost:8080/ms-facturations
+    description : facturations
+  - url: http://localhost:8080/ms-mails
+    description : mails
+tags:
+  - name: commandes
+    description: Les differents services pcdo des commandes.
+  - name: composants
+    description: Les differents services pcdo des composants.
+  - name: comptes
+    description: Les différents services pcdo des comptes.
+  - name: facturations
+    description: Les différents services pcdo des facturations
+paths:
+  /ms-commandes:
+    post:
+      tags:
+        - commandes
+      summary: Création d'une commande
+      description: Creation d'une commande
+      operationId: creerCommande
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreationCommandeRequest'
+        required: true
+      responses:
+        '201':
+          description: La commande a bien été crée
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreationCommandeResponse'         
+        '400':
+          description: BadRequest
+        '404':
+          description: NotFound
+        '500':
+          description: InternalServerError
+    put:
+      tags:
+        - commandes
+      summary: Modifie la commande entrée en paramètre
+      description: Modification d'une commande
+      operationId: modifCommande
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModificationCommandeRequest'
+        required: true
+      responses:
+        '200':
+          description: La commande a bien été modifiée
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModificationCommandeResponse'
+        '204':
+          description: NoContent
+        '400':
+          description: BadRequest
+        '500':
+          description: InternalServerError
+        
+  /ms-commandes/{id}:
+    get:
+      tags:
+        - commandes
+      summary: Récupèrer une commande avec l'id entré
+      description: Récupération d'une commande
+      operationId: recupCommande
+      parameters:
+        - name: id
+          in: path
+          description: id de la commande
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: La commande a bien été récupérée
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCommandeResponse'
+        '404':
+          description: NotFound
+        '500':
+          description: InternalServerError
+  /ms-composants:
+    post:
+      tags:
+        - composants
+      summary: Création d'un composant
+      description : Création d'un composant
+      operationId: creerComposant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateComposantRequest'
+            example:
+              prix: 1
+              nom: Intel Core i42
+              marque: Intel
+              description: Processeur vraiment pas ouf
+              url: http://tenor.com/yGhz.gif
+              categorie: Processeur
+              caracteristiqueList:
+                [
+                  {
+                    nomCaracteristique: frequence,
+                    val: 12.3
+                  },
+                  {
+                    nomCaracteristique : nbCoeurs,
+                    val : 4
+                  },
+                  {
+                    nomCaracteristique : socket,
+                    val : Intel
+                  }
+                ]
+      responses:
+        '201':
+          description: Le composant a bien été créé
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateComposantResponse'
+              example:
+                id: 1
+                prix: 1
+                nom: Intel Core i42
+                marque: Intel
+                description: Processeur vraiment pas ouf
+                url: http://tenor.com/yGhz.gif
+                categorie: Processeur
+                caracteristiqueList:
+                  [
+                    {
+                      nomCaracteristique: frequence,
+                      val: 12.3
+                    },
+                    {
+                      nomCaracteristique : nbCoeurs,
+                      val : 4
+                    },
+                    {
+                      nomCaracteristique : socket,
+                      val : Intel
+                    }
+                  ]
+        '400':
+          description: BadRequest
+        '500':
+          description: InternalServerError
+    get:
+      tags: 
+        - composants
+      summary: Récupération d'un composant
+      description: Récupération d'un composant
+      operationId: getComposant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetComposantRequest'
+            example:
+              prixMin: 0
+              prixMax: 10000
+              nom: i42
+              marque: Intel
+              description: ouf
+              categorie: Processeur
+              caracteristiqueList:
+                [
+                  {
+                    nomCaracteristique: frequence,
+                    val: 12.3
+                  },
+                  {
+                    nomCaracteristique : nbCoeurs,
+                    val : 4
+                  },                    {
+                    nomCaracteristique : socket,
+                    val : Intel
+                  }
+                ]
+      responses:
+        '200':
+          description: Un ou plusieurs composants correspondants ont été trouvés
+          content: 
+            application/json:
+              schema:
+                type: array
+              example: 
+                [
+                  {
+                    id: 1,
+                    prix: 1,
+                    nom: Intel Core i42,
+                    marque: Intel,
+                    description: Processeur vraiment pas ouf,
+                    url: http://tenor.com/yGhz.gif,
+                    categorie: Processeur,
+                    caracteristiqueList:
+                      [
+                        {
+                          nomCaracteristique: frequence,
+                          val: 12.3
+                        },
+                        {
+                          nomCaracteristique : nbCoeurs,
+                          val : 4
+                        },
+                        {
+                          nomCaracteristique : socket,
+                          val : Intel
+                        }
+                      ]
+                  }
+                ]
+        '400':
+          description: BadRequest
+        '404':
+          description: NotFound
+        '500':
+          description: InternalServerError
+    put:
+      tags:
+        - composants
+      summary: Modification d'un composant
+      description : Modification d'un composant
+      operationId: modifierComposant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateComposantRequest'
+            example:
+              id: 1
+              prix: 111
+              nom: Intel Core i43
+              marque: Intel
+              description: Processeur vraiment pas ouf
+              url: http://tenor.com/yGhz.gif
+              categorie: Processeur
+              caracteristiqueList:
+                [
+                  {
+                    nomCaracteristique: frequence,
+                    val: 12.3
+                  },
+                  {
+                    nomCaracteristique : nbCoeurs,
+                    val : 4
+                  },
+                  {
+                    nomCaracteristique : socket,
+                    val : Intel
+                  }
+                ]
+      responses:
+        '200':
+          description: Le composant a bien été modifié
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateComposantResponse'
+              example:
+                id: 1
+                prix: 111
+                nom: Intel Core i43
+                marque: Intel
+                description: Processeur vraiment pas ouf
+                url: http://tenor.com/yGhz.gif
+                categorie: Processeur
+                caracteristiqueList:
+                  [
+                    {
+                      nomCaracteristique: frequence,
+                      val: 12.3
+                    },
+                    {
+                      nomCaracteristique : nbCoeurs,
+                      val : 4
+                    },
+                    {
+                      nomCaracteristique : socket,
+                      val : Intel
+                    }
+                  ]
+        '400':
+          description: BadRequest
+        '404':
+          description: NotFound
+        '500':
+          description: InternalServerError
+  /ms-composants/{id}:
+    get:
+      tags:
+        - composants
+      summary: Récupération d'un composant avec son id
+      description: Récupération d'un composant avec son id
+      operationId: getComposantById
+      parameters:
+        - name: id
+          in: path
+          description: id du composant
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Le composant a été trouvé
+          content: 
+            application/json:
+              schema:
+                type: array
+              example: 
+                [
+                  {
+                    id: 1,
+                    prix: 1,
+                    nom: Intel Core i42,
+                    marque: Intel,
+                    description: Processeur vraiment pas ouf,
+                    url: http://tenor.com/yGhz.gif,
+                    categorie: Processeur,
+                    caracteristiqueList:
+                      [
+                        {
+                          nomCaracteristique: frequence,
+                          val: 12.3
+                        },
+                        {
+                          nomCaracteristique : nbCoeurs,
+                          val : 4
+                        },
+                        {
+                          nomCaracteristique : socket,
+                          val : Intel
+                        }
+                      ]
+                  }
+                ]
+        '400':
+          description: BadRequest
+        '404':
+          description: NotFound
+        '500':
+          description: InternalServerError
+    delete:
+      tags:
+        - composants
+      summary: Récupération d'un composant avec son id
+      description: Récupération d'un composant avec son id
+      operationId: delComposant
+      parameters:
+        - name: id
+          in: path
+          description: id du composant
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Le composant a été supprimé
+          content: 
+            application/json:
+              schema:
+                type: array
+              example: 
+                [
+                  {
+                    id: 1,
+                    prix: 1,
+                    nom: Intel Core i42,
+                    marque: Intel,
+                    description: Processeur vraiment pas ouf,
+                    url: http://tenor.com/yGhz.gif,
+                    categorie: Processeur,
+                    caracteristiqueList:
+                      [
+                        {
+                          nomCaracteristique: frequence,
+                          val: 12.3
+                        },
+                        {
+                          nomCaracteristique : nbCoeurs,
+                          val : 4
+                        },
+                        {
+                          nomCaracteristique : socket,
+                          val : Intel
+                        }
+                      ]
+                  }
+                ]
+        '404':
+          description: NotFound
+        '500':
+          description: InternalServerError
+  /ms-comptes/comptes/createCompte:
+    post:
+      tags:
+        - comptes
+      summary: Créer un nouveau compte.
+      description: Créer un nouveau compte avec plusieurs paramètres.
+      operationId: createCompte
+      requestBody:
+        description: Créer un nouveau compte.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCompteRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/CreateCompteRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateCompteRequest'
+        required: true
+      responses:
+        '200':
+          description: Opération réussi.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateCompteResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CreateCompteResponse'
+        '400':
+          description: Un des champs est vide (ou incorrecte).
+        '500':
+          description: Problème(s) interne au serveur.
+      security:
+        - site_auth:
+            - write:comptes
+            - read:comptes
+            - delete:comptes
+  /ms-comptes/comptes/getCompte:
+    get:
+      tags:
+        - comptes
+      summary: Récupérer un compte.
+      description: Récupérer un compte via l'email et le mot de passe
+      operationId: getCompte
+      requestBody:
+        description: Récupérer un compte client.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetCompteRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/GetCompteRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GetCompteRequest'
+        required: true
+      responses:
+        '200':
+          description: Opération réussie
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCompteResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GetCompteResponse'
+        '400':
+          description: Un des champs est vide (ou incorrecte).
+        '204':
+          description: Compte introuvable.
+        '500':
+          description: Erreur(s) interne au serveur.
+      security:
+        - site_auth:
+            - read:comptes
+  /ms-comptes/comptes:
+    put:
+      tags:
+        - comptes
+      summary: Modifier un compte existant
+      description: Modifier un compte existant si l'email et le mot de passe son correctement renseignés
+      operationId: updateCompte
+      requestBody:
+        description: Modifier un compte existant
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCompteRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/UpdateCompteRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UpdateCompteRequest'
+        required: true
+      responses:
+        '200':
+          description: Opération réussie
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateCompteResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UpdateCompteResponse'
+        '400':
+          description: Un des champs est vide (ou incorrecte).
+        '204':
+          description: Compte introuvable.
+        '500':
+          description: Erreur(s) interne au serveur.
+      security:
+        - site_auth:
+            - read:comptes
+            - write:comptes
+    delete:
+      tags:
+        - comptes
+      summary: Supprimer un compte existant.
+      description: Supprimer un compte existant si l'email et le mot de passe son correctement renseignés
+      operationId: deleteCompte
+      requestBody:
+        description: Supprimer un compte existant
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetCompteRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/GetCompteRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GetCompteRequest'
+        required: true
+      responses:
+        '200':
+          description: Opération réussie
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteCompteResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DeleteCompteResponse'
+        '400':
+          description: Un des champs est vide (ou incorrecte).
+        '204':
+          description: Compte introuvable.
+        '500':
+          description: Erreur(s) interne au serveur.
+      security:
+        - site_auth:
+          - write:comptes
+          - delete:comptes
+  /ms-comptes/comptes/addFacture/{factureId}/{compteEmail}:
+    put:
+      tags:
+        - comptes
+      summary: Ajouter une facture à un compte
+      description: Ajoute une facture à un compte avec un id de commande et un email de compte, cet appel n'a pas de vérifications puisque celles-ci sont réalisées en amont par le service des commandes.
+      operationId: addFactureToCompte
+      parameters:
+        - name: factureId
+          in: query
+          description: Id de la commande à associer à la facture à ajouter dans le compte.
+          required: true
+          schema:
+            type: integer
+            format: int16
+        - name: compteEmail
+          in: query
+          description: Email du compte auquel on ajoute la facture.
+          required: true
+          schema:
+            type: string
+            format: string
+      responses:
+        '200':
+          description: Opération réussie
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteCompteResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DeleteCompteResponse'
+        '500':
+          description: Erreur(s) interne au serveur.
+      security:
+        - site_auth:
+          - read:comptes
+          - write:comptes
+  /ms-comptes/comptes/addCommande/{commandeId}/{compteEmail}:
+    put:
+      tags:
+        - comptes
+      summary: Ajouter une commande à un compte
+      description: Ajoute une commande à un compte avec un id de commande et un email de compte. Cette fonction n'a pas non plus de vérification, elles sont également réalisées dans le micro-services des commandes.
+      operationId: addCommandeToCompte
+      parameters:
+        - name: commandeId
+          in: query
+          description: Id de la commande à ajouter dans le compte.
+          required: true
+          schema:
+            type: integer
+            format: int16
+        - name: compteEmail
+          in: query
+          description: Email du compte auquel on ajoute la facture.
+          required: true
+          schema:
+            type: string
+            format: string
+      responses:
+        '200':
+          description: Opération réussie
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteCompteResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DeleteCompteResponse'
+        '500':
+          description: Erreur(s) interne au serveur.
+      security:
+        - site_auth:
+          - read:comptes
+          - write:comptes
+  /ms-comptes/comptes/checkMail/{emailCompte}:
+    get:
+      tags:
+        - comptes
+      summary: Vérifier qu'un compte existe
+      description: On regarde dans le réposiroty des comptes si un compte avec l'email 'emailCompte' existe.
+      operationId: verifyCompte
+      parameters:
+        - name: emailCompte
+          in: query
+          description: email du supposé compte.
+          required: true
+          schema:
+            type: string
+            format: string
+      responses:
+        '200':
+          description: Opération réussie
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteCompteResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DeleteCompteResponse'
+        '400':
+          description: Un des champs est vide (ou incorrecte).
+        '204':
+          description: Compte introuvable.
+        '500':
+          description: Erreur(s) interne au serveur.
+      security:
+        - site_auth:
+          - read:comptes
+  /ms-facturations/facturations:
+    post:
+      tags:
+        - facturations
+      summary: Créer une facture
+      description: Création d'une facture avec plusieurs paramètres passés en amont dans le micro-service de compte, tel que l'id de commande associé, ou l'email du compte auquel ajouter la facture, etc.
+      operationId: createFacture
+      requestBody:
+        description: Créer une facture.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFactureRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/CreateFactureRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateFactureRequest'
+        required: true
+      responses:
+        '200':
+          description: Opération réussie
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateFactureResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CreateFactureResponse'
+        '400':
+          description: Un des champs est vide (ou incorrecte).
+        '500':
+          description: Erreur(s) interne au serveur.
+      security:
+        - site_auth:
+          - read:facturations
+          - write:facturations
+  /ms-facturations/facturations/getFacture/{idFacture}:
+    get:
+      tags:
+        - facturations
+      summary: Récupérer une facture.
+      description: On regarde dans le réposiroty des factures si une facture avec l'id 'idFacture' existe et on retourne les informations de celle-ci.
+      operationId: getFacture
+      parameters:
+        - name: idFacture
+          in: path
+          description: Id de la facture recherché
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Opération réussie
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetFactureResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GetFactureResponse'
+        '204':
+          description: Facture introuvable.
+        '500':
+          description: Erreur(s) interne au serveur.
+      security:
+        - site_auth:
+          - read:facturations
+
+components:
+  schemas:
+    GetComposantRequest:
+      properties:
+        prixMin:
+          type: number
+          format: double
+        prixMax:
+          type: number
+          format: double
+        nom:
+          type: string
+        marque: 
+          type: string
+        description:
+          type: string
+        categorie: 
+          type: string
+        caracteristiqueList:
+          type: array
+    CreateComposantRequest:
+      required:
+        - prix
+        - nom
+        - marque
+        - description
+        - url
+        - categorie
+        - caracteristiqueList
+      properties:
+        prix:
+          type: number
+          format: double
+        nom:
+          type: string
+        marque:
+          type: string
+        description:
+          type: string
+        url:
+          type: string
+        categorie:
+          type: string
+        caracteristiqueList:
+          type: array
+    CreateCaracteristiqueRequest:
+      required: 
+        - nomCaracteristique
+        - val
+      properties:
+        nomCaracteristique:
+          type: string
+        val:
+          type: string
+    CreateComposantResponse:
+      required:
+        - id
+        - prix
+        - nom
+        - marque
+        - description
+        - url
+        - categorie
+        - caracteristiqueList
+      properties:
+        id:
+          type: integer
+          format: int64
+        prix:
+          type: number
+          format: double
+        nom:
+          type: string
+        marque:
+          type: string
+        description:
+          type: string
+        url:
+          type: string
+        categorie:
+          type: string
+        caracteristiqueList:
+          type: array
+    CreateCaracteristiqueResponse:
+      required: 
+        - nomCaracteristique
+        - val
+      properties:
+        nomCaracteristique:
+          type: string
+        val:
+          type: string
+    ModificationCommandeRequest:
+      required:
+        - id
+        - status
+      properties: 
+        id:
+          type: integer
+          format: int64
+          example: 1
+        status:
+          type: string
+          example: "Expedié"
+    ModificationCommandeResponse:
+      required:
+        - id
+        - status
+      properties: 
+        id:
+          type: integer
+          format: int64
+          example: 1
+        status:
+          type: string
+          example: "Expedié"
+    CreationCommandeRequest:
+      required:
+        - email
+        - adresse
+        - composants
+      type: object
+      properties:
+        email:
+          type: string
+          example: test@example.com
+        adresse:
+          type: string
+          example: '2 rue des trois'
+        titulairesCompte:
+          type: array
+          items: 
+            type: integer
+            format: int32
+            example: [1, 2, 3, 4]
+    CreationCommandeResponse:
+      required:
+        - id
+        - composants
+        - prix
+        - dateCommande
+        - adresse
+        - status
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        composants:
+          type: array
+          items :
+            type: integer
+            format: int32
+            example: [1, 2, 3, 4]
+        prix:
+          type: number
+          example: 49.3
+        dateCommande:
+          type: string
+          example: 01/01/1970
+        adresse:
+          type: string
+          example: '2 rue des trois'
+        status:
+          type: string
+          example: "Prise_en_Compte"
+    GetCommandeResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        email:
+          type: string
+          example: test@example.com
+        dateCommande:
+          type: string
+          example: "01/01/1970"
+        adresse:
+          type: string
+          example: 1 rue des trois
+        status:
+          type: string
+          example: "Prise_en_Compte"
+        prix:
+          type: number
+          format: double
+          example: 49.3
+        composants:
+          type: array
+          items:
+            type: integer
+          example: [1,2,3,4]
+      required:
+        - id
+        - email
+        - dateCommande
+        - adresse
+        - status
+        - prix
+        - composants
+    CreateCompteRequest:
+      type: object
+      properties:
+        nom:
+          type: string
+          format: string
+          example: Marie
+        prenom:
+          type: string
+          format: string
+          example: Jean
+        email:
+          type: string
+          format: string
+          example: exemple@test.fr
+        password:
+          type: string
+          format: string
+          example: MyPassword45
+        password2:
+          type: string
+          format: string
+          example: MyPassword45
+        adresse:
+          type: string
+          format: string
+          example: 14 rue des michels
+    CreateCompteResponse:
+      type: object
+      properties:
+        nom:
+          type: string
+          format: string
+          example: Marie
+        prenom:
+          type: string
+          format: string
+          example: Jean
+        email:
+          type: string
+          format: string
+          example: exemple@test.fr
+        password:
+          type: string
+          format: string
+          example: MyPassword45
+        date_inscription:
+          type: string
+          format: date
+          example: "2019-05-17"
+        adresse:
+          type: string
+          format: string
+          example: 14 rue des michels
+        panier:
+          type: array
+          items: 
+            type: integer
+          example: []
+        commandes:
+          type: array
+          items: 
+            type: integer
+          example: []
+        facturations:
+          type: array
+          items: 
+            type: integer
+          example: []
+    GetCompteRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: string
+          example: exemple@test.fr
+        password:
+          type: string
+          format: string
+          example: MyPassword45
+    GetCompteResponse:
+      type: object
+      properties:
+        nom:
+          type: string
+          format: string
+          example: Marie
+        prenom:
+          type: string
+          format: string
+          example: Jean
+        email:
+          type: string
+          format: string
+          example: exemple@test.fr
+        password:
+          type: string
+          format: string
+          example: MyPassword45
+        date_inscription:
+          type: string
+          format: date
+          example: "2019-05-17"
+        adresse:
+          type: string
+          format: string
+          example: 14 rue des michels
+        panier:
+          type: array
+          items: 
+            type: integer
+          example: [3, 5]
+        commandes:
+          type: array
+          items: 
+            type: integer
+          example: [1]
+        facturations:
+          type: array
+          items: 
+            type: integer
+          example: [2]
+    UpdateCompteRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: string
+          example: exemple@test.fr
+        nom:
+          type: string
+          format: string
+          example: Marie
+        prenom:
+          type: string
+          format: string
+          example: Jean
+        adresse:
+          type: string
+          format: string
+          example: (14 rue des michels devient) 26 rue des gens gentils
+        password:
+          type: string
+          format: string
+          example: MyPassword45
+    UpdateCompteResponse:
+      type: object
+      properties:
+        email:
+          type: string
+          format: string
+          example: exemple@test.fr
+        nom:
+          type: string
+          format: string
+          example: Marie
+        prenom:
+          type: string
+          format: string
+          example: Jean
+        adresse:
+          type: string
+          format: string
+          example: 26 rue des gens gentils
+        password:
+          type: string
+          format: string
+          example: MyPassword45
+    DeleteCompteResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+          format: boolean
+          example: true
+    CreateFactureRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: string
+          example: exemple@test.fr
+        commande:
+          type: integer
+          format: int16
+          example: 2
+        adresse:
+          type: string
+          format: string
+          example: 14 rue des michels
+        prix:
+          type: number
+          format: double
+          example: 145,34
+        type_paiement:
+          type: string
+          enum:
+            - CARTE
+            - PAYPAL
+            - VIREMENT
+            - PLUSIEURS_FOIS
+    CreateFactureResponse:
+      type: object
+      properties:
+        email:
+          type: string
+          format: string
+          example: exemple@test.fr
+        commande:
+          type: integer
+          format: int16
+          example: 2
+        adresse:
+          type: string
+          format: string
+          example: 14 rue des michels
+        prix:
+          type: number
+          format: double
+          example: 145,34
+        date:
+          type: string
+          format: date
+          example: "14-09-2020"
+        type_paiement:
+          type: string
+          enum:
+            - CARTE
+            - PAYPAL
+            - VIREMENT
+            - PLUSIEURS_FOIS
+    GetFactureResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          example: 4
+        email:
+          type: string
+          format: string
+          example: exemple@test.fr
+        adresse:
+          type: string
+          format: string
+          example: 14 rue des michels
+        date:
+          type: string
+          format: date
+          example: "14-09-2020"
+        prix:
+          type: number
+          format: double
+          example: 145,34
+        commande:
+          type: integer
+          format: int16
+          example: 2
+        type_paiement:
+          type: string
+          enum:
+            - CARTE
+            - PAYPAL
+            - VIREMENT
+            - PLUSIEURS_FOIS
+  securitySchemes:
+    site_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://not-done-yet.fr
+          scopes:
+            write:comptes: Modifier ou ajouter un compte (hormis le mot de passe)
+            read:comptes: Voir les comptes (hormis le mot de passe)
+            delete:comptes : Supprimer un compte (mais pas les factures et commandes associées)
+            write:facturations: Ajouter une facture
+            read:facturations: Voir les factures
