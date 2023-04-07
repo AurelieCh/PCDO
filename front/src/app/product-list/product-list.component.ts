@@ -1,51 +1,65 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { ListType } from '../object/ListType';
 import { TypeComposant } from '../object/TypeComposant';
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+import { ComposantsService } from '../service/composants.service';
+import { CompteService } from '../service/compte.service';
+export interface Compo {
+  idComposant: number,
+  prix: number,
+  nom: string,
+  marque: string,
+  description: string,
+  url: string,
+  categorie: string,
+  caracteristiqueList: any[]
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
+
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss']
 })
-export class ProductListComponent {
+export class ProductListComponent implements OnInit {
 
+  ELEMENT_DATA: Compo[] | undefined;
   types= ListType;
   type: TypeComposant | undefined;
+
+  dataSource : any;
   constructor(
-              private route: ActivatedRoute, private router: Router, public auth: AuthService) {
+              private route: ActivatedRoute, private router: Router, public auth: AuthService, public composants: ComposantsService, public compte: CompteService) {
     this.route.params.subscribe( params =>{
-      if(this.types.find(element => element.nom === params['type'])){
-        this.type = this.types.find(element => element.nom === params['type'])
+      if(this.types.find(element => element.url === params['type'])){
+        this.type = this.types.find(element => element.url === params['type'])
       }else{
         this.router.navigateByUrl('/404');
       }
       }
     );
   }
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+
+  ngOnInit(): void {
+    this.composants.getAllComposants().subscribe((result)=> {
+        this.dataSource = result;
+        console.log(result);
+        // @ts-ignore
+        if (this.type.nom === "ALL") {
+          // @ts-ignore
+          this.dataSource = this.dataSource.composants;
+        } else {
+          // @ts-ignore
+          this.dataSource = this.dataSource.composants.filter((item) => item.categorie === this.type.nom);
+        }
+      }
+    );
+    }
+
+  displayedColumns: string[] = ['nom', 'marque','description', 'prix', 'idComposant'];
 
   title: string ="";
 }

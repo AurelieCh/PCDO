@@ -32,6 +32,7 @@ import {OAuthModule} from "angular-oauth2-oidc";
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +42,7 @@ import {OAuthModule} from "angular-oauth2-oidc";
     AccountButtonComponent,
     CartComponent,
     AccountComponent,
+
 
 
   ],
@@ -63,14 +65,10 @@ import {OAuthModule} from "angular-oauth2-oidc";
     MatTabsModule,
       AuthModule.forRoot({
       domain: 'dev-vq2nkixrb8245ghu.us.auth0.com',
-      clientId: 'aqwYHEe9p9oDbDbBSER4w1AbdGRm60Q4',
+      clientId: 'FcXp5r7vkOHfu3HqUv28LYTN9Xigcytf',
       authorizationParams: {
         redirect_uri: window.location.origin,
-        audience:"http://localhost:8080"
-      },
-      httpInterceptor:{
-        allowedList: ['http://localhost:8080/composants'],
-
+        audience:"http://localhost:8080/api",
       }
 
     }),
