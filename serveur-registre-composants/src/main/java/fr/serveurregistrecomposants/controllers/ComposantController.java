@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.ws.rs.Path;
 
-@Controller
+@RestController
+@CrossOrigin("http://localhost:4200")
 public class ComposantController {
     @Autowired
     private ComposantService serCompo;
     @PostMapping
+    @CrossOrigin("http://localhost:4200")
     private ResponseEntity createComposant(@RequestBody CreateComposantRequest request){
         if (request.getNom() == null || request.getDescription() == null || request.getCaracteristiqueList() == null
                 || request.getMarque() == null || request.getPrix() == null || request.getUrl() == null || request.getCategorie() == null)
@@ -62,7 +64,9 @@ public class ComposantController {
         return ResponseEntity.created(null).body(this.serCompo.saveComposant(request));
     }
 
+
     @GetMapping("/{id}")
+    @CrossOrigin("http://localhost:4200")
     private ResponseEntity getComposant(@PathVariable("id") Integer id){
         try {
             GetComposantResponse temp = this.serCompo.getComposant(id);
@@ -73,8 +77,9 @@ public class ComposantController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:4200")
+
     @GetMapping
+    @CrossOrigin("http://localhost:4200")
     private ResponseEntity getComposant(@RequestBody(required = false) GetComposantRequest request) throws NotFoundException {
         try {
             return ResponseEntity.ok().body(this.serCompo.getComposant(request));
@@ -86,6 +91,7 @@ public class ComposantController {
     }
 
     @PutMapping
+    @CrossOrigin("http://localhost:4200")
     private ResponseEntity modifyComposant(@RequestBody(required = true) PutComposantRequest request){
         try {
             if (request.getNom() == null || request.getDescription() == null || request.getCaracteristiqueList() == null
@@ -139,6 +145,7 @@ public class ComposantController {
     }
 
     @DeleteMapping("/{id}")
+    @CrossOrigin("http://localhost:4200")
     public ResponseEntity deleteComposant(@PathVariable Integer id) throws NotFoundException {
         try{
             return ResponseEntity.ok().body(this.serCompo.deleteComposant(id));
