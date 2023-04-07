@@ -1,6 +1,11 @@
 
 
 spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://dev-vq2nkixrb8245ghu.us.auth0.com/
   application:
     name: gateway-service
   cloud:
@@ -37,3 +42,6 @@ spring:
         # ajouter les éventuels services suivants
 server:
   port: 8080
+
+auth0:
+  audience: https://dev-vq2nkixrb8245ghu.us.auth0.com/
