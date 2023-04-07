@@ -5,14 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dec753f0-a9a5-4515-9851-e0b0b6f66740" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../serveur-registre-commandes/src/main/resources/data/dbcommandes.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-commandes/src/main/resources/data/dbcommandes.mv.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../serveur-registre-composants/src/main/resources/data/dbcomposants.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-composants/src/main/resources/data/dbcomposants.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../serveur-registre-compte/src/main/java/fr/serveurregistrecompte/commun/Compte.java" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-compte/src/main/java/fr/serveurregistrecompte/commun/Compte.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../serveur-registre-compte/src/main/java/fr/serveurregistrecompte/controllers/CompteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-compte/src/main/java/fr/serveurregistrecompte/controllers/CompteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../serveur-registre-compte/src/main/java/fr/serveurregistrecompte/services/CompteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-compte/src/main/java/fr/serveurregistrecompte/services/CompteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../serveur-registre-compte/src/main/java/fr/serveurregistrecompte/services/dtoCompte/CreateCompteResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-compte/src/main/java/fr/serveurregistrecompte/services/dtoCompte/CreateCompteResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../serveur-registre-compte/src/main/java/fr/serveurregistrecompte/services/dtoCompte/GetCompteResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-compte/src/main/java/fr/serveurregistrecompte/services/dtoCompte/GetCompteResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../serveur-registre-compte/src/main/resources/data/dbcomptes.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-compte/src/main/resources/data/dbcomptes.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../serveur-registre-facturation/src/main/resources/data/dbfacturations.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-facturation/src/main/resources/data/dbfacturations.mv.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/serveurregistremail/configurations/ConsumerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/serveurregistremail/configurations/ConsumerConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +155,7 @@
       <workItem from="1680595386785" duration="14292000" />
       <workItem from="1680620804680" duration="108000" />
       <workItem from="1680858527948" duration="598000" />
-      <workItem from="1680885848881" duration="808000" />
+      <workItem from="1680885848881" duration="1197000" />
     </task>
     <servers />
   </component>
