@@ -16,7 +16,7 @@ public class GetCompteResponse {
     private String email;
     private String adresse;
     private String password;
-    private List<String> panier;
+    private List<Integer> panier;
     private List<Integer> commandes;
     private List<Integer> facturations;
 }

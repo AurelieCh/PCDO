@@ -23,7 +23,7 @@ public class Compte {
     private String adresse;
     //List d'ids afin de récupérer les composants et de les afficher dans le panier
     @ElementCollection
-    private List<String> panier;
+    private List<Integer> panier;
     @ElementCollection
     private List<Integer> commandes;
     @ElementCollection
