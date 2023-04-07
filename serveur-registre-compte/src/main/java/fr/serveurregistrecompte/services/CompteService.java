@@ -140,7 +140,7 @@ public class CompteService {
                 .password(hashMdp(compteRequest.getPassword()))
                 .adresse(compteRequest.getAdresse())
                 .dateInscription(new Date())
-                .panier(new ArrayList<String>())
+                .panier(new ArrayList<Integer>())
                 .commandes(new ArrayList<Integer>())
                 .facturations(new ArrayList<Integer>())
                 .build();
@@ -229,6 +229,54 @@ public class CompteService {
                 .nom(c.getNom())
                 .prenom(c.getPrenom())
                 .password(mdp)
+                .build();
+    }
+
+    /**
+     *
+     * @param id
+     * @param email
+     * @return
+     * @throws ExceptionBadRequest
+     *
+     * Fonction qui a partir des informations passées en paramètre
+     * (retrouvé içi dans le requestparam) va modifier les informations
+     * d'un compte client déjà présent dans la base.
+     * La fonction va revérifier toutes les informations avant de modifier le panier du client
+     * et de retourner un "ok" au client.
+     *
+     */
+    public VerifyCompteResponse updatePanier(List<Integer> id, String email) throws ExceptionBadRequest, ExceptionNotFound, NoSuchAlgorithmException {
+        if (id.isEmpty()
+                || id == null
+                || email.isBlank()
+                || email.isEmpty()){
+            throw new ExceptionBadRequest("Les données en entrée du service sont non renseignes ou incorrectes. Un des champs est vide. Erreur 400");
+        } else {
+            Optional<Compte> temp = compteRepository.findByEmail(email);
+            if(temp.isEmpty()) {
+                throw new ExceptionNotFound("Les données en entrée du service sont non renseignes ou incorrectes." +
+                        "Email inconnu. Erreur 204");
+            }
+            Compte c1 = temp.get();
+            c1.setPanier(id);
+            this.compteRepository.save(c1);
+            return buildUpdatePanierCompteResponse();
+        }
+    }
+
+    /**
+     *
+     * @return
+     *
+     * Fonction utilisée dans updatePanier qui retourne un objet de
+     * type VerifyCompteResponse que va retourner updatePanier afin de confirmer à l'admin
+     * que le changement dans le panier à bien était effectué.
+     *
+     */
+    private VerifyCompteResponse buildUpdatePanierCompteResponse() {
+        return VerifyCompteResponse.builder()
+                .ok(true)
                 .build();
     }
 

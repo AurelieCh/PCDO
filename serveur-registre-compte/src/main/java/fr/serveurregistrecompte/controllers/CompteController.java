@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping
 /**
@@ -166,6 +168,30 @@ public class CompteController {
     public ResponseEntity verifyCompte(@RequestParam(value = "email", required = true) String email) throws Exception{
         try{
             return ResponseEntity.ok().body(this.compteService.verifyCompte(email));
+        } catch (ExceptionBadRequest e) {
+            return ResponseEntity.badRequest().body(new ErrorMessageCompteException(e.getMessage()));
+        } catch (ExceptionNotFound e){
+            return ResponseEntity.noContent().build();
+        } catch (Exception e){
+            return ResponseEntity.internalServerError().body(new ErrorMessageCompteException(e.getMessage()));
+        }
+    }
+
+    /**
+     *
+     * @param id
+     * @param email
+     * @return
+     * @throws Exception
+     *
+     * Pour cette fonction, il n'y a pas beaucoup de gestion d'évènements, car elles ne sont utilisées que par
+     * d'autres services, qui font avant d'utiliser la fonction les vérifications nécessaires. (204 et 400 notamment)
+     */
+    @PutMapping("updatePanier")
+    public ResponseEntity updatePanier(@RequestParam(value = "compo", required = true) List<Integer> id,
+                                     @RequestParam(value = "email", required = true) String email) throws Exception{
+        try {
+            return ResponseEntity.ok().body(this.compteService.updatePanier(id, email));
         } catch (ExceptionBadRequest e) {
             return ResponseEntity.badRequest().body(new ErrorMessageCompteException(e.getMessage()));
         } catch (ExceptionNotFound e){
