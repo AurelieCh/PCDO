@@ -1,7 +1,15 @@
-<div *ngIf="auth.user$ | async as user">
+<div *ngIf="auth.user$ | async as user; else not">
+  <img [src]="user.picture">
   <h1>Bonjour {{user.given_name}}</h1>
-  <p>{{profileJson}}</p>
+  <p>Nom :{{user.family_name}}</p>
+  <p>Pseudo :{{user.nickname}}</p>
+  <p>email :{{user.email}}</p>
+
 </div>
+
+<ng-template #not>
+  <span>pas connecté</span>
+</ng-template>
 <!---
 <div class="liste">
   <table mat-table [dataSource]="dataSource"  class="mat-elevation-z8">
@@ -45,4 +53,4 @@
   </table>
 </div>
 -->
-<button mat-raised-button (click)="call()">Basic</button>
+
