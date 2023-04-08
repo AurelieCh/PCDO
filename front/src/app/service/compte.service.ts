@@ -26,16 +26,25 @@ export class CompteService {
       password: string,
       password2: string,
       adresse: string){
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    const params = new HttpParams().set('nom', nom).set('prenom', prenom)
-      .set('email', email).set('password', password).set('password2', password2)
-      .set("adresse", adresse);
-    return this.http.post('http://localhost:8080/comptes', params, {headers: headers});
+    const params = {
+      nom,
+      prenom,
+      email,
+      password,
+      password2,
+      adresse
+    };
+    return this.http.post('http://localhost:8080/comptes', params);
     }
 
     GetCompte(email: string, password: string){
+      const params = {
+        email,
+        password
+      }
 
-      //return this.http.get("http://localhost:8080/comptes/getCompte");
+      // @ts-ignore
+      return this.http.put("http://localhost:8080/comptes/getCompte", params);
     }
 
 /*
