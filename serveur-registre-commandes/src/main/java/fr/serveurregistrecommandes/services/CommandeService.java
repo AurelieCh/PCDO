@@ -16,7 +16,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -60,6 +62,7 @@ public class CommandeService {
 
         ResponseEntity<String> response2;
         Double prix = 0.0;
+        List<Double> tousPrix = new ArrayList<Double>();
         GetComposantResponse g;
         for(Integer composant : createCommandeRequest.getComposants()){
             try {
@@ -70,6 +73,7 @@ public class CommandeService {
             }
 
             prix += g.getPrix();
+            tousPrix.add(g.getPrix());
         }
 
         int rand = (int) (Math.random() * ( 3 - 0 ));
@@ -82,6 +86,7 @@ public class CommandeService {
                 .email(createCommandeRequest.getEmail())
                 .composants(createCommandeRequest.getComposants())
                 .status(Status.Prise_en_compte)
+                .tousPrix(tousPrix)
                 .build();
         toCreate = this.commandeRepository.save(toCreate);
 

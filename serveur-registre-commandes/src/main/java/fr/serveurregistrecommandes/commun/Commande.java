@@ -24,6 +24,9 @@ public class Commande {
     private String adresse;
     private Status status;
     private Double prix;
+
+    @ElementCollection
+    private List<Double> tousPrix;
     @ElementCollection
     private List<Integer> composants;
 
