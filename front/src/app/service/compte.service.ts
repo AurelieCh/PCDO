@@ -35,7 +35,7 @@ export class CompteService {
 
     GetCompte(email: string, password: string){
 
-      return this.http.get("http://localhost:8080/comptes/getCompte", {email: email, });
+      //return this.http.get("http://localhost:8080/comptes/getCompte");
     }
 
 /*
