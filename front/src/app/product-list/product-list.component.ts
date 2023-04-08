@@ -59,7 +59,7 @@ export class ProductListComponent implements OnInit {
     );
     }
 
-  displayedColumns: string[] = ['nom', 'marque','description', 'prix', 'idComposant'];
+  displayedColumns: string[] = ['image', 'nom', 'marque','description', 'prix', 'idComposant'];
 
   title: string ="";
 }

@@ -19,7 +19,7 @@ constructor(public auth: AuthService, public compte: CompteService, public comma
   ngOnInit(): void {
     this.auth.user$.subscribe((profile) => {this.profileJson= profile; console.log(this.profileJson)}
   );
-    this.compte.getCompte()
+    //this.compte.getCompte()
 }
 
   call(){

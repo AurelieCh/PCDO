@@ -7,13 +7,12 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButton, MatButtonModule, MatIconButton} from "@angular/material/button";
 import {MatSidenavModule} from "@angular/material/sidenav";
-import { MenuComponent } from './menu/menu.component';
+import {DialogContentDialog, MenuComponent} from './menu/menu.component';
 import {MatCardModule} from "@angular/material/card";
 import { ConfiPageComponent } from './confi-page/confi-page.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { ReactiveFormsModule } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatGridListModule} from '@angular/material/grid-list';
@@ -27,7 +26,8 @@ import { AccountComponent } from './account/account.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthHttpInterceptor } from '@auth0/auth0-angular';
-import {OAuthModule} from "angular-oauth2-oidc";
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 
 
@@ -42,6 +42,7 @@ import {OAuthModule} from "angular-oauth2-oidc";
     AccountButtonComponent,
     CartComponent,
     AccountComponent,
+    DialogContentDialog
 
 
 
@@ -63,17 +64,19 @@ import {OAuthModule} from "angular-oauth2-oidc";
     MatGridListModule,
     MatTableModule,
     MatTabsModule,
-      AuthModule.forRoot({
+    AuthModule.forRoot({
       domain: 'dev-vq2nkixrb8245ghu.us.auth0.com',
       clientId: 'FcXp5r7vkOHfu3HqUv28LYTN9Xigcytf',
       authorizationParams: {
         redirect_uri: window.location.origin,
-        audience:"http://localhost:8080/api",
+        audience: "http://localhost:8080/api",
       }
 
     }),
     MatBadgeModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
+    FormsModule
 
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },],

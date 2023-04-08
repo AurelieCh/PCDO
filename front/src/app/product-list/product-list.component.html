@@ -10,6 +10,13 @@
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
 
+  <ng-container matColumnDef="image">
+    <th mat-header-cell *matHeaderCellDef>Nom</th>
+    <td mat-cell *matCellDef="let element">
+      <img [src]="element.url">
+    </td>
+  </ng-container>
+
   <!-- Position Column -->
   <ng-container matColumnDef="nom">
     <th mat-header-cell *matHeaderCellDef>Nom</th>
@@ -36,8 +43,8 @@
 
   <ng-container matColumnDef="idComposant">
     <th mat-header-cell *matHeaderCellDef>  </th>
-    <td mat-cell *matCellDef="let element"> {{element.idComposant}}
-      <button mat-raised-button>Acheter</button></td>
+    <td mat-cell *matCellDef="let element">
+        <button mat-raised-button>Acheter</button></td>
   </ng-container>
 
   <!-- Symbol Column -->

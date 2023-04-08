@@ -4,6 +4,7 @@ import { ListType } from '../object/ListType';
 import { CompteService } from '../service/compte.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { FormControl, Validators } from '@angular/forms';
+import {HttpResponse} from "@angular/common/http";
 
 
 export interface DialogData {
@@ -27,27 +28,30 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.auth.user$.subscribe((profile) => {
-        this.profile = profile;
-        console.log(this.profile)
-      }
-    );
-    if (this.profile != null) {
-      this.compte.getCompte(this.profile.email, this.profile.sub).subscribe(
-        (profile) => {
-          if (profile === null) {
-            this.openDialog();
+      this.profile = profile;
+      console.log(this.profile);
+      if (this.profile == null) {
+        console.log("Ahlala pas de profile aujourd'hui.");
+      } else {
+        this.compte.checkCompte(this.profile.email).subscribe(
+          (comptebdd) => {
+            console.log(comptebdd.status)
+            if (comptebdd.status === 204) {
+              this.openDialog();
+            }
           }
-        }
-      );
+        );
+      }
+    });
 
+      //
     }
-  }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogContentDialog, {
       data: {
-        nom: this.profile.name,
-        prenom: this.profile.name,
+        nom: this.profile.family_name,
+        prenom: this.profile.given_name,
         email: this.profile.email,
         password: this.profile.sub,
         password2: this.profile.sub,
@@ -67,8 +71,17 @@ export class DialogContentDialog {
 
   constructor(
     public dialogRef: MatDialogRef<DialogContentDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,public compte: CompteService
   ) {}
 
+
+  createCompte(){
+  this.compte.CreateCompte(this.data.nom,this.data.prenom,this.data.email,
+    this.data.password, this.data.password2, this.data.adresse).subscribe(
+    (compte) => {
+      this.dialogRef.close();
+     });
+
+}
 
 }

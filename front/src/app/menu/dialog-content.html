@@ -1,19 +1,21 @@
-<div>
+<div style="margin: 50px;">
   <h1>Faisons connaissance !</h1>
 
   <div>
     <mat-form-field appearance="outline">
-      <mat-label>Enter your email</mat-label>
-      <input matInput placeholder="pat@example.com" [(ngModel)]="data.nom" required>
+      <mat-label>Entrez votre nom</mat-label>
+      <input matInput placeholder="Jean" [(ngModel)]="data.nom" required>
     </mat-form-field>
     <mat-form-field appearance="outline">
-      <mat-label>Enter your email</mat-label>
-      <input matInput placeholder="pat@example.com" [(ngModel)]="data.prenom" required>
+      <mat-label>Entrez votre prénom</mat-label>
+      <input matInput placeholder="Marie" [(ngModel)]="data.prenom" required>
     </mat-form-field>
     <mat-form-field appearance="outline">
-      <mat-label>Enter your email</mat-label>
-      <input matInput placeholder="pat@example.com" [(ngModel)]="data.adresse" required>
+      <mat-label>Entrez votre adresse</mat-label>
+      <input matInput placeholder="32 rue Bigard"[(ngModel)]="data.adresse" required>
     </mat-form-field>
   </div>
+
+  <button mat-button color="primary" (click)="createCompte()">Finalisez votre compte</button>
 </div>
 
