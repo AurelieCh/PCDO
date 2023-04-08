@@ -16,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping
+@CrossOrigin(origins = "http://localhost:4200")
 /**
  * Le controller des comptes, c'est lui qui va communiquer avec notre base de données de compte
  * (supposément dans le cas ou il y a une base pour les comptes clients à part) et le client.
@@ -34,6 +35,7 @@ public class CompteController {
      * Fonction qui sert à créer un compte, elle retourne une bad request si l'un des champs est vide.
      */
     @PostMapping
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity createCompte(@RequestBody CreateCompteRequest compteRequest) throws Exception{
         try {
             return ResponseEntity.ok().body(this.compteService.saveCompte(compteRequest));
@@ -125,6 +127,7 @@ public class CompteController {
      * d'autres services, qui font avant d'utiliser la fonction les vérifications nécessaires. (204 et 400 notamment)
      */
     @PutMapping("addFacture")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity addFacture(@RequestParam(value = "id", required = true) Integer id,
                                      @RequestParam(value = "email", required = true) String email) throws Exception{
         try{
@@ -146,6 +149,7 @@ public class CompteController {
      * d'autres services, qui font avant d'utiliser la fonction les vérifications nécessaires. (204 et 400 notamment)
      */
     @PutMapping("addCommande")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity addCommande(@RequestParam(value = "id", required = true) Integer id,
                                      @RequestParam(value = "email", required = true) String email) throws Exception{
         try{
@@ -165,6 +169,7 @@ public class CompteController {
      * Fonction qui vérifie si un compte lié à une email existe (retourne true si oui, 204 sinon).
      */
     @GetMapping("checkMail")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity verifyCompte(@RequestParam(value = "email", required = true) String email) throws Exception{
         try{
             return ResponseEntity.ok().body(this.compteService.verifyCompte(email));
