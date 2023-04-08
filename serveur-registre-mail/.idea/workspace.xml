@@ -5,12 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dec753f0-a9a5-4515-9851-e0b0b6f66740" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../front/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/../front/angular.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front/src/app/account/account.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/account/account.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front/src/app/cart/cart.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/cart/cart.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front/src/app/cart/cart.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/cart/cart.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front/src/app/menu/dialog-content.html" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/menu/dialog-content.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front/src/app/menu/menu.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/menu/menu.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front/src/app/product-list/product-list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/product-list/product-list.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front/src/app/product-list/product-list.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/product-list/product-list.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front/src/app/product-list/product-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/product-list/product-list.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front/src/app/service/composants.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/service/composants.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front/src/app/service/compte.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/service/compte.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gateway/src/main/java/fr/gateway/SecurityFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../gateway/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../serveur-registre-commandes/src/main/resources/data/dbcommandes.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-commandes/src/main/resources/data/dbcommandes.mv.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../serveur-registre-composants/src/main/resources/data/dbcomposants.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-composants/src/main/resources/data/dbcomposants.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../serveur-registre-compte/src/main/java/fr/serveurregistrecompte/controllers/CompteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-compte/src/main/java/fr/serveurregistrecompte/controllers/CompteController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../serveur-registre-compte/src/main/resources/data/dbcomptes.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-compte/src/main/resources/data/dbcomptes.mv.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../serveur-registre-facturation/src/main/resources/data/dbfacturations.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-facturation/src/main/resources/data/dbfacturations.mv.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/serveurregistremail/configurations/ConsumerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/serveurregistremail/configurations/ConsumerConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +96,7 @@
       <recent name="fr" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.ServeurRegistreMailApplication">
+  <component name="RunManager" selected="Spring Boot.ServeurRegistreMailApplication (1)">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="serveur-registre-facturations" />
       <method v="2">
@@ -164,7 +178,7 @@
       <workItem from="1680595386785" duration="14292000" />
       <workItem from="1680620804680" duration="108000" />
       <workItem from="1680858527948" duration="598000" />
-      <workItem from="1680885848881" duration="1197000" />
+      <workItem from="1680885848881" duration="2632000" />
     </task>
     <servers />
   </component>
