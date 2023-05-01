@@ -75,7 +75,7 @@ public class ComposantController {
 
 
 
-    @GetMapping
+    @PostMapping("/search")
     private ResponseEntity getComposant(@RequestBody(required = false) GetComposantRequest request) throws NotFoundException {
         try {
             return ResponseEntity.ok().body(this.serCompo.getComposant(request));

@@ -1,0 +1,32 @@
+server:
+  port: 8086
+  servlet:
+    context-path: /autobuild
+  tomcat:
+    redirect-context-root: false
+
+spring:
+  application:
+    name: ms-autobuild
+  datasource:
+    url: jdbc:h2:file:./src/main/resources/data/dbautobuild
+    driver-class-name: org.h2.Driver
+    username: root
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: update
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: true
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka

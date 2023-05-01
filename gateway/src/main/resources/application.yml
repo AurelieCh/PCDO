@@ -42,6 +42,13 @@ spring:
           filters:
             - AddRequestHeader=first-request, first-request-header
             - AddResponseHeader=first-response, first-response-header
+        - id: autobuild-id
+          uri: lb://ms-autobuild
+          predicates:
+            - Path=/autobuild/**
+          filters:
+            - AddRequestHeader=first-request, first-request-header
+            - AddResponseHeader=first-response, first-response-header
         # ajouter les éventuels services suivants
 server:
   port: 8080
