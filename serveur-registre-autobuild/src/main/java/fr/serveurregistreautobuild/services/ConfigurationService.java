@@ -2,6 +2,7 @@ package fr.serveurregistreautobuild.services;
 
 import fr.serveurregistreautobuild.commun.Configuration;
 import fr.serveurregistreautobuild.commun.dto.*;
+import fr.serveurregistreautobuild.commun.exceptions.BadRequestException;
 import fr.serveurregistreautobuild.commun.exceptions.ServiceUnavailable;
 import fr.serveurregistreautobuild.repository.ConfigurationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +10,7 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class ConfigurationService {
@@ -85,8 +84,8 @@ public class ConfigurationService {
         }
     }
 
-    public Configuration buildConfiguration(List<GetComposantResponse> temp) throws Exception {
-        if (!checkConfig(temp)) throw new Exception();
+    public Configuration buildConfiguration(List<GetComposantResponse> temp) throws BadRequestException {
+        if (!checkConfig(temp)) throw new BadRequestException();
         // La configuration est estimée valide ; il n'est donc pas nécessaire de vérifier les Optional ci-dessous.
         return Configuration.builder()
                 .cpu(temp.stream().filter(t -> t.getCategorie() == Categorie.Processeur).findFirst().get().getIdComposant())
@@ -112,5 +111,116 @@ public class ConfigurationService {
                 .boitier(config.getBoitier())
                 .carteMere(config.getCarteMere())
                 .build();
+    }
+
+    public PostConfigResponse buildPostConfigResponse(Configuration config){
+        return PostConfigResponse.builder()
+                .id(config.getId())
+                .cpu(config.getCpu())
+                .gpu(config.getGpu())
+                .ram(config.getRam())
+                .ssd(config.getSsd())
+                .hdd(config.getHdd())
+                .alim(config.getAlim())
+                .boitier(config.getBoitier())
+                .carteMere(config.getCarteMere())
+                .build();
+    }
+
+    public ResponseEntity saveConfig(PostConfigRequest req) throws ServiceUnavailable, BadRequestException {
+        List<GetComposantResponse> list = new ArrayList<>();
+
+        ResponseEntity<GetComposantResponse> compReq = rest.getForEntity("http://ms-composants/composants/"+req.getCpu(), GetComposantResponse.class);
+        if (compReq.getStatusCode() != HttpStatus.OK) throw new ServiceUnavailable("Le service Composants est down.");
+        else list.add(compReq.getBody());
+
+        compReq = rest.getForEntity("http://ms-composants/composants/"+req.getGpu(), GetComposantResponse.class);
+        if (compReq.getStatusCode() != HttpStatus.OK) throw new ServiceUnavailable("Le service Composants est down.");
+        else list.add(compReq.getBody());
+
+        compReq = rest.getForEntity("http://ms-composants/composants/"+req.getSsd(), GetComposantResponse.class);
+        if (compReq.getStatusCode() != HttpStatus.OK) throw new ServiceUnavailable("Le service Composants est down.");
+        else list.add(compReq.getBody());
+
+        compReq = rest.getForEntity("http://ms-composants/composants/"+req.getHdd(), GetComposantResponse.class);
+        if (compReq.getStatusCode() != HttpStatus.OK) throw new ServiceUnavailable("Le service Composants est down.");
+        else list.add(compReq.getBody());
+
+        compReq = rest.getForEntity("http://ms-composants/composants/"+req.getRam(), GetComposantResponse.class);
+        if (compReq.getStatusCode() != HttpStatus.OK) throw new ServiceUnavailable("Le service Composants est down.");
+        else list.add(compReq.getBody());
+
+        compReq = rest.getForEntity("http://ms-composants/composants/"+req.getBoitier(), GetComposantResponse.class);
+        if (compReq.getStatusCode() != HttpStatus.OK) throw new ServiceUnavailable("Le service Composants est down.");
+        else list.add(compReq.getBody());
+
+        compReq = rest.getForEntity("http://ms-composants/composants/"+req.getAlim(), GetComposantResponse.class);
+        if (compReq.getStatusCode() != HttpStatus.OK) throw new ServiceUnavailable("Le service Composants est down.");
+        else list.add(compReq.getBody());
+
+        compReq = rest.getForEntity("http://ms-composants/composants/"+req.getCarteMere(), GetComposantResponse.class);
+        if (compReq.getStatusCode() != HttpStatus.OK) throw new ServiceUnavailable("Le service Composants est down.");
+        else list.add(compReq.getBody());
+
+        try {
+            return ResponseEntity.ok().body(buildPostConfigResponse(this.repConfig.save(buildConfiguration(list))));
+        } catch (BadRequestException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    public GetFullConfigResponse buildGetFullConfigResponse(Configuration config) throws ServiceUnavailable {
+        GetFullConfigResponse c = new GetFullConfigResponse();
+
+        ResponseEntity<GetComposantResponse> compReq = rest.getForEntity("http://ms-composants/composants/"+config.getCpu(), GetComposantResponse.class);
+        if (compReq.getStatusCode() != HttpStatus.OK) throw new ServiceUnavailable("Le service Composants est down.");
+        else c.setCpu(compReq.getBody());
+
+        compReq = rest.getForEntity("http://ms-composants/composants/"+config.getGpu(), GetComposantResponse.class);
+        if (compReq.getStatusCode() != HttpStatus.OK) throw new ServiceUnavailable("Le service Composants est down.");
+        else c.setGpu(compReq.getBody());
+
+        compReq = rest.getForEntity("http://ms-composants/composants/"+config.getSsd(), GetComposantResponse.class);
+        if (compReq.getStatusCode() != HttpStatus.OK) throw new ServiceUnavailable("Le service Composants est down.");
+        else c.setSsd(compReq.getBody());
+
+        compReq = rest.getForEntity("http://ms-composants/composants/"+config.getHdd(), GetComposantResponse.class);
+        if (compReq.getStatusCode() != HttpStatus.OK) throw new ServiceUnavailable("Le service Composants est down.");
+        else c.setHdd(compReq.getBody());
+
+        compReq = rest.getForEntity("http://ms-composants/composants/"+config.getRam(), GetComposantResponse.class);
+        if (compReq.getStatusCode() != HttpStatus.OK) throw new ServiceUnavailable("Le service Composants est down.");
+        else c.setRam(compReq.getBody());
+
+        compReq = rest.getForEntity("http://ms-composants/composants/"+config.getBoitier(), GetComposantResponse.class);
+        if (compReq.getStatusCode() != HttpStatus.OK) throw new ServiceUnavailable("Le service Composants est down.");
+        else c.setBoitier(compReq.getBody());
+
+        compReq = rest.getForEntity("http://ms-composants/composants/"+config.getAlim(), GetComposantResponse.class);
+        if (compReq.getStatusCode() != HttpStatus.OK) throw new ServiceUnavailable("Le service Composants est down.");
+        else c.setAlim(compReq.getBody());
+
+        compReq = rest.getForEntity("http://ms-composants/composants/"+config.getCarteMere(), GetComposantResponse.class);
+        if (compReq.getStatusCode() != HttpStatus.OK) throw new ServiceUnavailable("Le service Composants est down.");
+        else c.setCarteMere(compReq.getBody());
+
+        c.setId(config.getId());
+
+        return c;
+    }
+
+    public ResponseEntity getFullConfig(Integer id) {
+        Optional<Configuration> optConfig = this.repConfig.findById(id);
+        if (optConfig.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+        Configuration c = optConfig.get();
+
+        try {
+            return ResponseEntity.ok(buildGetFullConfigResponse(c));
+        } catch (ServiceUnavailable e) {
+            return ResponseEntity.internalServerError().body("Le service composants est down");
+        }
+
     }
 }
