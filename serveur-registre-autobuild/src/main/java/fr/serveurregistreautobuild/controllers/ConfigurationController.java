@@ -25,7 +25,7 @@ public class ConfigurationController {
         }
     }
 
-    @GetMapping("/full/{id}")
+    @GetMapping("/{id}")
     private ResponseEntity getFullConfig(@PathVariable("id") Integer id){
         return this.serConfig.getFullConfig(id);
     }

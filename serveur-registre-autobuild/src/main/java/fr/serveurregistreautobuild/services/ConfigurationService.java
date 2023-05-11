@@ -20,7 +20,7 @@ public class ConfigurationService {
     @Autowired
     private RestTemplate rest;
 
-    public GetConfigResponse randomConfig() throws Exception {
+    public GetFullConfigResponse randomConfig() throws Exception {
         Random r = new Random();
         ArrayList<GetComposantListResponse> composants = new ArrayList<>();
         // Récupération de la liste des composants
@@ -42,7 +42,7 @@ public class ConfigurationService {
             }
         } while (!checkConfig(config));
 
-        return buildGetConfigResponse(buildConfiguration(config));
+        return buildGetFullConfigResponse(buildConfiguration(config));
     }
 
     public boolean checkConfig(List<GetComposantResponse> config){
@@ -163,7 +163,7 @@ public class ConfigurationService {
         else list.add(compReq.getBody());
 
         try {
-            return ResponseEntity.ok().body(buildPostConfigResponse(this.repConfig.save(buildConfiguration(list))));
+            return ResponseEntity.created(null).body(buildPostConfigResponse(this.repConfig.save(buildConfiguration(list))));
         } catch (BadRequestException e) {
             return ResponseEntity.badRequest().build();
         }
