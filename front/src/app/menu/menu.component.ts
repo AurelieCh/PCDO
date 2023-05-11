@@ -29,13 +29,11 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
     this.auth.user$.subscribe((profile) => {
       this.profile = profile;
-      console.log(this.profile);
+      console.log(this.profile)
       if (this.profile == null) {
-        console.log("Ahlala pas de profile aujourd'hui.");
       } else {
         this.compte.checkCompte(this.profile.email).subscribe(
           (comptebdd) => {
-            console.log(comptebdd.status)
             if (comptebdd.status === 204) {
               this.openDialog();
             }

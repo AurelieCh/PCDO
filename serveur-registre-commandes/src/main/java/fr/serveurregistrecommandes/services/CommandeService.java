@@ -93,11 +93,14 @@ public class CommandeService {
         //Premier compte fait référence au "localhost" -> Nom de l'appli.
         restTemplate.put("http://ms-comptes/comptes/addCommande?id="+toCreate.getId()+"&email="+toCreate.getEmail(), String.class);
 
+        System.out.println(toCreate.getTousPrix());
+
         // Créer un objet représentant le corps de la requête (ici, une chaîne de caractères)
         String requestBody = "{" +
                 "\"email\":"            + "\"" + toCreate.getEmail()        + "\"" + "," +
                 "\"commande\":"         +        toCreate.getId()           +        "," +
                 "\"adresse\":"          + "\"" + toCreate.getAdresse()      + "\"" + "," +
+                "\"tousPrix\":"         +        toCreate.getTousPrix()            + "," +
                 "\"prix\":"             + "\"" + toCreate.getPrix()         + "\"" + "," +
                 "\"typePaiement\":"     +        rand                       +
                 "}";
@@ -140,6 +143,7 @@ public class CommandeService {
                 .adresse(c.getAdresse())
                 .composants(c.getComposants())
                 .dateCommande(c.getDateCommande())
+                .tousPrix(c.getTousPrix())
                 .prix(c.getPrix())
                 .status(c.getStatus())
                 .build();

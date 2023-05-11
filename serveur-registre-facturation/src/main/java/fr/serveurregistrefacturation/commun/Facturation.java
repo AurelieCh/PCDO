@@ -6,6 +6,7 @@ import fr.serveurregistrefacturation.commun.types.TypePaiement;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -22,6 +23,8 @@ public class Facturation {
     private String email;
     private String adresse;
     private Double prix;
+    @ElementCollection
+    private List<Double> tousPrix;
     private Date dateCreation;
     private Integer commande;
     private TypePaiement typePaiement;

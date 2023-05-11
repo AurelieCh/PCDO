@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {AbstractControl, ValidationErrors, ɵElement, ɵValue} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
@@ -9,13 +10,23 @@ export class FacturationService {
   constructor(private http: HttpClient) {
 
   }
-/*
-  CreateCompte(){
-    return this.http.post('http://localhost:8084/facturations')
+
+  CreateFacturation(commande: number, email: string, adresse: string, typePaiement: ɵValue<ɵElement<(string | ((control: AbstractControl) => (ValidationErrors | null)))[], null>> | undefined, prix: number){
+    const params = {
+      email,
+      commande,
+      adresse,
+      typePaiement,
+      prix
+    };
+    return this.http.post('http://localhost:8080/facturations', params);
   }
 
 
-    getSearchedComposants(filter: string ){
-  return this.http.get('http://localhost:8084/facturations/getFacture?id='+ filter)
-}*/
+
+getFacture(id:number){
+  return this.http.get('http://localhost:8080/facturations/getFacture?id='+id);
+}
+
+
 }

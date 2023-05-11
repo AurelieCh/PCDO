@@ -1,30 +1,91 @@
-import {Component, OnInit} from '@angular/core';
-
+import {Component, Inject} from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { CommandeService } from '../service/commande.service';
 import {ComposantsService} from "../service/composants.service";
 import { CompteService } from '../service/compte.service';
 import { FacturationService } from '../service/facturation.service';
 
+
+
+
+
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.scss']
 })
-export class AccountComponent implements OnInit{
-  profileJson: any;
-constructor(public auth: AuthService, public compte: CompteService, public commande: CommandeService, public facture: FacturationService) {
-}
+export class AccountComponent {
+  compteIds: any;
+  info: any;
 
-  ngOnInit(): void {
-    this.auth.user$.subscribe((profile) => {this.profileJson= profile; console.log(this.profileJson)}
-  );
-    //this.compte.getCompte()
-}
+  couple: any;
 
-  call(){
 
+  constructor( public auth: AuthService, public compte: CompteService, public commande: CommandeService, public facture: FacturationService,public Composant: ComposantsService ) {
+    this.couple = [];
+    this.auth.user$.subscribe((profile) => {
+        this.compteIds = profile;
+        // @ts-ignore
+        this.compte.GetCompte(this.compteIds.email, this.compteIds.sub).subscribe(
+          (result: any) => {
+            this.info = result
+            this.info.facturations.forEach((id: number) => {
+              this.facture.getFacture(id).subscribe((facture_: any) => {
+                this.commande.getCommande(facture_.commande).subscribe((commande_: any) => {
+                  let compoList: any[];
+                  compoList=[]
+                  commande_.composants.forEach((compo: string) => {
+                    this.Composant.getSearchedComposants(compo).subscribe(
+                      (result : any) => {
+                      compoList.push(result)
+
+
+
+                      }
+
+                    )
+
+                  })
+                  this.couple.push({facture_, commande_, compoList})
+
+
+                })
+                })
+              })
+
+            })
+
+
+          })
+      }
+
+
+  openDialog(id:any): void {
+
+    // @ts-ignore
+    let printContents = document.getElementById(id).innerHTML;
+    let originalContents = document.body.innerHTML;
+
+    document.body.innerHTML = printContents;
+
+    window.print();
+
+    document.body.innerHTML = originalContents;
   }
 
 
 }
+
+
+
+
+@Pipe({ name: 'removeUnderscore' })
+export class RemoveUnderscorePipe implements PipeTransform {
+  transform(value: any, args?: any): any {
+    return value.replace(/_/g, " ");
+  }
+}
+
+
+

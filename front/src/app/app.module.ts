@@ -21,12 +21,13 @@ import { MatTableModule } from '@angular/material/table'
 import {MatTabsModule} from '@angular/material/tabs';
 import { AuthModule } from '@auth0/auth0-angular';
 import { AccountButtonComponent } from './account-button/account-button.component';
-import { CartComponent } from './cart/cart.component';
-import { AccountComponent } from './account/account.component';
+import {CartComponent,  DialogCommandeDialog} from './cart/cart.component';
+import {AccountComponent,  RemoveUnderscorePipe} from './account/account.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthHttpInterceptor } from '@auth0/auth0-angular';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 
@@ -42,7 +43,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     AccountButtonComponent,
     CartComponent,
     AccountComponent,
-    DialogContentDialog
+    DialogContentDialog,
+    DialogCommandeDialog,
+    RemoveUnderscorePipe,
 
 
 
@@ -76,7 +79,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatBadgeModule,
     HttpClientModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    MatExpansionModule
 
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },],

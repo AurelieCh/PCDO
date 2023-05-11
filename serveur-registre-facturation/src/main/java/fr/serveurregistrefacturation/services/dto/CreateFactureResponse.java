@@ -4,6 +4,7 @@ import fr.serveurregistrefacturation.commun.types.TypePaiement;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,6 +17,7 @@ public class CreateFactureResponse {
     private Integer commande;
     private String adresse;
     private Double prix;
+    private List<Double> tousPrix;
     private Date dateCreation;
     private TypePaiement typePaiement;
 }

@@ -15,6 +15,7 @@ import java.util.List;
 public class CreateCommandeResponse {
     private Integer id;
     private List<Integer> composants;
+    private List<Double> tousPrix;
     private Double prix;
     private Date dateCommande;
     private String adresse;

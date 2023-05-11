@@ -1,6 +1,6 @@
 <div *ngIf="auth.user$ | async as user; else notLoged">
 <button  routerLink="cart" mat-icon-button>
-  <mat-icon matBadge="4">shopping_cart</mat-icon>
+  <mat-icon [matBadge]="compte.nbCart">shopping_cart</mat-icon>
 </button>
 
   <button  mat-icon-button (click)="auth.logout({ logoutParams: { returnTo: document.location.origin } })"  matTooltip="compte"

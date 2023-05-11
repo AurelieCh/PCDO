@@ -9,6 +9,8 @@ interface Compte{
   providedIn: 'root'
 })
 export class CompteService {
+
+  public nbCart = 0;
   constructor(private http: HttpClient) {
 
   }
@@ -43,15 +45,33 @@ export class CompteService {
         password
       }
 
+
+
       // @ts-ignore
       return this.http.put("http://localhost:8080/comptes/getCompte", params);
     }
 
+
+  addToCart(data: String){
+
+    // @ts-ignore
+    return this.http.put("http://localhost:8080/comptes/updatePanier"+data);
+  }
+  emptyCart(email: String){
+
+    // @ts-ignore
+    return this.http.put("http://localhost:8080/comptes/emptyPanier?email="+email);
+  }
 /*
   ModifyCompte(){
     return this.http.put('http://localhost:8083/comptes/getCompte')
   }*/
 
+  addCommande(email :string,id:number){
+    return this.http.put("http://localhost:8080/comptes/addCommande?id="+id+"&email="+email, {});
+  }
 
-
+  addFacture(email :string,id:number){
+  return this.http.put("http://localhost:8080/comptes/addFacture?id="+id+"&email="+email, {});
+  }
 }

@@ -1,5 +1,5 @@
 export class TypeComposant {
-  nom: string;
+  nom: any;
   titre: string;
   description: string;
   url: string;

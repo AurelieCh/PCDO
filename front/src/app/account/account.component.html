@@ -1,56 +1,71 @@
-<div *ngIf="auth.user$ | async as user; else not">
-  <img [src]="user.picture">
+<div class="content" *ngIf="auth.user$ | async as user; else not">
+  <img class="userpic"[src]="user.picture">
   <h1>Bonjour {{user.given_name}}</h1>
   <p>Nom :{{user.family_name}}</p>
   <p>Pseudo :{{user.nickname}}</p>
   <p>email :{{user.email}}</p>
 
+
+  <h1>Vos Commandes:</h1>
+
+  <mat-accordion>
+    <mat-expansion-panel hideToggle *ngFor="let info of couple">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Commande du {{info.commande_.dateCommande | date: 'dd/MM/yyyy'}}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{info.commande_.status | removeUnderscore}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <table>
+        <tr *ngFor="let compo of info.compoList">
+          <img class="itempic" [src]="compo.url">
+          <td>{{compo.nom}}</td>
+          <td>{{compo.marque}}</td>
+        </tr>
+      </table>
+
+        <div class="info"><h1>Information sur la commande</h1>
+          <p>Adresse: {{info.commande_.adresse}}</p>
+          <p>Email: {{info.commande_.email}}</p>
+          <p>Total: {{info.commande_.prix}} €</p>
+          <br>
+          <br>
+          <button mat-raised-button (click)="openDialog(info.facture_.id)"> <mat-icon >print</mat-icon> Visualiser ma facture</button>
+        </div>
+
+
+
+
+    </mat-expansion-panel>
+  </mat-accordion>
+
 </div>
+
+<div style="display:none;" *ngFor="let info of couple">
+<div style="background-color: #0b78a4" [id]="info.facture_.id">
+  <h2 >PCDO</h2>
+  <br>
+  <p>E-mail: {{info.facture_.email}}</p>
+  <p>Adresse: {{info.facture_.adresse}}</p>
+  <p>Date: {{info.facture_.dateCreation}}</p>
+  <p>Référence Facture: {{info.facture_.id}}</p>
+  <p>Référence Commande: {{info.commande_.id}}</p>
+  <p>Paiement: {{info.facture_.typePaiement}}</p>
+  <table>
+    <tr *ngFor="let comp of info.compoList">
+      <img style="height: 100PX"
+           [src]="comp.url">
+      <td>{{comp.nom}}</td>
+      <td>{{comp.marque}}</td>
+    </tr>
+  </table>
+  <h1>Total: {{info.facture_.prix}} €</h1>
+</div>
+</div>
+
 
 <ng-template #not>
   <span>pas connecté</span>
 </ng-template>
-<!---
-<div class="liste">
-  <table mat-table [dataSource]="dataSource"  class="mat-elevation-z8">
-
-
-
-
-    <ng-container matColumnDef="nom">
-      <th mat-header-cell *matHeaderCellDef>Nom</th>
-      <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
-    </ng-container>
-
-
-    <ng-container matColumnDef="prix">
-      <th mat-header-cell *matHeaderCellDef>Prix</th>
-      <td mat-cell *matCellDef="let element"> {{element.prix}} </td>
-    </ng-container>
-
-
-    <ng-container matColumnDef="marque">
-      <th mat-header-cell *matHeaderCellDef> marque </th>
-      <td mat-cell *matCellDef="let element"> {{element.marque}} </td>
-    </ng-container>
-
-
-    <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef> description </th>
-      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="idComposant">
-      <th mat-header-cell *matHeaderCellDef>  </th>
-      <td mat-cell *matCellDef="let element"> {{element.idComposant}}
-        <button mat-raised-button>Acheter</button></td>
-    </ng-container>
-
-
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-</div>
--->
-

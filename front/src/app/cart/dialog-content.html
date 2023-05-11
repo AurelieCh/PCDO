@@ -1,0 +1,49 @@
+<mat-stepper  [linear]="true" #stepper>
+  <mat-step [stepControl]="firstFormGroup" label="Adresse de Livraison">
+    <form [formGroup]="firstFormGroup">
+      <mat-form-field appearance="fill">
+        <mat-label>Adresse</mat-label>
+        <input matInput placeholder="54 rue des bois " formControlName="firstCtrl"  required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Suivant</button>
+      </div>
+    </form>
+  </mat-step>
+
+
+
+  <mat-step [stepControl]="secondFormGroup" label="Méthode de Paiement" >
+    <form [formGroup]="secondFormGroup">
+      <mat-form-field appearance="fill">
+        <mat-label>Méthode de Paiement</mat-label>
+        <div>
+        <mat-select formControlName="secondCtrl">
+          <mat-option *ngFor="let method of pay" [value]="method.value">
+            {{method.viewValue}}
+          </mat-option>
+        </mat-select>
+        </div>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>précédent</button>
+        <button mat-button matStepperNext>suivant</button>
+      </div>
+    </form>
+  </mat-step>
+
+
+
+
+  <mat-step>
+    <ng-template matStepLabel>Récapitulatif</ng-template>
+    <p>Nom et Prénom : {{data.Compte.nom}} {{data.Compte.prenom}}</p>
+    <p>E-mail : {{data.Compte.email}}</p>
+    <p>Adresse de livraison : {{firstFormGroup.value.firstCtrl}}</p>
+    <p>Prix de la commande : {{data.prix}} €</p>
+    <div>
+      <button mat-button matStepperPrevious>Précédent</button>
+      <button mat-button (click)="createCommande()">Commander</button>
+    </div>
+  </mat-step>
+</mat-stepper>

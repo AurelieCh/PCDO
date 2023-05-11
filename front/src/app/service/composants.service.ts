@@ -10,14 +10,25 @@ export class ComposantsService {
 
   }
 
-//todo: utiliser le bougre
+
   getSearchedComposants(filter: string ){
     return this.http.get('http://localhost:8080/composants/'+ filter)
   }
 
-  getAllComposants(){
-    return this.http.get('http://localhost:8080/composants')
+  getComposants(min: number, max: number, nom: string,marque: string,desc: string, categorie: string, list: any){
+    return this.http.post('http://localhost:8080/composants/search', {
+      prixMin:min,
+      prixMax:max,
+      nom: nom,
+      marque: marque,
+      description: desc,
+      categorie: categorie,
+      caracteristiqueList: list
+
+    })
   }
+
+
 }
 
 

@@ -20,5 +20,6 @@ public class GetCommandeResponse {
     private String adresse;
     private Status status;
     private Double prix;
+    private List<Double> tousPrix;
     private List<Integer> composants;
 }

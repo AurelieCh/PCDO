@@ -1,14 +1,42 @@
-img{
+.userpic{
   border-radius: 100%;
   height: 150px;
 }
 
-div{
+.content{
   margin: 0 auto;
-  margin-bottom: 25%;
+  margin-bottom: 15%;
 }
 
+
+h2{
+  color: #fafafa;
+  width: 100%;
+}
 
 span{
   padding: 40%;
 }
+
+
+.itempic{
+
+  height: 150px;
+}
+
+
+td{
+  text-align: center;
+
+}
+table{
+  width: 100%;
+}
+
+.info{
+  text-align: center;
+  margin: 0 auto;
+}
+
+mat-expansion-panel{width: 70%;
+margin: 0 auto;}

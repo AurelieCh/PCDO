@@ -265,6 +265,26 @@ public class CompteService {
         }
     }
 
+
+
+    public VerifyCompteResponse emptyPanier(String email) throws ExceptionBadRequest, ExceptionNotFound, NoSuchAlgorithmException {
+        if (
+               email.isBlank()
+                || email.isEmpty()){
+            throw new ExceptionBadRequest("Les données en entrée du service sont non renseignes ou incorrectes. Un des champs est vide. Erreur 400");
+        } else {
+            Optional<Compte> temp = compteRepository.findByEmail(email);
+            if(temp.isEmpty()) {
+                throw new ExceptionNotFound("Les données en entrée du service sont non renseignes ou incorrectes." +
+                        "Email inconnu. Erreur 204");
+            }
+            Compte c1 = temp.get();
+            c1.getPanier().clear();
+            this.compteRepository.save(c1);
+            return buildUpdatePanierCompteResponse();
+        }
+    }
+
     /**
      *
      * @return

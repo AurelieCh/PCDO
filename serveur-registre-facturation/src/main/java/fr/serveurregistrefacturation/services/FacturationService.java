@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.AbstractList;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
 
@@ -40,7 +42,8 @@ public class FacturationService {
                 || factureRequest.getCommande().toString().isBlank()
                 || factureRequest.getEmail().isBlank()
                 || factureRequest.getEmail().isEmpty()
-                || factureRequest.getPrix() == null) {
+                || factureRequest.getPrix() == null
+                || factureRequest.getTousPrix().isEmpty()) {
             throw new ExceptionBadRequest("Les données en entrée du service sont non renseignés ou incorrectes. " +
                     "L'une des données n'est pas présentes ou est incorrectes. Erreur 400");
         } else {
@@ -50,9 +53,12 @@ public class FacturationService {
                     .commande(factureRequest.getCommande())
                     .dateCreation(new Date())
                     .email(factureRequest.getEmail())
+                    .tousPrix(new ArrayList<Double>())
                     .prix(factureRequest.getPrix())
                     .typePaiement(factureRequest.getTypePaiement())
                     .build();
+
+            toCreate.setTousPrix(factureRequest.getTousPrix());
 
             toCreate = this.facturationRepository.save(toCreate);
 
@@ -72,13 +78,19 @@ public class FacturationService {
      *
      */
     private CreateFactureResponse buildCreateFactureResponse(Facturation f) {
-        return CreateFactureResponse.builder()
+        CreateFactureResponse toSend = CreateFactureResponse.builder()
                 .email(f.getEmail())
                 .adresse(f.getAdresse())
                 .commande(f.getCommande())
                 .dateCreation(f.getDateCreation())
+                .tousPrix(new ArrayList<Double>())
+                .prix(f.getPrix())
                 .typePaiement(f.getTypePaiement())
                 .build();
+
+        toSend.setTousPrix(f.getTousPrix());
+
+        return toSend;
     }
 
     /**
@@ -117,6 +129,7 @@ public class FacturationService {
                 .commande(f.getCommande())
                 .dateCreation(f.getDateCreation())
                 .typePaiement(f.getTypePaiement())
+                .tousPrix(f.getTousPrix())
                 .prix(f.getPrix())
                 .build();
     }

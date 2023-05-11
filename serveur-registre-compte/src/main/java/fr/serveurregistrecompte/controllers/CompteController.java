@@ -202,4 +202,19 @@ public class CompteController {
         }
     }
 
+
+    @PutMapping("emptyPanier")
+    public ResponseEntity emptyPanier(
+                                       @RequestParam(value = "email", required = true) String email) throws Exception{
+        try {
+            return ResponseEntity.ok().body(this.compteService.emptyPanier(email));
+        } catch (ExceptionBadRequest e) {
+            return ResponseEntity.badRequest().body(new ErrorMessageCompteException(e.getMessage()));
+        } catch (ExceptionNotFound e){
+            return ResponseEntity.noContent().build();
+        } catch (Exception e){
+            return ResponseEntity.internalServerError().body(new ErrorMessageCompteException(e.getMessage()));
+        }
+    }
+
 }

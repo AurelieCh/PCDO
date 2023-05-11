@@ -60,7 +60,7 @@ export const ListType: TypeComposant[] =[
 },
 
   {
-    nom:"ALL",
+    nom: null,
     titre: "Pièces informatique",
     description: "La liste de tous nos produit disponible",
     url:"ALL"

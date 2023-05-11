@@ -5,3 +5,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
 background-color: #eaeaea;
 }
 
+.cdk-global-overlay-wrapper {
+  overflow: auto;
+  pointer-events: auto;  // needed for chrome but prevents backdrop click close
+}
