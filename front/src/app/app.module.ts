@@ -28,6 +28,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthHttpInterceptor } from '@auth0/auth0-angular';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { BuildComponent } from './build/build.component';
 
 
 
@@ -46,6 +47,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     DialogContentDialog,
     DialogCommandeDialog,
     RemoveUnderscorePipe,
+    BuildComponent,
 
 
 

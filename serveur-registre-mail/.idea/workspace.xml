@@ -5,37 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dec753f0-a9a5-4515-9851-e0b0b6f66740" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../front/src/app/cart/dialog-content.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/account-button/account-button.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/account-button/account-button.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/account-button/account-button.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/account-button/account-button.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../front/src/app/build/build.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../front/src/app/build/build.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../front/src/app/build/build.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../front/src/app/build/build.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../front/src/app/account/account.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/account/account.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../front/src/app/account/account.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/account/account.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../front/src/app/account/account.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/account/account.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/app.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/app.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/app-routing.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../front/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../front/src/app/cart/cart.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/cart/cart.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/cart/cart.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/cart/cart.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/cart/cart.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/cart/cart.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/menu/menu.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/menu/menu.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/object/ListType.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/object/ListType.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/object/TypeComposant.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/object/TypeComposant.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front/src/app/menu/menu.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/menu/menu.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../front/src/app/product-list/product-list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/product-list/product-list.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../front/src/app/product-list/product-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/product-list/product-list.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/service/commande.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/service/commande.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../front/src/app/service/composants.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/service/composants.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/service/compte.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/service/compte.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/service/facturation.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/service/facturation.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/styles.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../serveur-registre-commandes/src/main/java/fr/serveurregistrecommandes/services/CommandeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-commandes/src/main/java/fr/serveurregistrecommandes/services/CommandeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../serveur-registre-commandes/src/main/java/fr/serveurregistrecommandes/services/dto/CreateCommandeResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-commandes/src/main/java/fr/serveurregistrecommandes/services/dto/CreateCommandeResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../serveur-registre-commandes/src/main/java/fr/serveurregistrecommandes/services/dto/GetCommandeResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-commandes/src/main/java/fr/serveurregistrecommandes/services/dto/GetCommandeResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../serveur-registre-compte/src/main/java/fr/serveurregistrecompte/controllers/CompteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-compte/src/main/java/fr/serveurregistrecompte/controllers/CompteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../serveur-registre-compte/src/main/java/fr/serveurregistrecompte/services/CompteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-compte/src/main/java/fr/serveurregistrecompte/services/CompteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../serveur-registre-facturation/src/main/java/fr/serveurregistrefacturation/commun/Facturation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-facturation/src/main/java/fr/serveurregistrefacturation/commun/Facturation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../serveur-registre-facturation/src/main/java/fr/serveurregistrefacturation/services/FacturationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-facturation/src/main/java/fr/serveurregistrefacturation/services/FacturationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../serveur-registre-facturation/src/main/java/fr/serveurregistrefacturation/services/dto/CreateFactureRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-facturation/src/main/java/fr/serveurregistrefacturation/services/dto/CreateFactureRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../serveur-registre-facturation/src/main/java/fr/serveurregistrefacturation/services/dto/CreateFactureResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-facturation/src/main/java/fr/serveurregistrefacturation/services/dto/CreateFactureResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../serveur-registre-facturation/src/main/java/fr/serveurregistrefacturation/services/dto/GetFactureResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-facturation/src/main/java/fr/serveurregistrefacturation/services/dto/GetFactureResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../gateway/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../serveur-registre-autobuild/src/main/java/fr/serveurregistreautobuild/services/ConfigurationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-autobuild/src/main/java/fr/serveurregistreautobuild/services/ConfigurationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../serveur-registre-autobuild/src/main/resources/data/dbautobuild.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../serveur-registre-autobuild/src/main/resources/data/dbautobuild.mv.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

@@ -1,9 +1,9 @@
 <div class="container">
-<div class="type" *ngIf="type">
-  <h1 >{{type.titre}}</h1>
-  <br>
-  <p>{{type.description}}</p>
-</div>
+  <div class="type" *ngIf="type">
+    <h1 >{{type.titre}}</h1>
+    <br>
+    <p>{{type.description}}</p>
+  </div>
 <div class="liste">
 <table mat-table [dataSource]="dataSource"  class="mat-elevation-z8">
 
@@ -45,6 +45,11 @@
     <th mat-header-cell *matHeaderCellDef>  </th>
     <td mat-cell *matCellDef="let element">
         <button mat-raised-button (click)="addToCart(element.idComposant)">Acheter</button></td>
+  </ng-container>
+
+  <ng-container matColumnDef="Caract">
+    <th mat-header-cell *matHeaderCellDef> Caractéristique </th>
+    <td mat-cell *matCellDef="let element"> <span *ngFor="let info of element.caracteristiqueList"> {{info.nomCaracteristique}} : {{info.val}} <br/></span> </td>
   </ng-container>
 
   <!-- Symbol Column -->

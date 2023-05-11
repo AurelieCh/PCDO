@@ -52,3 +52,4 @@ spring:
         # ajouter les éventuels services suivants
 server:
   port: 8080
+

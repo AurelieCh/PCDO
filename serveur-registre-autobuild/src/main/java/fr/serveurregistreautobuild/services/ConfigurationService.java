@@ -20,8 +20,11 @@ public class ConfigurationService {
     @Autowired
     private RestTemplate rest;
 
+
+
+
     public GetFullConfigResponse randomConfig() throws Exception {
-        Random r = new Random();
+        Random r = new Random(System.nanoTime());
         ArrayList<GetComposantListResponse> composants = new ArrayList<>();
         // Récupération de la liste des composants
         for(Categorie c : Categorie.values()){

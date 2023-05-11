@@ -1,18 +1,16 @@
 <div class="content" *ngIf="auth.user$ | async as user; else not">
-  <img class="userpic"[src]="user.picture">
-  <h1>Bonjour {{user.given_name}}</h1>
-  <p>Nom :{{user.family_name}}</p>
-  <p>Pseudo :{{user.nickname}}</p>
-  <p>email :{{user.email}}</p>
-
-
-  <h1>Vos Commandes:</h1>
-
+  <div class="container">
+    <div class="type">
+  <h1>Bonjour {{user.given_name}} {{user.family_name}}</h1>
+    <br>
+  <h3>Vos Commandes:</h3>
+  </div>
+</div>
   <mat-accordion>
     <mat-expansion-panel hideToggle *ngFor="let info of couple">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          Commande du {{info.commande_.dateCommande | date: 'dd/MM/yyyy'}}
+          Commande du {{info.commande_.dateCommande | date: 'dd/MM/yyyy H:mm'}}
         </mat-panel-title>
         <mat-panel-description>
           {{info.commande_.status | removeUnderscore}}
@@ -23,16 +21,17 @@
           <img class="itempic" [src]="compo.url">
           <td>{{compo.nom}}</td>
           <td>{{compo.marque}}</td>
+          <td *ngIf="compo.prix">{{compo.prix}}  €</td>
         </tr>
       </table>
 
-        <div class="info"><h1>Information sur la commande</h1>
+        <div class="info"><h2>Information sur la commande</h2>
           <p>Adresse: {{info.commande_.adresse}}</p>
           <p>Email: {{info.commande_.email}}</p>
           <p>Total: {{info.commande_.prix}} €</p>
           <br>
           <br>
-          <button mat-raised-button (click)="openDialog(info.facture_.id)"> <mat-icon >print</mat-icon> Visualiser ma facture</button>
+          <button mat-raised-button (click)="openDialog(info.facture_.id)"> <mat-icon >print</mat-icon> Imprimer ma facture</button>
         </div>
 
 
@@ -49,19 +48,19 @@
   <br>
   <p>E-mail: {{info.facture_.email}}</p>
   <p>Adresse: {{info.facture_.adresse}}</p>
-  <p>Date: {{info.facture_.dateCreation}}</p>
+  <p>Date: {{info.facture_.dateCreation | date: 'dd/MM/yyyy H:mm'}}</p>
   <p>Référence Facture: {{info.facture_.id}}</p>
   <p>Référence Commande: {{info.commande_.id}}</p>
   <p>Paiement: {{info.facture_.typePaiement}}</p>
-  <table>
-    <tr *ngFor="let comp of info.compoList">
-      <img style="height: 100PX"
-           [src]="comp.url">
+  <table style="border: solid;">
+    <tr style="border: solid;" *ngFor="let comp of info.compoList">
       <td>{{comp.nom}}</td>
       <td>{{comp.marque}}</td>
+      <td>{{comp.categorie}}</td>
+      <td *ngIf="comp.prix">{{comp.prix}} €</td>
     </tr>
   </table>
-  <h1>Total: {{info.facture_.prix}} €</h1>
+  <h3>Total: {{info.facture_.prix}} €</h3>
 </div>
 </div>
 

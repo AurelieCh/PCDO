@@ -5,6 +5,7 @@ import { CommandeService } from '../service/commande.service';
 import {ComposantsService} from "../service/composants.service";
 import { CompteService } from '../service/compte.service';
 import { FacturationService } from '../service/facturation.service';
+import {Router} from "@angular/router";
 
 
 
@@ -22,7 +23,7 @@ export class AccountComponent {
   couple: any;
 
 
-  constructor( public auth: AuthService, public compte: CompteService, public commande: CommandeService, public facture: FacturationService,public Composant: ComposantsService ) {
+  constructor( private router: Router ,public auth: AuthService, public compte: CompteService, public commande: CommandeService, public facture: FacturationService,public Composant: ComposantsService ) {
     this.couple = [];
     this.auth.user$.subscribe((profile) => {
         this.compteIds = profile;
@@ -32,16 +33,17 @@ export class AccountComponent {
             this.info = result
             this.info.facturations.forEach((id: number) => {
               this.facture.getFacture(id).subscribe((facture_: any) => {
+                console.log(facture_)
                 this.commande.getCommande(facture_.commande).subscribe((commande_: any) => {
                   let compoList: any[];
                   compoList=[]
+                  let i = 0;
                   commande_.composants.forEach((compo: string) => {
                     this.Composant.getSearchedComposants(compo).subscribe(
-                      (result : any) => {
-                      compoList.push(result)
-
-
-
+                      (compo : any) => {
+                        compo.prix = facture_.tousPrix[i]
+                        compoList.push(compo)
+                        i++
                       }
 
                     )

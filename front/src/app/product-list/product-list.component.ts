@@ -69,7 +69,7 @@ export class ProductListComponent {
 
 
 
-  displayedColumns: string[] = ['image', 'nom', 'marque','description', 'prix', 'idComposant'];
+  displayedColumns: string[] = ['image', 'nom', 'marque','description','Caract', 'prix', 'idComposant'];
 
   title: string ="";
   compteIds:any;
@@ -111,5 +111,8 @@ export class ProductListComponent {
           })
     })
         }
+
+
+
 
 }

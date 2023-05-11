@@ -47,6 +47,8 @@
     </td>
   </ng-container>
 
+
+
   <!-- Symbol Column -->
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -57,7 +59,7 @@
 <br>
 
 
-<mat-toolbar>
+<mat-toolbar *ngIf="cartList2.length >0;" >
   <span>
     Total de votre commande : {{somme}} €.
   </span>
@@ -69,6 +71,9 @@
 <br>
 
 </div>
+
+
+
 
 <ng-template #not>
   <span>pas connecté</span>

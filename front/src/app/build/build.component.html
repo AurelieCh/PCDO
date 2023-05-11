@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="type" >
+    <h1 >Ordinateur monté</h1>
+    <br>
+    <p>Si vous avez peur de monter vous même votre ordinateur, aucun soucis ! Voici notre gamme d'ordinateur que nous avons monté rien que pour vous !
+    </p>
+  </div>
+</div>
+
+
+<mat-accordion>
+  <mat-expansion-panel hideToggle *ngFor="let build of buildList">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <img [src]="build.boitier.url">
+      </mat-panel-title>
+      <mat-panel-description>
+        {{build.cpu.prix+
+      build.gpu.prix+
+      build.ram.prix+
+      build.boitier.prix+
+      build.ssd.prix+
+      build.hdd.prix+
+      build.alim.prix+
+      build.carteMere.prix}} €
+        <span class="example-spacer"></span>
+        <button mat-raised-button (click)="addToCart(build)">acheter</button>
+      </mat-panel-description>
+
+    </mat-expansion-panel-header>
+
+    <table>
+      <tr><th></th><th>Catégorie</th> <th>Nom</th> <th>Marque</th> <th>Prix</th></tr>
+      <tr><img class="itempic" [src]="build.cpu.url"><td>{{build.cpu.categorie}}</td> <td>{{build.cpu.nom}}</td> <td>{{build.cpu.marque}}</td> <td>{{build.cpu.prix}} €</td></tr>
+      <tr><img class="itempic" [src]="build.carteMere.url"><td>{{build.carteMere.categorie}}</td> <td>{{build.carteMere.nom}}</td> <td>{{build.carteMere.marque}}</td> <td>{{build.carteMere.prix}} €</td></tr>
+      <tr><img class="itempic" [src]="build.gpu.url"><td>{{build.gpu.categorie}}</td> <td>{{build.gpu.nom}}</td> <td>{{build.gpu.marque}}</td> <td>{{build.gpu.prix}} €</td></tr>
+      <tr><img class="itempic" [src]="build.ram.url"><td>{{build.ram.categorie}}</td> <td>{{build.ram.nom}}</td> <td>{{build.ram.marque}}</td> <td>{{build.ram.prix}} €</td></tr>
+      <tr><img class="itempic" [src]="build.ssd.url"><td>{{build.ssd.categorie}}</td> <td>{{build.ssd.nom}}</td> <td>{{build.ssd.marque}}</td> <td>{{build.ssd.prix}} €</td></tr>
+      <tr><img class="itempic" [src]="build.hdd.url"><td>{{build.hdd.categorie}}</td> <td>{{build.hdd.nom}}</td> <td>{{build.hdd.marque}}</td> <td>{{build.hdd.prix}} €</td></tr>
+      <tr><img class="itempic" [src]="build.boitier.url"><td>{{build.boitier.categorie}}</td> <td>{{build.boitier.nom}}</td> <td>{{build.boitier.marque}}</td> <td>{{build.boitier.prix}} €</td></tr>
+      <tr><img class="itempic" [src]="build.alim.url"><td>{{build.alim.categorie}}</td> <td>{{build.alim.nom}}</td> <td>{{build.alim.marque}}</td> <td>{{build.alim.prix}} €</td></tr>
+
+    </table>
+
+
+  </mat-expansion-panel>
+</mat-accordion>
+
+
