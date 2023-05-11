@@ -19,6 +19,7 @@ servers:
     description : facturations
   - url: http://localhost:8080/ms-mails
     description : mails
+  - url: http://localhost:8080/ms-autobuild
 tags:
   - name: commandes
     description: Les differents services pcdo des commandes.
@@ -28,8 +29,10 @@ tags:
     description: Les différents services pcdo des comptes.
   - name: facturations
     description: Les différents services pcdo des facturations
+  - name : autobuild
+    description: Les différents services pcdo de l'autobuild
 paths:
-  /ms-commandes:
+  /ms-commandes/commandes:
     post:
       tags:
         - commandes
@@ -81,7 +84,7 @@ paths:
         '500':
           description: InternalServerError
         
-  /ms-commandes/{id}:
+  /ms-commandes/commandes/{id}:
     get:
       tags:
         - commandes
@@ -106,7 +109,7 @@ paths:
           description: NotFound
         '500':
           description: InternalServerError
-  /ms-composants:
+  /ms-composants/composants:
     post:
       tags:
         - composants
@@ -172,78 +175,6 @@ paths:
                   ]
         '400':
           description: BadRequest
-        '500':
-          description: InternalServerError
-    get:
-      tags: 
-        - composants
-      summary: Récupération d'un composant
-      description: Récupération d'un composant
-      operationId: getComposant
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/GetComposantRequest'
-            example:
-              prixMin: 0
-              prixMax: 10000
-              nom: i42
-              marque: Intel
-              description: ouf
-              categorie: Processeur
-              caracteristiqueList:
-                [
-                  {
-                    nomCaracteristique: frequence,
-                    val: 12.3
-                  },
-                  {
-                    nomCaracteristique : nbCoeurs,
-                    val : 4
-                  },                    {
-                    nomCaracteristique : socket,
-                    val : Intel
-                  }
-                ]
-      responses:
-        '200':
-          description: Un ou plusieurs composants correspondants ont été trouvés
-          content: 
-            application/json:
-              schema:
-                type: array
-              example: 
-                [
-                  {
-                    id: 1,
-                    prix: 1,
-                    nom: Intel Core i42,
-                    marque: Intel,
-                    description: Processeur vraiment pas ouf,
-                    url: http://tenor.com/yGhz.gif,
-                    categorie: Processeur,
-                    caracteristiqueList:
-                      [
-                        {
-                          nomCaracteristique: frequence,
-                          val: 12.3
-                        },
-                        {
-                          nomCaracteristique : nbCoeurs,
-                          val : 4
-                        },
-                        {
-                          nomCaracteristique : socket,
-                          val : Intel
-                        }
-                      ]
-                  }
-                ]
-        '400':
-          description: BadRequest
-        '404':
-          description: NotFound
         '500':
           description: InternalServerError
     put:
@@ -316,7 +247,80 @@ paths:
           description: NotFound
         '500':
           description: InternalServerError
-  /ms-composants/{id}:
+  /ms-composants/composants/search:
+    post:
+      tags: 
+        - composants
+      summary: Récupération d'un composant
+      description: Récupération d'un composant
+      operationId: getComposant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetComposantRequest'
+            example:
+              prixMin: 0
+              prixMax: 10000
+              nom: i42
+              marque: Intel
+              description: ouf
+              categorie: Processeur
+              caracteristiqueList:
+                [
+                  {
+                    nomCaracteristique: frequence,
+                    val: 12.3
+                  },
+                  {
+                    nomCaracteristique : nbCoeurs,
+                    val : 4
+                  },                    {
+                    nomCaracteristique : socket,
+                    val : Intel
+                  }
+                ]
+      responses:
+        '200':
+          description: Un ou plusieurs composants correspondants ont été trouvés
+          content: 
+            application/json:
+              schema:
+                type: array
+              example: 
+                [
+                  {
+                    id: 1,
+                    prix: 1,
+                    nom: Intel Core i42,
+                    marque: Intel,
+                    description: Processeur vraiment pas ouf,
+                    url: http://tenor.com/yGhz.gif,
+                    categorie: Processeur,
+                    caracteristiqueList:
+                      [
+                        {
+                          nomCaracteristique: frequence,
+                          val: 12.3
+                        },
+                        {
+                          nomCaracteristique : nbCoeurs,
+                          val : 4
+                        },
+                        {
+                          nomCaracteristique : socket,
+                          val : Intel
+                        }
+                      ]
+                  }
+                ]
+        '400':
+          description: BadRequest
+        '404':
+          description: NotFound
+        '500':
+          description: InternalServerError
+  /ms-composants/composants/{id}:
     get:
       tags:
         - composants
@@ -461,7 +465,7 @@ paths:
             - read:comptes
             - delete:comptes
   /ms-comptes/comptes/getCompte:
-    get:
+    put:
       tags:
         - comptes
       summary: Récupérer un compte.
@@ -758,7 +762,126 @@ paths:
       security:
         - site_auth:
           - read:facturations
-
+  /ms-autobuild/autobuild/random:
+    get:
+      tags: 
+        - autobuild
+      summary: Crée une configuration valide aléatoire
+      description: Crée une configuration valide aléatoire
+      operationId: getRandomAutobuild
+      parameters:
+      responses:
+        '200':
+          description: Opération réussie
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetFullConfigResponse'
+        '500':
+          description: Erreur serveur interne
+        '503':
+          description: Service Composants indisponible
+  /ms-autobuild/autobuild/{id}:
+    get:
+      tags: 
+        - autobuild
+      summary: Retourne la configuration avec l'id correspondant
+      description: Crée une configuration valide aléatoire
+      operationId: getConfig
+      parameters:
+        - name: id
+          in: path
+          description: id de la config
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Opération réussie
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetFullConfigResponse'
+        '503':
+          description: Service Composants indisponible
+  /ms-autobuild/autobuild:
+    post:
+      tags:
+        - autobuild
+      summary: Ajoute la configuration valide en requestBody dans la BDD.
+      description: Ajoute la configuration si elle est valide
+      operationId: postConfig
+      parameters:
+        - in: body
+          name: body
+          description: Corps de la requête
+          required: true
+          schema:
+            type: object
+            properties:
+              cpu:
+                type: string
+                example: 1
+              gpu:
+                type: string
+                example: 2
+              ssd:
+                type: string
+                example: 3
+              hdd:
+                type: string
+                example: 4
+              boitier:
+                type: string
+                example: 5
+              alim:
+                type: string
+                example: 6
+              carteMere:
+                type: string
+                example: 7
+              ram:
+                type: string
+                example: 8
+      responses:
+        '201':
+          description: Opération réussie
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: 
+                    type: string
+                    example: 1
+                  cpu:
+                    type: string
+                    example: 1
+                  gpu:
+                    type: string
+                    example: 2
+                  ssd:
+                    type: string
+                    example: 3
+                  hdd:
+                    type: string
+                    example: 4
+                  boitier:
+                    type: string
+                    example: 5
+                  alim:
+                    type: string
+                    example: 6
+                  carteMere:
+                    type: string
+                    example: 7
+                  ram:
+                    type: string
+                    example: 8
+        '400': 
+          description: BadRequest
+        '500':
+          description: InternalServerError
 components:
   schemas:
     GetComposantRequest:
@@ -1226,6 +1349,74 @@ components:
             - PAYPAL
             - VIREMENT
             - PLUSIEURS_FOIS
+    Caracteristique:
+      type: object
+      properties:
+        nomCaracteristique:
+          type: string
+        val:
+          type: string
+      required:
+        - nomCaracteristique
+        - val
+    Composant:
+      type: object
+      properties:
+        idComposant:
+          type: integer
+          format: int64
+        prix:
+          type: number
+          format: double
+        nom:
+          type: string
+        marque:
+          type: string
+        description:
+          type: string
+        url:
+          type: string
+        categorie:
+          type: string
+        caracteristiqueList:
+          type: array
+          items:
+            $ref: "#/components/schemas/Caracteristique"
+      required:
+        - idComposant
+        - prix
+        - nom
+        - marque
+        - description
+        - url
+        - categorie
+        - caracteristiqueList
+    GetFullConfigResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        cpu:
+          $ref: "#/components/schemas/Composant"
+        gpu:
+          $ref: "#/components/schemas/Composant"
+        ssd:
+          $ref: "#/components/schemas/Composant"
+        hdd:
+          $ref: "#/components/schemas/Composant"
+        boitier:
+          $ref: "#/components/schemas/Composant"
+        alim:
+          $ref: "#/components/schemas/Composant"
+      required:
+        - id
+        - cpu
+        - gpu
+        - ssd
+        - hdd
+        - boitier
+        - alim
   securitySchemes:
     site_auth:
       type: oauth2
