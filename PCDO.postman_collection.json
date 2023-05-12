@@ -1,681 +1,10 @@
 {
 	"info": {
-		"_postman_id": "faa4b086-bd77-4a5a-be71-e1c1cfcafeb9",
+		"_postman_id": "58580199-001d-47ed-acf4-fa9abc62f5a3",
 		"name": "PCDO",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
-		{
-			"name": "Compte",
-			"item": [
-				{
-					"name": "CreateCompte",
-					"item": [
-						{
-							"name": "CreateCompte",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n  \"nom\": \"Chevry\",\n  \"prenom\": \"Aurelie\",\n  \"email\": \"aurelie@test.fr\",\n  \"password\": \"29102001\",\n  \"password2\": \"29102001\",\n  \"adresse\": \"12 rue des ploufplouf\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8083/comptes",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8083",
-									"path": [
-										"comptes"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "CreateCompte Copy",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n  \"nom\": \"Jubi\",\n  \"prenom\": \"Buji\",\n  \"email\": \"jubijubijubi@yopmail.com\",\n  \"password\": \"bujibuji\",\n  \"password2\": \"bujibuji\",\n  \"adresse\": \"44 rue des bouij\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8083/comptes",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8083",
-									"path": [
-										"comptes"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "CreateCompte400",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n  \"nom\": \"Chevry\",\n  \"prenom\": \"Aurelie\",\n  \"email\": \"aurelie@test.fr\",\n  \"password\": \"29102001\",\n  \"password2\": \"2910200\",\n  \"adresse\": \"12 rue des ploufplouf\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8083/comptes",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8083",
-									"path": [
-										"comptes"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "CreateCompte400 v2",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n  \"nom\": \"Chevry\",\n  \"prenom\": \"Aurelie\",\n  \"email\": \"\",\n  \"password\": \"29102001\",\n  \"password2\": \"2910200\",\n  \"adresse\": \"12 rue des ploufplouf\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8083/comptes",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8083",
-									"path": [
-										"comptes"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "GetCompte",
-					"item": [
-						{
-							"name": "GetCompte",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\": \"aurelie@test.fr\",\n    \"password\": \"29102001\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8083/comptes/getCompte",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8083",
-									"path": [
-										"comptes",
-										"getCompte"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "GetCompte Copy",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\": \"jubijubijubi@yopmail.com\",\n    \"password\": \"bujibuji\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8083/comptes/getCompte",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8083",
-									"path": [
-										"comptes",
-										"getCompte"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "GetCompte Copy 2",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\": \"aurelie@test.fr\",\n    \"password\": \"29102001\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8080/comptes/getCompte",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"comptes",
-										"getCompte"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "GetCompte 204",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\": \"aurelie@test.f\",\n    \"password\": \"29102001\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8083/comptes/getCompte",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8083",
-									"path": [
-										"comptes",
-										"getCompte"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "GetCompte 400",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\": \"aurelie@test.fr\",\n    \"password\": \"2910200\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8083/comptes/getCompte",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8083",
-									"path": [
-										"comptes",
-										"getCompte"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "ModifyCompte",
-					"item": [
-						{
-							"name": "ModifyCompte",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n  \"email\": \"aurelie@test.fr\",\n  \"nom\": \"Chevry\",\n  \"prenom\": \"Aurelie\",\n  \"adresse\": \"12 rue des ploufplou\",\n  \"password\": \"29102001\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:8083/comptes",
-									"host": [
-										"localhost"
-									],
-									"port": "8083",
-									"path": [
-										"comptes"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "ModifyCompte 400",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n  \"email\": \"aurelie@test.fr\",\n  \"nom\": \"\",\n  \"prenom\": \"Aurelie\",\n  \"adresse\": \"12 rue des ploufplou\",\n  \"password\": \"29102001\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:8083/comptes",
-									"host": [
-										"localhost"
-									],
-									"port": "8083",
-									"path": [
-										"comptes"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "ModifyCompte 204",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n  \"email\": \"aurelie@test.f\",\n  \"nom\": \"Chevry\",\n  \"prenom\": \"Aurelie\",\n  \"adresse\": \"12 rue des ploufplou\",\n  \"password\": \"29102001\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:8083/comptes",
-									"host": [
-										"localhost"
-									],
-									"port": "8083",
-									"path": [
-										"comptes"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "DeleteCompte",
-					"item": [
-						{
-							"name": "DeleteCompte",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\": \"aurelie@test.fr\",\n    \"password\": \"29102001\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8083/comptes",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8083",
-									"path": [
-										"comptes"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "DeleteCompte Copy",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\": \"jubijubijubi@yopmail.com\",\n    \"password\": \"bujibuji\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8083/comptes",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8083",
-									"path": [
-										"comptes"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "DeleteCompte 400",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\": \"aurelie@test.fr\",\n    \"password\": \"2910200\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8083/comptes",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8083",
-									"path": [
-										"comptes"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "DeleteCompte 204",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\": \"aurelie@test.f\",\n    \"password\": \"29102001\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8083/comptes",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8083",
-									"path": [
-										"comptes"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "checkMail",
-					"item": [
-						{
-							"name": "checkMail",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "localhost:8083/comptes/checkMail?email=aurelie@test.fr",
-									"host": [
-										"localhost"
-									],
-									"port": "8083",
-									"path": [
-										"comptes",
-										"checkMail"
-									],
-									"query": [
-										{
-											"key": "email",
-											"value": "aurelie@test.fr"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "checkMail 204",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "localhost:8083/comptes/checkMail?email=aurelie@test.f",
-									"host": [
-										"localhost"
-									],
-									"port": "8083",
-									"path": [
-										"comptes",
-										"checkMail"
-									],
-									"query": [
-										{
-											"key": "email",
-											"value": "aurelie@test.f"
-										}
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "addFacture",
-					"item": [
-						{
-							"name": "addFacture",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"url": {
-									"raw": "localhost:8083/comptes/addFacture?id=1&email=aurelie@test.fr",
-									"host": [
-										"localhost"
-									],
-									"port": "8083",
-									"path": [
-										"comptes",
-										"addFacture"
-									],
-									"query": [
-										{
-											"key": "id",
-											"value": "1"
-										},
-										{
-											"key": "email",
-											"value": "aurelie@test.fr"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "addFacture 204",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"url": {
-									"raw": "localhost:8083/comptes/addFacture?id=1&email=aurelie@test.f",
-									"host": [
-										"localhost"
-									],
-									"port": "8083",
-									"path": [
-										"comptes",
-										"addFacture"
-									],
-									"query": [
-										{
-											"key": "id",
-											"value": "1"
-										},
-										{
-											"key": "email",
-											"value": "aurelie@test.f"
-										}
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "addCommande",
-					"item": [
-						{
-							"name": "addCommande",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"url": {
-									"raw": "localhost:8083/comptes/addCommande?id=1&email=aurelie@test.fr",
-									"host": [
-										"localhost"
-									],
-									"port": "8083",
-									"path": [
-										"comptes",
-										"addCommande"
-									],
-									"query": [
-										{
-											"key": "id",
-											"value": "1"
-										},
-										{
-											"key": "email",
-											"value": "aurelie@test.fr"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "addCommande 204",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"url": {
-									"raw": "localhost:8083/comptes/addCommande?id=1&email=aurelie@test.f",
-									"host": [
-										"localhost"
-									],
-									"port": "8083",
-									"path": [
-										"comptes",
-										"addCommande"
-									],
-									"query": [
-										{
-											"key": "id",
-											"value": "1"
-										},
-										{
-											"key": "email",
-											"value": "aurelie@test.f"
-										}
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				}
-			]
-		},
 		{
 			"name": "Facturation",
 			"item": [
@@ -689,7 +18,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"email\": \"aurelie@test.fr\",\n  \"commande\": 1,\n  \"adresse\": \"12 rue des ploufplouf\",\n  \"typePaiement\": 0\n}",
+									"raw": "{\n  \"email\": \"qdqdsq@yopmail.com\",\n  \"commande\": 4,\n  \"adresse\": \"12 rue des ploufplouf\",\n  \"tousPrix\": [100],\n  \"prix\": 100,\n  \"typePaiement\": 0\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -697,12 +26,12 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8084/facturations",
+									"raw": "http://localhost:8080/facturations",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8084",
+									"port": "8080",
 									"path": [
 										"facturations"
 									]
@@ -725,12 +54,12 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8084/facturations",
+									"raw": "http://localhost:8080/facturations",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8084",
+									"port": "8080",
 									"path": [
 										"facturations"
 									]
@@ -749,11 +78,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8084/facturations/getFacture?id=16",
+									"raw": "localhost:8080/facturations/getFacture?id=4",
 									"host": [
 										"localhost"
 									],
-									"port": "8084",
+									"port": "8080",
 									"path": [
 										"facturations",
 										"getFacture"
@@ -761,7 +90,7 @@
 									"query": [
 										{
 											"key": "id",
-											"value": "16"
+											"value": "4"
 										}
 									]
 								}
@@ -774,11 +103,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8084/facturations/getFacture?id=1",
+									"raw": "localhost:8080/facturations/getFacture?id=1",
 									"host": [
 										"localhost"
 									],
-									"port": "8084",
+									"port": "8080",
 									"path": [
 										"facturations",
 										"getFacture"
@@ -806,27 +135,31 @@
 						{
 							"name": "CreateCommande",
 							"request": {
-								"method": "POST",
+								"method": "PUT",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"composants\": [\n      106,\n      132\n  ],\n  \"email\": \"aurelie@test.fr\",\n  \"adresse\": \"12 rue des ploufplouf\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
+									"raw": "{\n  \"composants\": [\n      1,\n      5,\n      9,\n      13,\n      17,\n      21,\n      25,\n      30\n  ],\n  \"email\": \"bonjourpcdo@yopmail.com\",\n  \"adresse\": \"4 rue michelllllllllllllllllllllllllllll\"\n}"
 								},
 								"url": {
-									"raw": "http://localhost:8081/commandes/createCommande",
-									"protocol": "http",
+									"raw": "localhost:8080/comptes/addCommande?id=1&email=aurelie@test.fr",
 									"host": [
 										"localhost"
 									],
-									"port": "8081",
+									"port": "8080",
 									"path": [
-										"commandes",
-										"createCommande"
+										"comptes",
+										"addCommande"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										},
+										{
+											"key": "email",
+											"value": "aurelie@test.fr"
+										}
 									]
 								}
 							},
@@ -847,12 +180,12 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8081/commandes/createCommande",
+									"raw": "http://localhost:8080/commandes/createCommande",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8081",
+									"port": "8080",
 									"path": [
 										"commandes",
 										"createCommande"
@@ -876,12 +209,12 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8081/commandes/createCommande",
+									"raw": "http://localhost:8080/commandes/createCommande",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8081",
+									"port": "8080",
 									"path": [
 										"commandes",
 										"createCommande"
@@ -905,12 +238,12 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8081/commandes/createCommande",
+									"raw": "http://localhost:8080/commandes/createCommande",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8081",
+									"port": "8080",
 									"path": [
 										"commandes",
 										"createCommande"
@@ -942,12 +275,12 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8081/commandes/getCommande?id=24",
+									"raw": "http://localhost:8080/commandes/getCommande?id=1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8081",
+									"port": "8080",
 									"path": [
 										"commandes",
 										"getCommande"
@@ -955,7 +288,7 @@
 									"query": [
 										{
 											"key": "id",
-											"value": "24"
+											"value": "1"
 										}
 									]
 								}
@@ -980,12 +313,12 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8081/commandes/getCommande?id=1",
+									"raw": "http://localhost:8080/commandes/getCommande?id=1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8081",
+									"port": "8080",
 									"path": [
 										"commandes",
 										"getCommande"
@@ -1012,7 +345,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"id\": 9,\n    \"status\": 0\n}",
+									"raw": "{\n    \"id\": 4,\n    \"status\": 2\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1020,12 +353,12 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8081/commandes",
+									"raw": "http://localhost:8080/commandes",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8081",
+									"port": "8080",
 									"path": [
 										"commandes"
 									]
@@ -1048,12 +381,12 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8081/commandes",
+									"raw": "http://localhost:8080/commandes",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8081",
+									"port": "8080",
 									"path": [
 										"commandes"
 									]
@@ -1076,18 +409,690 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8081/commandes",
+									"raw": "http://localhost:8080/commandes",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8081",
+									"port": "8080",
 									"path": [
 										"commandes"
 									]
 								}
 							},
 							"response": []
+						}
+					]
+				},
+				{
+					"name": "Compte",
+					"item": [
+						{
+							"name": "CreateCompte",
+							"item": [
+								{
+									"name": "CreateCompte",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"nom\": \"Marlière\",\n  \"prenom\": \"Johan\",\n  \"email\": \"bonjourpcdo@yopmail.com\",\n  \"password\": \"02092001\",\n  \"password2\": \"02092001\",\n  \"adresse\": \"3 rue de michellllllll\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/comptes",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"comptes"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CreateCompte Copy",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"nom\": \"Jubi\",\n  \"prenom\": \"Buji\",\n  \"email\": \"jubijubijubi@yopmail.com\",\n  \"password\": \"bujibuji\",\n  \"password2\": \"bujibuji\",\n  \"adresse\": \"44 rue des bouij\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/comptes",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"comptes"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CreateCompte400",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"nom\": \"Chevry\",\n  \"prenom\": \"Aurelie\",\n  \"email\": \"aurelie@test.fr\",\n  \"password\": \"29102001\",\n  \"password2\": \"2910200\",\n  \"adresse\": \"12 rue des ploufplouf\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/comptes",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"comptes"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CreateCompte400 v2",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"nom\": \"Chevry\",\n  \"prenom\": \"Aurelie\",\n  \"email\": \"\",\n  \"password\": \"29102001\",\n  \"password2\": \"2910200\",\n  \"adresse\": \"12 rue des ploufplouf\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/comptes",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"comptes"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "GetCompte",
+							"item": [
+								{
+									"name": "GetCompte",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"aureliepcdo@yopmail.com\",\n    \"password\": \"29102001\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/comptes/getCompte",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"comptes",
+												"getCompte"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "GetCompte Copy",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"jubijubijubi@yopmail.com\",\n    \"password\": \"bujibuji\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/comptes/getCompte",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"comptes",
+												"getCompte"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "GetCompte Copy 2",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"aurelie@test.fr\",\n    \"password\": \"29102001\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/comptes/getCompte",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"comptes",
+												"getCompte"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "GetCompte 204",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"aurelie@test.f\",\n    \"password\": \"29102001\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/comptes/getCompte",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"comptes",
+												"getCompte"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "GetCompte 400",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"aurelie@test.fr\",\n    \"password\": \"2910200\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/comptes/getCompte",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"comptes",
+												"getCompte"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "ModifyCompte",
+							"item": [
+								{
+									"name": "ModifyCompte",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"email\": \"aurelie@test.fr\",\n  \"nom\": \"Chevry\",\n  \"prenom\": \"Aurelie\",\n  \"adresse\": \"12 rue des ploufplou\",\n  \"password\": \"29102001\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/comptes",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"comptes"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "ModifyCompte 400",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"email\": \"aurelie@test.fr\",\n  \"nom\": \"\",\n  \"prenom\": \"Aurelie\",\n  \"adresse\": \"12 rue des ploufplou\",\n  \"password\": \"29102001\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/comptes",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"comptes"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "ModifyCompte 204",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"email\": \"aurelie@test.f\",\n  \"nom\": \"Chevry\",\n  \"prenom\": \"Aurelie\",\n  \"adresse\": \"12 rue des ploufplou\",\n  \"password\": \"29102001\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/comptes",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"comptes"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "DeleteCompte",
+							"item": [
+								{
+									"name": "DeleteCompte",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"pcdosarl@gmail.com\",\n    \"password\": \"google-oauth2|107183002704729669880\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/composants/90",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"composants",
+												"90"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "DeleteCompte Copy",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"jubijubijubi@yopmail.com\",\n    \"password\": \"bujibuji\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/comptes",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"comptes"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "DeleteCompte 400",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"aurelie@test.fr\",\n    \"password\": \"2910200\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/comptes",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"comptes"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "DeleteCompte 204",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"aurelie@test.f\",\n    \"password\": \"29102001\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/comptes",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"comptes"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "checkMail",
+							"item": [
+								{
+									"name": "checkMail",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:8080/comptes/checkMail?email=aurelie@test.fr",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"comptes",
+												"checkMail"
+											],
+											"query": [
+												{
+													"key": "email",
+													"value": "aurelie@test.fr"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "checkMail 204",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:8080/comptes/checkMail?email=aurelie@test.f",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"comptes",
+												"checkMail"
+											],
+											"query": [
+												{
+													"key": "email",
+													"value": "aurelie@test.f"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "addFacture",
+							"item": [
+								{
+									"name": "addFacture",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "localhost:8080/comptes/addFacture?id=1&email=aurelie@test.fr",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"comptes",
+												"addFacture"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "1"
+												},
+												{
+													"key": "email",
+													"value": "aurelie@test.fr"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "addFacture 204",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "localhost:8080/comptes/addFacture?id=1&email=aurelie@test.f",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"comptes",
+												"addFacture"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "1"
+												},
+												{
+													"key": "email",
+													"value": "aurelie@test.f"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "addCommande",
+							"item": [
+								{
+									"name": "addCommande",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "localhost:8080/comptes/addCommande?id=1&email=aurelie@test.fr",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"comptes",
+												"addCommande"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "1"
+												},
+												{
+													"key": "email",
+													"value": "aurelie@test.fr"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "addCommande 204",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "localhost:8080/comptes/addCommande?id=1&email=aurelie@test.f",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"comptes",
+												"addCommande"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "1"
+												},
+												{
+													"key": "email",
+													"value": "aurelie@test.f"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
 						}
 					]
 				}
@@ -1105,15 +1110,15 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8082/composants/106",
+									"raw": "http://localhost:8080/composants/1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8082",
+									"port": "8080",
 									"path": [
 										"composants",
-										"106"
+										"1"
 									]
 								}
 							},
@@ -1121,11 +1126,8 @@
 						},
 						{
 							"name": "Get Composant Filtre",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
 							"request": {
-								"method": "GET",
+								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
@@ -1137,14 +1139,15 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8082/composants",
+									"raw": "http://localhost:8080/composants/search",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8082",
+									"port": "8080",
 									"path": [
-										"composants"
+										"composants",
+										"search"
 									]
 								}
 							},
@@ -1246,7 +1249,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"prix\" : 32131,\n    \"nom\" : \"Sarajevo\",\n    \"marque\" : \"Bosnie-Herzégovine\",\n    \"description\" : \"oulah les balkans (mdr)\",\n    \"url\" : \"http://tenor.com/balkany\",\n    \"categorie\" : \"DisqueDurHDD\",\n    \"caracteristiqueList\" : [\n        {\n            \"nomCaracteristique\" : \"capacite\",\n            \"val\" : \"512\"\n        },\n        {\n            \"nomCaracteristique\" : \"type\",\n            \"val\" : \"NVME\"\n        },\n    ]\n}",
+									"raw": "{\n    \"prix\" : 32131,\n    \"nom\" : \"Sarajevo\",\n    \"marque\" : \"Bosnie-Herzégovine\",\n    \"description\" : \"oulah les balkans (mdr)\",\n    \"url\" : \"http://tenor.com/balkany\",\n    \"categorie\" : \"DisqueDurHDD\",\n    \"caracteristiqueList\" : [\n        {\n            \"nomCaracteristique\" : \"capacite\",\n            \"val\" : \"512\"\n        },\n        {\n            \"nomCaracteristique\" : \"vitesse\",\n            \"val\" : \"5400\"\n        }\n    ]\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1391,7 +1394,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"id\" : 118,\n    \"prix\" : 3213,\n    \"nom\" : \"LA POLOGNE\",\n    \"marque\" : \"Non\",\n    \"description\" : \"Vamos a ganar\",\n    \"url\" : \"oui\",\n    \"categorie\" : \"Processeur\",\n    \"caracteristiqueList\" : [\n        {\n            \"nomCaracteristique\" : \"frequence\",\n            \"val\" : \"2000\"\n        },\n        {\n            \"nomCaracteristique\" : \"socket\",\n            \"val\" : \"JE SAIS PAS\"\n        },\n        {\n            \"nomCaracteristique\" : \"nbCoeurs\",\n            \"val\" : \"321\"\n        }\n    ]\n}",
+									"raw": "{\n    \"id\" : 123,\n    \"prix\" : 3213,\n    \"nom\" : \"LA POLOGNE\",\n    \"marque\" : \"Non\",\n    \"description\" : \"Vamos a ganar\",\n    \"url\" : \"oui\",\n    \"categorie\" : \"Processeur\",\n    \"caracteristiqueList\" : [\n        {\n            \"nomCaracteristique\" : \"frequence\",\n            \"val\" : \"2000\"\n        },\n        {\n            \"nomCaracteristique\" : \"socket\",\n            \"val\" : \"JE SAIS PAS\"\n        },\n        {\n            \"nomCaracteristique\" : \"nbCoeurs\",\n            \"val\" : \"321\"\n        }\n    ]\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1423,7 +1426,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/composants/90",
+									"raw": "http://localhost:8080/composants/123",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1431,7 +1434,90 @@
 									"port": "8080",
 									"path": [
 										"composants",
-										"90"
+										"123"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Autoconfig",
+			"item": [
+				{
+					"name": "Get",
+					"item": [
+						{
+							"name": "Get Full Config",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/autobuild/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"autobuild",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Random Config",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/autobuild/random",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"autobuild",
+										"random"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Post",
+					"item": [
+						{
+							"name": "Ajouter config",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"cpu\":\"1\",\n    \"gpu\":\"53\",\n    \"ssd\":\"25\",\n    \"hdd\":\"38\",\n    \"boitier\":\"65\",\n    \"alim\":\"77\",\n    \"carteMere\":\"41\",\n    \"ram\":\"13\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/autobuild",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"autobuild"
 									]
 								}
 							},
