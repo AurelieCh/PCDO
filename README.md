@@ -65,7 +65,7 @@ Le Micro-Service intègre la gestion des facturations en coordination avec le Mi
 #### **Micro-Service Mail (port 8085)**
 
 Le Micro-Service gère les mails (hébergés sur Gmail, adresse : pcdosarl@gmail.com).
-Le port du serveur SMTP (envoi de mails) est soit 25, soit 443 selon le type de connexion du Micro-Service à Internet.
+Le port du serveur SMTP (envoi de mails) est soit 25, soit 443, soit 587 selon le type de connexion du Micro-Service à Internet. Le mot de passe d'application dans le code est celui de l'adresse mail pcdosarl@gmail.com.
 
 #### **Micro-Service Autobuild (port 8086)**
 
@@ -88,3 +88,9 @@ Si une requête nécessite de communiquer avec un autre micro-service, et que ce
 _Une requête au Micro-Service mail ne retourne pas d'erreur de requête au Micro-Service appellant si la requête échoue (erreur d'envoi de mail ou serveur non-démarré)_
 
 ### RabbitMQ
+
+L'exécution de RabbitMQ nécessite que ce dernier soit exécuté sur la machine hôte des micro-services.
+
+### Front
+
+Le front-end peut être lancé dans le projet "Front". L'adresse hôte est alors localhost:4200, et l'utilisateur peut accéder à l'interface web du site pour y effectuer les différentes requêtes permises par le back-end.
