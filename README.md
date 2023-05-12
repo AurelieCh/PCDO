@@ -94,3 +94,11 @@ L'exécution de RabbitMQ nécessite que ce dernier soit exécuté sur la machine
 ### Front
 
 Le front-end peut être lancé dans le projet "Front". L'adresse hôte est alors localhost:4200, et l'utilisateur peut accéder à l'interface web du site pour y effectuer les différentes requêtes permises par le back-end.
+
+### Utilisation du Load Balancing
+
+Un micro-service peut être dupliqué pour être instancié plusieurs fois, permettant de répartir la charge serveur équitablement entre les différentes instances.
+
+Dans cette archive, le Micro-Service composant a déjà été dupliqué, et lancer les 2 projets correspondants permettra de faire du load balancing.
+
+_Note : Les bases de données étant stockées dans le dossier resource de chacun des projets, les bases de données ne sont pas partagées, et une modification de la BDD sur une instance ne modifiera pas la BDD sur les autres instances._
